@@ -2,7 +2,7 @@ using Godot;
 
 namespace ComedyDeckBuilder
 {
-    public partial class Card : Node2D
+    public partial class Card : Control
     {
         [Export]
         public CardData Data { get; set; }
