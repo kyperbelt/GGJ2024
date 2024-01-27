@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://jyw4u34ro2uo"]
+
+[ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="1_q6nqs"]
+
+[resource]
+script = ExtResource("1_q6nqs")
+Name = ""
+Description = ""
+Cost = 0
+Hilarity = 0
+CardNature = 0
