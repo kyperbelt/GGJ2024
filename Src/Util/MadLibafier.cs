@@ -8,7 +8,7 @@ public partial class MadLibafier : Node
     [Export(PropertyHint.File, "*.txt")]
     public string madLibFile = "res://Assets/MadLibs/defaultLibs.txt";
 
-    private Dictionary<string, List<string>> madLibs = new Dictionary<string, List<string>>();
+    private Dictionary<string, List<MadLibReplacement>> madLibs = new Dictionary<string, List<MadLibReplacement>>();
 
 
     public override void _Ready()
@@ -47,16 +47,71 @@ public partial class MadLibafier : Node
     /// </summary>
     private string GetRandomReplacement(string key)
     {
+        string[] splitKey = key.Split(".");
+        key = splitKey[0];
+        string participleRule = null; // .ing .ed .s for persentTense, pastTense, plural respectively
+
+        if (splitKey.Length > 1)
+        {
+            // WARNING: This only works for the first participle rule and ignores stacking participle rules. so you cannot for example have [verb.past.present]. I mean, you can but it will only use the first participle rule.
+            participleRule = splitKey[1];
+        }
+
         if (madLibs.ContainsKey(key))
         {
-            List<string> values = madLibs[key];
-            int index = (int)GD.RandRange(0, values.Count);
-            return values[index];
+            List<MadLibReplacement> values = madLibs[key];
+            int index = (int)GD.RandRange(0, values.Count - 1);
+            MadLibReplacement replacement = values[index];
+            if (participleRule == null)
+            {
+                return replacement.replacement;
+            }
+
+            switch (participleRule)
+            {
+                case "ing":
+                    return replacement.presentTenseReplacement ?? PresentTensesify(replacement.replacement);
+                case "ed":
+                    return replacement.pastTenseReplacement ?? PastTenstesify(replacement.replacement);
+                case "s":
+                    return replacement.pluralReplacement ?? Pluralize(replacement.replacement);
+                default:
+                    GD.PushError("Invalid participle rule: " + participleRule + " the only valid participle rules are: ing, ed, s");
+                    return $"<{key}.{participleRule}>";
+            }
+
         }
         else
         {
             return key;
         }
+    }
+
+    /// <summary>
+    /// Attempts to transform the word into its present tense form using 
+    /// a simple set of rules. 
+    /// </summary>
+    private string PresentTensesify(string word)
+    {
+        return word + "ing";
+    }
+
+    /// <summary>
+    /// Attempts to transform the word into its past tense form using
+    /// a simple set of rules.
+    /// </summary>
+    private string PastTenstesify(string word)
+    {
+        return word + "ed";
+    }
+
+    /// <summary>
+    /// Attempts to transform the word into its plural form using
+    /// a simple set of rules.
+    /// </summary>
+    private string Pluralize(string word)
+    {
+        return word + "s";
     }
 
     private void LoadMapLibFile()
@@ -97,7 +152,75 @@ public partial class MadLibafier : Node
             string[] splitLine = line.Split(":");
             string key = splitLine[0];
             string[] values = splitLine[1].Split(",");
-            madLibs.Add(key, new List<string>(values));
+            for (int i = 0; i < values.Length; i++)
+            {
+                string[] data = values[i].Trim().Split("|");
+                string value = values[0].Trim();
+                string presentTenseValue = null; // .ing for example running
+                string pastTenseValue = null;
+                string pluralValue = null;
+
+                for (int j = 0; j < data.Length; j++)
+                {
+                    value = data[j].Trim();
+                    string[] extraData = value.Split(".");
+                    string type = "invalid";
+                    string replacementValue = value;
+                    if (extraData.Length > 1)
+                    {
+                        type = extraData[0];
+                        replacementValue = extraData[1];
+                    }
+                    switch (type)
+                    {
+                        case "past":
+                            pastTenseValue = replacementValue;
+                            break;
+                        case "plural":
+                            pluralValue = replacementValue;
+                            break;
+                        case "present":
+                            presentTenseValue = replacementValue;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+                if (value != null && value != "")
+                {
+                    if (madLibs.ContainsKey(key))
+                    {
+                        madLibs[key].Add(new MadLibReplacement(key, value, pastTenseValue, pluralValue));
+                    }
+                    else
+                    {
+                        madLibs.Add(key, new List<MadLibReplacement> { new MadLibReplacement(key, value, pastTenseValue, pluralValue) });
+
+                    }
+                }
+            }
+        }
+
+
+    }
+
+    private class MadLibReplacement
+    {
+        public string key;
+        public string replacement;
+        public string presentTenseReplacement; // .ing for example running
+        public string pastTenseReplacement; // .ed for example ran
+        public string pluralReplacement; // .s for example cats or boxes
+
+        // TODO: Add replacement for pluralTwo and pluralMany at some point kind of how yarnspinner does it for pluralizations. Dont want to waste too much time on this right now though.
+
+        public MadLibReplacement(string key, string replacement, string pastTenseReplacement, string pluralReplacement)
+        {
+            this.key = key;
+            this.replacement = replacement;
+            this.pastTenseReplacement = pastTenseReplacement;
+            this.pluralReplacement = pluralReplacement;
         }
 
     }

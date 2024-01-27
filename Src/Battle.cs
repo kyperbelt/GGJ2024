@@ -13,7 +13,7 @@ public partial class Battle : Node2D
         }
 
         // test madlibifier 
-        string testString = "The [adjective] [noun] [verb] [preposition] the [adjective] [noun].";
+        string testString = "The [adjective] [noun] [verb.ing] [preposition] the [adjective] [noun].";
         GD.Print(_madLibafier.GetMadLib(testString));
     }
 
