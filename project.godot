@@ -11,8 +11,9 @@ config_version=5
 [application]
 
 config/name="GGJ2024"
-config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+run/main_scene="res://Src/Launch.tscn"
+config/features=PackedStringArray("4.2", "C#", "Forward Plus")
+config/icon="res://Assets/Image/icon.svg"
 
 [dotnet]
 

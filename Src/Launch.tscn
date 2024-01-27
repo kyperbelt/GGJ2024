@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://iplvpmhibcrv"]
+
+[ext_resource type="Script" path="res://Src/Screen/ScreenManager.cs" id="1_3e41y"]
+[ext_resource type="PackedScene" uid="uid://ctk3f28uyligk" path="res://Src/Screen/MainScreen.tscn" id="2_d5kdw"]
+
+[node name="Launch" type="Node"]
+script = ExtResource("1_3e41y")
+
+[node name="MainScreen" parent="." instance=ExtResource("2_d5kdw")]
