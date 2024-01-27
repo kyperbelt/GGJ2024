@@ -1,0 +1,5 @@
+adjective: big, small, red, blue, green, happy, crazy 
+adverb: slowly, quickly, happily, crazily
+verb: run, walk, jump, eat, sleep, drink, play, sing, dance, laugh, cry 
+preposition: over, under
+noun: house, chair, car, window, scale

@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="GGJ2024"
+config/tags=PackedStringArray("game", "jam")
 run/main_scene="res://Src/Launch.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://Assets/Image/icon.svg"

@@ -2,13 +2,22 @@ using Godot;
 
 public partial class Battle : Node2D
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
+    private MadLibafier _madLibafier;
+    public override void _Ready()
+    {
+        _madLibafier = GetNode<MadLibafier>("MadLibafier");
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+        if (_madLibafier == null)
+        {
+            GD.PushError("MadLibafier not found in Battle scene");
+        }
+
+        // test madlibifier 
+        string testString = "The [adjective] [noun] [verb] [preposition] the [adjective] [noun].";
+        GD.Print(_madLibafier.GetMadLib(testString));
+    }
+
+    public override void _Process(double delta)
+    {
+    }
 }

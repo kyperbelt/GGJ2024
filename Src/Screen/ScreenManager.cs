@@ -22,8 +22,8 @@ public partial class ScreenManager : Node
 
         AddToGroup("ScreenManager");
 
-	// Look for the first GameScreen that is a child of this manager
-	// to use as a starting screen.
+        // Look for the first GameScreen that is a child of this manager
+        // to use as a starting screen.
         var startingScreen = GetStartingScreen();
 
         if (startingScreen != null)
@@ -32,7 +32,7 @@ public partial class ScreenManager : Node
         }
         else
         {
-		GD.PushError("No Starting Game Screen Detected");
+            GD.PushError("No Starting Game Screen Detected");
         }
     }
 
