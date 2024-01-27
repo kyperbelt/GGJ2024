@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://du5j3307furgy"]
+
+[ext_resource type="PackedScene" uid="uid://dyqry5rpyj40p" path="res://Src/CardPrefab.tscn" id="1_gob3c"]
+
+[node name="TestCardsScene" type="Node2D"]
+
+[node name="CardPrefab" parent="." instance=ExtResource("1_gob3c")]
+position = Vector2(340, 446)
+
+[node name="CardPrefab2" parent="." instance=ExtResource("1_gob3c")]
+position = Vector2(508, 447)
+
+[node name="CardPrefab3" parent="." instance=ExtResource("1_gob3c")]
+position = Vector2(671, 447)

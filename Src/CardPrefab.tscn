@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dyqry5rpyj40p"]
+[gd_scene load_steps=7 format=3 uid="uid://dyqry5rpyj40p"]
 
 [ext_resource type="Script" path="res://Src/GameDataScripts/Card.cs" id="1_23nc2"]
+[ext_resource type="Script" path="res://Src/MoveWithMouse.cs" id="1_nobg5"]
 [ext_resource type="Texture2D" uid="uid://blfdcnv71yk2o" path="res://Assets/Image/icon.svg" id="2_0vjn4"]
 
 [sub_resource type="Animation" id="Animation_t3b23"]
@@ -8,7 +9,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CardAnimator/Control/CardBack:rotation")
+tracks/0/path = NodePath("Control/CardBack:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -20,7 +21,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CardAnimator/Control/CardBack:position")
+tracks/1/path = NodePath("Control/CardBack:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -35,7 +36,7 @@ resource_name = "card_hover"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CardAnimator/Control/CardBack:rotation")
+tracks/0/path = NodePath("Control/CardBack:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -47,7 +48,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CardAnimator/Control/CardBack:position")
+tracks/1/path = NodePath("Control/CardBack:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -65,40 +66,52 @@ _data = {
 
 [node name="CardPrefab" type="Node2D"]
 
-[node name="Card" type="Control" parent="." node_paths=PackedStringArray("CardAnimator")]
+[node name="MoveWithMouse" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 151.0
-offset_bottom = 197.0
+offset_left = 76.0
+offset_top = 124.0
+offset_right = 76.0
+offset_bottom = 124.0
+script = ExtResource("1_nobg5")
+
+[node name="Card" type="Control" parent="MoveWithMouse" node_paths=PackedStringArray("MouseMover", "CardAnimator")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -76.0
+offset_top = -124.0
+offset_right = 75.0
+offset_bottom = 73.0
 script = ExtResource("1_23nc2")
+MouseMover = NodePath("..")
 CardAnimator = NodePath("CardAnimator")
 
-[node name="PanelContainer" type="PanelContainer" parent="Card"]
+[node name="ClickHandler" type="PanelContainer" parent="MoveWithMouse/Card"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 153.0
 offset_bottom = 200.0
 
-[node name="CardAnimator" type="AnimationPlayer" parent="Card"]
+[node name="CardAnimator" type="AnimationPlayer" parent="MoveWithMouse/Card"]
 libraries = {
 "": SubResource("AnimationLibrary_leqbw")
 }
 
-[node name="Control" type="Control" parent="Card/CardAnimator"]
-layout_mode = 3
+[node name="Control" type="Control" parent="MoveWithMouse/Card"]
+layout_mode = 1
 anchor_right = 0.132
 anchor_bottom = 0.305
-offset_right = -112.064
-offset_bottom = -157.64
+offset_right = -19.932
+offset_bottom = -60.085
 
-[node name="CardBack" type="TextureRect" parent="Card/CardAnimator/Control"]
+[node name="CardBack" type="TextureRect" parent="MoveWithMouse/Card/Control"]
 layout_mode = 2
 offset_right = 152.0
 offset_bottom = 198.0
 mouse_filter = 2
 texture = ExtResource("2_0vjn4")
 
-[node name="CardIcon" type="TextureRect" parent="Card/CardAnimator/Control/CardBack"]
+[node name="CardIcon" type="TextureRect" parent="MoveWithMouse/Card/Control/CardBack"]
 layout_mode = 0
 offset_left = 12.0
 offset_top = 8.0
@@ -107,5 +120,6 @@ offset_bottom = 136.0
 mouse_filter = 2
 texture = ExtResource("2_0vjn4")
 
-[connection signal="mouse_entered" from="Card/PanelContainer" to="Card" method="OnMouseHover"]
-[connection signal="mouse_exited" from="Card/PanelContainer" to="Card" method="OnMouseLeave"]
+[connection signal="gui_input" from="MoveWithMouse/Card/ClickHandler" to="MoveWithMouse/Card" method="OnMouseInputEvent"]
+[connection signal="mouse_entered" from="MoveWithMouse/Card/ClickHandler" to="MoveWithMouse/Card" method="OnMouseHover"]
+[connection signal="mouse_exited" from="MoveWithMouse/Card/ClickHandler" to="MoveWithMouse/Card" method="OnMouseLeave"]

@@ -8,7 +8,7 @@ namespace ComedyDeckBuilder
         public CardData Data { get; set; }
 
         [Export]
-        public CollisionObject2D Collision { get; set; }
+        public MoveWithMouse MouseMover { get; set; }
 
         [Export]
         public AnimationPlayer CardAnimator { get; set; }
@@ -35,14 +35,21 @@ namespace ComedyDeckBuilder
             CardAnimator.Play("RESET");
         }
 
-        void _InputEvent(Viewport viewport, InputEvent ev, int shape_idx)
+        void OnMouseInputEvent(InputEvent ev)
         {
 
-            var btn = ev as InputEventMouseButton;
-
-            //if (btn != null && ev.GetButt == ButtonList.Left && ev.Pressed)
+            if (ev is InputEventMouseButton butt)
             {
-                GD.Print("Clicked");
+                if (butt.Pressed)
+                {
+                    GD.Print("Mouse Clicked");
+                    MouseMover.IsFollowingMouse = true;
+                }
+                else
+                {
+                    GD.Print("Mouse Released");
+                    MouseMover.IsFollowingMouse = false;
+                }
             }
         }
     }
