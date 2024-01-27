@@ -34,6 +34,17 @@ namespace ComedyDeckBuilder
         {
             CardAnimator.Play("RESET");
         }
+
+        void _InputEvent(Viewport viewport, InputEvent ev, int shape_idx)
+        {
+
+            var btn = ev as InputEventMouseButton;
+
+            //if (btn != null && ev.GetButt == ButtonList.Left && ev.Pressed)
+            {
+                GD.Print("Clicked");
+            }
+        }
     }
 }
 

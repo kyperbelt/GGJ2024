@@ -1,9 +1,14 @@
+/// <summary>
+/// Named after the medieval 'humors'
+/// </summary>
 public enum CardNatureEnum
 {
-    NoValue = 0,
-    YourMomJokes = 1,
-    DadJokes = 2,
-    PottyHumor = 3,
-    Seinfeld = 4,
+
+
+    None = 0, // no value
+    Phlegm = 1,
+    Blood = 2,
+    YellowBile = 3,
+    BlackBile = 4,
 
 }
