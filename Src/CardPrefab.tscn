@@ -68,7 +68,7 @@ _data = {
 "card_hover": SubResource("Animation_81dim")
 }
 
-[node name="Card" type="Control" node_paths=PackedStringArray("Visual")]
+[node name="Card" type="Control"]
 custom_minimum_size = Vector2(151, 200)
 layout_mode = 3
 anchor_right = 0.133
@@ -79,7 +79,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_23nc2")
 Data = ExtResource("2_6nb62")
-Visual = NodePath("MoveWithMouse/CardVisual")
 
 [node name="MoveWithMouse" type="Control" parent="."]
 layout_mode = 1
