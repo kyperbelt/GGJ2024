@@ -34,7 +34,11 @@ public partial class Battle : Node2D
     private List<CardData> _hand = new();
     private List<CardData> _discard = new();
 
-    private int _material = 5;
+    // Additional player stats
+    private int _material = MaterialPerTurn;
+    private int _setupMultiplier = 1;
+    private bool _playerJustTookDamage = false;
+    
     public int MaterialAmount
     {
         get => _material;
@@ -52,8 +56,10 @@ public partial class Battle : Node2D
     [Export]
     private int _deckSize = 64;
 
+    // Game rule constants
     private const int DrawAmount = 5;
     private const int MaterialPerTurn = 5;
+    private const int ComebackDamageMultiplier = 2;
 
     private enum TurnType
     {
@@ -103,7 +109,6 @@ public partial class Battle : Node2D
 
         _drawDeckPileUx = GetNode<DrawButton>("DrawButton");
         _drawDeckPileUx.DrawPileNumber = _deck.Count;
-
 
         if (_handArea != null)
         {
@@ -192,8 +197,12 @@ public partial class Battle : Node2D
         
         // Temp logic for doing damage on heckler turn
         var randomDamage = Random.Shared.Next(0, 6);
-        _playerCharacter.CurrentConfidence -= randomDamage;
         GD.Print($"Heckler does {randomDamage} damage to player.");
+        if (randomDamage > 0)
+        {
+            _playerCharacter.CurrentConfidence -= randomDamage;
+            _playerJustTookDamage = true;
+        }
         if (_playerCharacter.CurrentConfidence <= 0)
         {
             GD.Print($"\ud83d\udca5\ud83d\udca5\ud83d\udca5 You lose!");
@@ -274,9 +283,41 @@ public partial class Battle : Node2D
         ShowMadLibsSpeechBubble(card.MadlibSentence);
         
         DiscardCard(cardToPlayInHandIndex, card);
+
+        PrintPlayerStats();
+        
+        var cardDamage = card.Hilarity;
+        
+        // Check for special card type effects
+        switch (card.CardType)
+        {
+            case CardType.Set_Up:
+            {
+                _setupMultiplier += 1;
+                break;
+            }
+            case CardType.Punchline:
+            {
+                cardDamage *= _setupMultiplier;
+                _setupMultiplier = 1;
+                break;
+            }
+            case CardType.Comeback:
+            {
+                if (_playerJustTookDamage)
+                {
+                    GD.Print("Player gets comeback bonus!");
+                    cardDamage *= ComebackDamageMultiplier;
+                }
+                break;
+            }
+        }
+        
+        _playerJustTookDamage = false;
         
         // Do damage
-        _hecklerCharacter.CurrentConfidence -= card.Hilarity;
+        GD.Print($"Player did {cardDamage} damage to heckler (base damage = {card.Hilarity}).");
+        _hecklerCharacter.CurrentConfidence -= cardDamage;
         if (_hecklerCharacter.CurrentConfidence <= 0)
         {
             GD.Print($"\ud83c\udf89\ud83c\udf89\ud83c\udf89 You win!");
@@ -319,7 +360,7 @@ public partial class Battle : Node2D
 
     private void PrintPlayerStats()
     {
-        GD.Print($"Player Stats: Material: {_material}");
+        GD.Print($"Player Stats: Material: {_material} SetupMultiplier: {_setupMultiplier}");
     }
 
     private void PrintDeck()
