@@ -19,9 +19,13 @@ public partial class Battle : Node2D
     private List<CardData> _deck = new();
     private List<CardData> _hand = new();
     private List<CardData> _discard = new();
+    private int _material = 0;
 
     [Export]
     private int _deckSize = 64;
+
+    private const int DrawAmount = 5;
+    private const int MaterialPerTurn = 5;
 
     private enum TurnType
     {
@@ -53,7 +57,8 @@ public partial class Battle : Node2D
             var randomCardProto = _cardPrototypes[randomCardProtoIndex];
             _deck.Add(randomCardProto);
         }
-        PrintDeck();
+		
+        StartPlayerTurn();
     }
 
 
@@ -66,20 +71,13 @@ public partial class Battle : Node2D
         {
             case Key.Space:
                 {
-                    // Temp logic to advance turn and show new dialogue
-                    var targetBubble = _turnType switch
-                    {
-                        TurnType.Player => _playerSpeechBubble,
-                        TurnType.Heckler => _hecklerSpeechBubble,
-                        _ => throw new InvalidOperationException($"Unknown turn type: {_turnType}"),
-                    };
-                    targetBubble.ShowDialogueLine("The [adjective] [noun] [verb.ing] [preposition] the [adjective] [noun].");
-                    _turnType = _turnType == TurnType.Player ? TurnType.Heckler : TurnType.Player;
+                    // Debug button
+				ShowMadLibsSpeechBubble();
                     break;
                 }
             case Key.D:
                 {
-                    DrawCard();
+                    DrawHand();
                     break;
                 }
             case Key.P:
@@ -89,38 +87,84 @@ public partial class Battle : Node2D
                 }
             case Key.X:
                 {
-                    EndTurn();
+                    EndPlayerTurn();
                     break;
                 }
         }
     }
 
-    private void DrawCard()
-    {
-	if (Engine.IsEditorHint()) return;
-        if (_deck.Count == 0)
-        {
-            // Try to reshuffle discard pile
-            _discard.Shuffle();
-            _deck.AddRange(_discard);
-            _discard.Clear();
-            GD.Print("Try to reshuffle discard pile.");
-            PrintDiscard();
-            PrintDeck();
-        }
+    private void ShowMadLibsSpeechBubble()
+	{
+		var targetBubble = _turnType switch
+		{
+			TurnType.Player => _playerSpeechBubble,
+			TurnType.Heckler => _hecklerSpeechBubble,
+			_ => throw new InvalidOperationException($"Unknown turn type: {_turnType}"),
+		};
+		targetBubble.ShowDialogueLine("The [adjective] [noun] [verb.ing] [preposition] the [adjective] [noun].");
+	}
+	
+	private void ShowCantAffordSpeechBubble()
+	{
+		_playerSpeechBubble.ShowDialogueLine("I can't afford that card.");
+	}
 
-        if (_deck.Count > 0)
-        {
-            var nextCard = _deck[0];
-            _deck.RemoveAt(0);
-            GD.Print($"\ud83d\ude80 Draw Card: {nextCard}");
-            _hand.Add(nextCard);
-            PrintDeck();
-            PrintHand();
-        }
-        else
-        {
-            GD.Print("Deck and Discard are Empty!");
+	private void StartPlayerTurn()
+	{
+		GD.Print("\ud83d\ude80 Start Player Turn");
+		_turnType = TurnType.Player;
+		_material = MaterialPerTurn;
+		DrawHand();
+		PrintPlayerStats();
+	}
+	
+	private async void StartHecklerTurn()
+	{
+		// TODO implement real version
+		GD.Print($"\ud83d\ude80 Start Heckler Turn");
+		_turnType = TurnType.Heckler;
+		await ToSignal(GetTree().CreateTimer(1), "timeout");
+		ShowMadLibsSpeechBubble();
+		await ToSignal(GetTree().CreateTimer(1), "timeout");
+		GD.Print($"\ud83d\ude80 End Heckler Turn");
+		StartPlayerTurn();
+	}
+
+	private void DrawHand()
+	{
+		GD.Print("Draw new hand.");
+		for (int i = 0; i < DrawAmount; ++i)
+		{
+			DrawCard();
+		}
+		PrintDeck();
+		PrintHand();
+	}
+	
+	private void DrawCard()
+	{
+		if (Engine.IsEditorHint()) return;
+        if (_deck.Count == 0)
+		{
+			// Try to reshuffle discard pile
+			_discard.Shuffle();
+			_deck.AddRange(_discard);
+			_discard.Clear();
+			GD.Print("Try to reshuffle discard pile.");
+			PrintDiscard();
+			PrintDeck();
+		}
+		
+		if (_deck.Count > 0)
+		{
+			var nextCard = _deck[0];
+			_deck.RemoveAt(0);
+			GD.Print($"\ud83d\ude80 Draw Card: {nextCard}");
+			_hand.Add(nextCard);
+		}
+		else
+		{
+			GD.Print("Tried to draw a card but deck and discard are empty!");
         }
     }
 
@@ -128,32 +172,57 @@ public partial class Battle : Node2D
     {
         if (_hand.Count == 0)
         {
-            GD.PushError("Hand is Empty!");
+            GD.PushError("Play Card: Hand is Empty!");
+			return;
         }
-        else
-        {
-            var card = _hand[0];
-            _hand.RemoveAt(0);
-            GD.Print($"\ud83d\ude80 Play Card: {card}");
-            _discard.Add(card);
-            PrintHand();
-            PrintDiscard();
-        }
+
+		// TODO: let player choose a card. Use first card in hand for now.
+        const int cardToPlayInHandIndex = 0;
+		var card = _hand[cardToPlayInHandIndex];
+			
+		// Check if we can afford this card
+		if (card.Cost > _material)
+		{
+			GD.Print($"Play Card: Can't afford card. Cost: {card.Cost} Material:{_material}");
+			ShowCantAffordSpeechBubble();
+			return;
+		}
+
+		// Play card.
+		_material -= card.Cost;
+		_hand.RemoveAt(cardToPlayInHandIndex);
+		
+		// TODO: process card's effects
+			
+		GD.Print($"\ud83d\ude80 Play Card Succeeded: {card}");
+		_discard.Add(card);
+		ShowMadLibsSpeechBubble();
+		
+		PrintHand();
+		PrintDiscard();
+		PrintPlayerStats();
     }
 
-    private void EndTurn()
+    private void EndPlayerTurn()
     {
         // End turn, discard any remaining cards from hand
-        GD.Print($"\ud83d\ude80 End Turn");
-        foreach (var card in _hand)
-        {
-            _discard.Add(card);
-            GD.Print($"\ud83d\ude80 Discard Card: {card}");
-        }
-        _hand.Clear();
-        PrintHand();
-        PrintDiscard();
-    }
+        GD.Print($"\ud83d\ude80 End Player Turn");
+		foreach (var card in _hand)
+		{
+			_discard.Add(card);
+			GD.Print($"\ud83d\ude80 Discard Card: {card}");
+		}
+		_hand.Clear();
+		PrintHand();
+		PrintDiscard();
+		
+		StartHecklerTurn();
+	}
+
+	private void PrintPlayerStats()
+	{
+		GD.Print($"Player Stats: Material: {_material}");
+	}
 
     private void PrintDeck()
     {
