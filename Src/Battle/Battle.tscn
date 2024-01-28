@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c78i2c6vv3yjh"]
+[gd_scene load_steps=35 format=3 uid="uid://c78i2c6vv3yjh"]
 
 [ext_resource type="Script" path="res://Src/Battle/Battle.cs" id="1_rmdn6"]
 [ext_resource type="Resource" uid="uid://jyw4u34ro2uo" path="res://Src/GameDataResources/Cards/card_firsttest.tres" id="2_6a6gp"]
@@ -10,9 +10,16 @@
 [ext_resource type="Texture2D" uid="uid://4mf7vcer6f4e" path="res://Assets/Image/player.png" id="4_lkicy"]
 [ext_resource type="Texture2D" uid="uid://sh7j2jmfys5j" path="res://Assets/Image/heckler.png" id="5_cshp5"]
 [ext_resource type="Texture2D" uid="uid://dyeblxal5vxm8" path="res://Assets/Image/background_Only.png" id="5_jbv2y"]
+[ext_resource type="Resource" uid="uid://dlfeqh2ckrq63" path="res://Src/GameDataResources/Cards/card31_yellowsetup2.tres" id="5_oclyu"]
 [ext_resource type="Resource" uid="uid://bx7300lrikfk3" path="res://Src/GameDataResources/jester.tres" id="6_k30cd"]
+[ext_resource type="Resource" uid="uid://cg8mn4abq7iw4" path="res://Src/GameDataResources/Cards/card41_darksetup.tres" id="6_kk6a3"]
+[ext_resource type="Resource" uid="uid://curaj5wkshdk4" path="res://Src/GameDataResources/Cards/card44_darkoneliner2.tres" id="7_jotk8"]
 [ext_resource type="PackedScene" uid="uid://clktnj6qgdq6e" path="res://Src/Confidence.tscn" id="8_6wgla"]
+[ext_resource type="Resource" uid="uid://ba2ntmocvwwtp" path="res://Src/GameDataResources/Cards/card32_yellowcomeback.tres" id="8_fwkun"]
+[ext_resource type="Resource" uid="uid://br5rm5hh2s5vw" path="res://Src/GameDataResources/Cards/card23_bloodpunchline2.tres" id="9_80kes"]
 [ext_resource type="Texture2D" uid="uid://dm27o4v8p3r03" path="res://Assets/Image/heckler_new.png" id="9_m4h0b"]
+[ext_resource type="Resource" uid="uid://logrf6yvh1ws" path="res://Src/GameDataResources/Cards/card13_spitpunchline.tres" id="10_ykg05"]
+[ext_resource type="Resource" uid="uid://d2kxyqpy2a1gp" path="res://Src/GameDataResources/Cards/card12_spitback2.tres" id="11_oi6tg"]
 [ext_resource type="PackedScene" uid="uid://bpbod0o1rqhhn" path="res://Src/Material.tscn" id="14_35sk0"]
 [ext_resource type="PackedScene" uid="uid://cue5iwcyq0s32" path="res://Src/DiscardButton.tscn" id="15_txk18"]
 [ext_resource type="PackedScene" uid="uid://cihi4bj6wumnw" path="res://Src/DrawButton.tscn" id="16_7hj8e"]
@@ -102,7 +109,7 @@ _data = {
 script = ExtResource("1_rmdn6")
 _playerSpeechBubble = NodePath("Player2/PlayerSpeechBubble")
 _hecklerSpeechBubble = NodePath("Heckler2/HecklerSpeechBubble")
-_cardPrototypes = Array[Object]([ExtResource("3_b3kcb"), ExtResource("4_ajtcf"), ExtResource("2_6a6gp")])
+_cardPrototypes = Array[Object]([ExtResource("3_b3kcb"), ExtResource("4_ajtcf"), ExtResource("2_6a6gp"), ExtResource("5_oclyu"), ExtResource("6_kk6a3"), ExtResource("7_jotk8"), ExtResource("8_fwkun"), ExtResource("9_80kes"), ExtResource("10_ykg05"), ExtResource("9_80kes"), ExtResource("11_oi6tg")])
 _handArea = NodePath("HandArea")
 _deckSize = 10
 

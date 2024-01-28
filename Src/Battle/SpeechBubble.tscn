@@ -31,6 +31,7 @@ autowrap_mode = 3
 
 [node name="MadLibafier" type="Node" parent="."]
 script = ExtResource("3_4ynsg")
+madLibFile = "res://Assets/MadLibs/medievalLibs.txt"
 
 [node name="BubbleHideTimer" type="Timer" parent="."]
 wait_time = 4.0
