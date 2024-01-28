@@ -80,7 +80,7 @@ Visual = NodePath("MoveWithMouse/CardVisual")
 layout_mode = 2
 script = ExtResource("1_nobg5")
 
-[node name="CardVisual" type="Control" parent="MoveWithMouse" node_paths=PackedStringArray("CardAnimator", "MouseMover", "CardGraphic", "TitleLabel", "DescriptionLabel", "EffectLabel", "CostLabel")]
+[node name="CardVisual" type="Control" parent="MoveWithMouse" node_paths=PackedStringArray("CardAnimator", "MouseMover", "CardBack", "CardGraphic", "TitleLabel", "DescriptionLabel", "EffectLabel", "CostLabel")]
 anchors_preset = 0
 offset_left = 2.0
 offset_top = 1.00001
@@ -89,6 +89,7 @@ offset_bottom = 198.0
 script = ExtResource("4_mp6xj")
 CardAnimator = NodePath("CardAnimator")
 MouseMover = NodePath("..")
+CardBack = NodePath("Control/CardBack")
 CardGraphic = NodePath("Control/CardBack/CardIcon")
 TitleLabel = NodePath("Control/CardBack/TextureRect3/TitleLabel")
 DescriptionLabel = NodePath("Control/CardBack/TextureRect2/DescriptionLabel")
