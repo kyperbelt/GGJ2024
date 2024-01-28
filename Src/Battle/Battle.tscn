@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://c78i2c6vv3yjh"]
+[gd_scene load_steps=44 format=3 uid="uid://c78i2c6vv3yjh"]
 
 [ext_resource type="Script" path="res://Src/Battle/Battle.cs" id="1_rmdn6"]
 [ext_resource type="Resource" uid="uid://jyw4u34ro2uo" path="res://Src/GameDataResources/Cards/card_firsttest.tres" id="2_6a6gp"]
@@ -30,8 +30,12 @@
 [ext_resource type="Texture2D" uid="uid://b2u7b2y2d4q34" path="res://Assets/Image/jester.png" id="21_kixqa"]
 [ext_resource type="AudioStream" uid="uid://b6sgw2kv7vtqr" path="res://Assets/Sound/crowdboo01.wav" id="29_l7c83"]
 [ext_resource type="AudioStream" uid="uid://c4hbq7aco2ouj" path="res://Assets/Sound/crowdlaugh01.wav" id="29_vyoso"]
+[ext_resource type="Texture2D" uid="uid://y1tl8sbjntd0" path="res://Assets/Image/UI/UI-Masks_Happy.png" id="31_my0qf"]
+[ext_resource type="Texture2D" uid="uid://dhdn3yae63u5j" path="res://Assets/Image/UI/UI-mana.png" id="32_unyim"]
+[ext_resource type="Script" path="res://Src/GameDataScripts/HumourIcon.cs" id="33_5nnmt"]
+[ext_resource type="Texture2D" uid="uid://bymnfm6xya6nd" path="res://Assets/Image/UI/UI-Masks_Angry.png" id="34_x3dcb"]
 
-[sub_resource type="Resource" id="Resource_nkvdb"]
+[sub_resource type="Resource" id="Resource_egf58"]
 resource_local_to_scene = true
 script = ExtResource("17_xv602")
 CharacterName = "King Heckler"
@@ -82,7 +86,7 @@ _data = {
 "idle": SubResource("Animation_jqod2")
 }
 
-[sub_resource type="Resource" id="Resource_4c72d"]
+[sub_resource type="Resource" id="Resource_if23l"]
 resource_local_to_scene = true
 script = ExtResource("17_xv602")
 CharacterName = "Jester"
@@ -130,12 +134,14 @@ _data = {
 "idle": SubResource("Animation_6kcx8")
 }
 
-[node name="Battle" type="Node2D" node_paths=PackedStringArray("_playerCharacter", "_hecklerCharacter", "_playerSpeechBubble", "_hecklerSpeechBubble", "_handArea", "_crowdLaughPlayer", "_crowdBooPlayer")]
+[node name="Battle" type="Node2D" node_paths=PackedStringArray("_playerCharacter", "_hecklerCharacter", "_playerSpeechBubble", "_hecklerSpeechBubble", "_crowdFavoriteHumourIcon", "_crowdDislikedHumourIcon", "_handArea", "_crowdLaughPlayer", "_crowdBooPlayer")]
 script = ExtResource("1_rmdn6")
 _playerCharacter = NodePath("Player2")
 _hecklerCharacter = NodePath("Heckler2")
 _playerSpeechBubble = NodePath("Player2/PlayerSpeechBubble")
 _hecklerSpeechBubble = NodePath("Heckler2/HecklerSpeechBubble")
+_crowdFavoriteHumourIcon = NodePath("CrowdHUD/FavoriteHumourIcon")
+_crowdDislikedHumourIcon = NodePath("CrowdHUD/DislikedHumourIcon")
 _cardPrototypes = Array[Object]([ExtResource("3_b3kcb"), ExtResource("4_ajtcf"), ExtResource("2_6a6gp"), ExtResource("5_oclyu"), ExtResource("6_kk6a3"), ExtResource("7_jotk8"), ExtResource("8_fwkun"), ExtResource("9_80kes"), ExtResource("10_ykg05"), ExtResource("9_80kes"), ExtResource("11_oi6tg")])
 _handArea = NodePath("HandArea")
 _crowdLaughPlayer = NodePath("CrowdLaugh")
@@ -167,7 +173,7 @@ editor_only = false
 position = Vector2(705, 231)
 CharacterConfidenceUi = NodePath("HecklerHealthBar")
 CharacterFacingDirection = 0
-CharacterData = SubResource("Resource_nkvdb")
+CharacterData = SubResource("Resource_egf58")
 
 [node name="Sprite2D" parent="Heckler2" index="0"]
 material = SubResource("ShaderMaterial_6wlj0")
@@ -213,7 +219,7 @@ PlayerColor = Color(0.239216, 0.313726, 1, 1)
 position = Vector2(550, 491)
 scale = Vector2(1.5, 1.5)
 CharacterConfidenceUi = NodePath("../PlayerHealthBar")
-CharacterData = SubResource("Resource_4c72d")
+CharacterData = SubResource("Resource_if23l")
 
 [node name="PlayerSpeechBubble" parent="Player2" instance=ExtResource("3_303of")]
 z_index = 99
@@ -286,6 +292,26 @@ stream = ExtResource("29_l7c83")
 
 [node name="CrowdLaugh" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("29_vyoso")
+
+[node name="CrowdHUD" type="Node2D" parent="."]
+
+[node name="Ui-masksHappy" type="Sprite2D" parent="CrowdHUD"]
+position = Vector2(407, 40)
+texture = ExtResource("31_my0qf")
+
+[node name="FavoriteHumourIcon" type="Sprite2D" parent="CrowdHUD"]
+position = Vector2(458, 40)
+texture = ExtResource("32_unyim")
+script = ExtResource("33_5nnmt")
+
+[node name="Ui-masksAngry" type="Sprite2D" parent="CrowdHUD"]
+position = Vector2(579, 40)
+texture = ExtResource("34_x3dcb")
+
+[node name="DislikedHumourIcon" type="Sprite2D" parent="CrowdHUD"]
+position = Vector2(631, 40)
+texture = ExtResource("32_unyim")
+script = ExtResource("33_5nnmt")
 
 [connection signal="pressed" from="EndTurnButton" to="." method="EndPlayerTurn"]
 

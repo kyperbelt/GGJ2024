@@ -28,6 +28,12 @@ public partial class Battle : Node2D
 
     [Export]
     private SpeechBubble _hecklerSpeechBubble;
+    
+    [Export]
+    private HumourIcon _crowdFavoriteHumourIcon;
+    
+    [Export]
+    private HumourIcon _crowdDislikedHumourIcon;
 
     [Export]
     private CardData[] _cardPrototypes;
@@ -121,6 +127,8 @@ public partial class Battle : Node2D
         {
             _crowdDislikedHumour = CardEnumExtension.RandomCardHumour();
         } while (_crowdDislikedHumour == _crowdFavoriteHumour);
+        _crowdFavoriteHumourIcon.SetHumour(_crowdFavoriteHumour);
+        _crowdDislikedHumourIcon.SetHumour(_crowdDislikedHumour);
         GD.Print($"Picked Crowd Favorite Humour: {_crowdFavoriteHumour}, Crowd Disliked Humour: {_crowdDislikedHumour}");
 
         _materialObjectUx = GetNode<Material>("Material");
