@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://d2kxyqpy2a1gp"]
+
+[ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="1_bymqr"]
+
+[resource]
+script = ExtResource("1_bymqr")
+Name = "Spit at the heckler"
+Description = "You can probably hit them from here..."
+Cost = 3
+Hilarity = 5
+CardNature = 1
+CardType = 2
+MadlibSentence = "*HWAAAACK* *PTOOO*
+
+Oh, hey!! I hit 'em! Right in the [bodypart]!"

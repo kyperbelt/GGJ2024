@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://cwvwfdpckagdc"]
+
+[ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="1_fdga7"]
+
+[resource]
+script = ExtResource("1_fdga7")
+Name = "Dark Bit"
+Description = "Tell them your fortune..."
+Cost = 3
+Hilarity = 4
+CardNature = 4
+CardType = 4
+MadlibSentence = "So, I saw the oracle today for a palm-reading... They took one look at my life line, and gave me a refund for the short read."

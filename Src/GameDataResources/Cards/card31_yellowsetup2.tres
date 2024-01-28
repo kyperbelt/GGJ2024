@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://dlfeqh2ckrq63"]
+
+[ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="1_hqitg"]
+
+[resource]
+script = ExtResource("1_hqitg")
+Name = "Mythical setup"
+Description = "A legendary opening..."
+Cost = 1
+Hilarity = 2
+CardNature = 3
+CardType = 1
+MadlibSentence = "Never sleep with a [mythical], especially at their cave..."

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://gsvr7kuthmi6"]
+
+[ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="1_kceal"]
+
+[resource]
+script = ExtResource("1_kceal")
+Name = "Dark Comeback"
+Description = "Put fear of the unknown in the heckler..."
+Cost = 3
+Hilarity = 0
+CardNature = 4
+CardType = 2
+MadlibSentence = "Oh, yeah! I recognize thou! Death said he's coming for you when you [verb] next. [exclamation]!
+
+I wouldn't do that again if I were you..."

@@ -1,0 +1,10 @@
+adjective: notable, small, frothing, green, miserable, crazy, pigeon-liver’d, foul
+adverb: notably, sluggishly, quickly, happily, crazily
+verb: run|ed.ran|ing.running, walk, jump, eat, sleep, drink|ed.drank|ing.drinking, play, sing, dance, laugh, cry
+preposition: over, under, inside, underneath, above
+noun: stool, chair, cart, window, scale
+exclamation: Fie, For sooth, Horrors
+mythical: dragon, unicorn, satyr, angel, merman, snail
+profession: cardinal, baker, butcher, librarian, midwife, apothecary, knight, serf, squire, king
+bodypart: face, head, knees, arm, leg, belly, neck, spine, heart, liver, eyes, nose
+color: blue, green, red, yellow, clear, purple, dark, black, brown

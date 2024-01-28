@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://wkf6y0i0ghkc"]
+
+[ext_resource type="Texture2D" uid="uid://6a77qat7j1de" path="res://Assets/Image/characterBattler.png" id="1_mjy5a"]
+[ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="1_pxanj"]
+
+[resource]
+script = ExtResource("1_pxanj")
+Name = "Gross Set Up"
+Description = "Start by telling them too much information..."
+Cost = 1
+Hilarity = 1
+CardIcon = ExtResource("1_mjy5a")
+CardNature = 3
+CardType = 1
+MadlibSentence = "So the [profession] tells me I've a boil on my [bodypart]..."

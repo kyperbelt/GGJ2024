@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://cygbe5od8tibl"]
+
+[ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="1_lft1s"]
+
+[resource]
+script = ExtResource("1_lft1s")
+Name = "Grotesque Punchline"
+Description = "Give a life lesson for the whole audience."
+Cost = 5
+Hilarity = 5
+CardNature = 3
+CardType = 3
+MadlibSentence = "And that's why I'm off [mythical]s and [adjective] [mythical]s. No, sire!
+I only sleep with lepers and the occasional [profession]."

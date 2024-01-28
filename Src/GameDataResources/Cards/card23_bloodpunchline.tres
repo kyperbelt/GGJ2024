@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://b0k51lre386b"]
+
+[ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="1_pvr1q"]
+[ext_resource type="Texture2D" uid="uid://6a77qat7j1de" path="res://Assets/Image/characterBattler.png" id="1_qv4wb"]
+
+[resource]
+script = ExtResource("1_pvr1q")
+Name = "Bloody Good End!"
+Description = "Really sell the sadistic side of your comedy."
+Cost = 0
+Hilarity = 0
+CardIcon = ExtResource("1_qv4wb")
+CardNature = 2
+CardType = 3
+MadlibSentence = "But aye, they had a good [bodypart] and [bodypart]... Had!"

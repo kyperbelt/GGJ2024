@@ -7,9 +7,9 @@
 script = ExtResource("1_8l007")
 Name = "Hacky comeback"
 Description = "Clear out the hecklers with a hack of your own."
-Cost = 0
-Hilarity = 0
+Cost = 3
+Hilarity = 4
 CardIcon = ExtResource("1_p6gyd")
 CardNature = 1
 CardType = 2
-MadlibSentence = "Hold still... I got something the size of a [noun] to send ya! *Snooort* *Hack*"
+MadlibSentence = "Hold still, [profession]... I've something the size of a [noun] to send ya! *Snooort* *Hack*"

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://cg8mn4abq7iw4"]
+
+[ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="1_lrktc"]
+
+[resource]
+script = ExtResource("1_lrktc")
+Name = "Plague Set Up"
+Description = "Black comedy starts with a black plague..."
+Cost = 0
+Hilarity = 0
+CardNature = 4
+CardType = 1
+MadlibSentence = "Any plague survivors in the audience? The black one, not the [color] one last week..."

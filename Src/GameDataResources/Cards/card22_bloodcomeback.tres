@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://c5mwyt6214f8k"]
+
+[ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="1_m6k46"]
+
+[resource]
+script = ExtResource("1_m6k46")
+Name = "Threaten"
+Description = "Scare off the heckler with a veiled threat."
+Cost = 3
+Hilarity = 0
+CardNature = 2
+CardType = 2
+MadlibSentence = "If you think my jokes are bloody awful, wait til I'm through with your [adjective] [bodypart]!"

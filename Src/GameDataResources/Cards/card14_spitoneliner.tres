@@ -7,9 +7,9 @@
 script = ExtResource("1_x7262")
 Name = "Spit out a catch phrase"
 Description = "Nothing like a tried, true, and tasteful snotty remark!"
-Cost = 0
-Hilarity = 0
+Cost = 5
+Hilarity = 15
 CardIcon = ExtResource("1_onbbq")
 CardNature = 1
 CardType = 4
-MadlibSentence = "*Hack* *Ptoo* Tastes like [adjective] [noun]!"
+MadlibSentence = "*Hack* *Ptoo* Tastes like [adjective] [mythical]!"
