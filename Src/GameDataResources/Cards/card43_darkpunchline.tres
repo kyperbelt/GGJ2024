@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://cr0cujq45l6jx"]
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://cr0cujq45l6jx"]
 
+[ext_resource type="Texture2D" uid="uid://b2u7b2y2d4q34" path="res://Assets/Image/jester.png" id="1_o8o47"]
 [ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="1_p5bdt"]
 
 [resource]
@@ -8,6 +9,7 @@ Name = "Downer ending"
 Description = "Really... kills the mood."
 Cost = 5
 Hilarity = 1
+CardIcon = ExtResource("1_o8o47")
 CardNature = 4
 CardType = 3
 MadlibSentence = "But it's not all [color] plague, [adjective] unattended boils, and losing a [bodypart] to a [mythical]. Sometimes you luck out... and slip on a [noun]..."

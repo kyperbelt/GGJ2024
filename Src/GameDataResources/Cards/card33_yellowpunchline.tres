@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://cygbe5od8tibl"]
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://cygbe5od8tibl"]
 
 [ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="1_lft1s"]
+[ext_resource type="Texture2D" uid="uid://b2u7b2y2d4q34" path="res://Assets/Image/jester.png" id="1_m00dx"]
 
 [resource]
 script = ExtResource("1_lft1s")
@@ -8,6 +9,7 @@ Name = "Grotesque Punchline"
 Description = "Give a life lesson for the whole audience."
 Cost = 5
 Hilarity = 5
+CardIcon = ExtResource("1_m00dx")
 CardNature = 3
 CardType = 3
 MadlibSentence = "And that's why I'm off [mythical]s and [adjective] [mythical]s. No, sire!

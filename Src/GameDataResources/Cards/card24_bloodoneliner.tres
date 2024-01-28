@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://skfqeosdi86k"]
 
-[ext_resource type="Texture2D" uid="uid://6a77qat7j1de" path="res://Assets/Image/characterBattler.png" id="1_pdlae"]
+[ext_resource type="Texture2D" uid="uid://b2u7b2y2d4q34" path="res://Assets/Image/jester.png" id="1_ivhjx"]
 [ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="1_wpsrx"]
 
 [resource]
@@ -9,7 +9,7 @@ Name = "Punchy One-Liner"
 Description = "Give 'em the one-two catchphrase"
 Cost = 4
 Hilarity = 4
-CardIcon = ExtResource("1_pdlae")
+CardIcon = ExtResource("1_ivhjx")
 CardNature = 2
 CardType = 4
 MadlibSentence = "[exclamation]! Right in the kisser!"

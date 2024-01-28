@@ -1,13 +1,15 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://cwvwfdpckagdc"]
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://cwvwfdpckagdc"]
 
-[ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="1_fdga7"]
+[ext_resource type="Texture2D" uid="uid://b2u7b2y2d4q34" path="res://Assets/Image/jester.png" id="1_w0cb5"]
+[ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="2_kg5lj"]
 
 [resource]
-script = ExtResource("1_fdga7")
+script = ExtResource("2_kg5lj")
 Name = "Dark Bit"
 Description = "Tell them your fortune..."
 Cost = 3
 Hilarity = 4
+CardIcon = ExtResource("1_w0cb5")
 CardNature = 4
 CardType = 4
 MadlibSentence = "So, I saw the oracle today for a palm-reading... They took one look at my life line, and gave me a refund for the short read."

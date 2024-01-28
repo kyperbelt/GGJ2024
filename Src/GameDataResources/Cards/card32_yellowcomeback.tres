@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://ba2ntmocvwwtp"]
 
+[ext_resource type="Texture2D" uid="uid://b2u7b2y2d4q34" path="res://Assets/Image/jester.png" id="1_2qlkk"]
 [ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="1_igg3j"]
-[ext_resource type="Texture2D" uid="uid://6a77qat7j1de" path="res://Assets/Image/characterBattler.png" id="1_wr75l"]
 
 [resource]
 script = ExtResource("1_igg3j")
@@ -9,7 +9,7 @@ Name = "Disgusting come back"
 Description = "Share too much with the hecklers."
 Cost = 2
 Hilarity = 4
-CardIcon = ExtResource("1_wr75l")
+CardIcon = ExtResource("1_2qlkk")
 CardNature = 3
 CardType = 2
 MadlibSentence = "You want a closer seat? Why?

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://cky1bojgl0je7"]
 
-[ext_resource type="Texture2D" uid="uid://6a77qat7j1de" path="res://Assets/Image/characterBattler.png" id="1_22sr6"]
 [ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="1_lqkt8"]
+[ext_resource type="Texture2D" uid="uid://b2u7b2y2d4q34" path="res://Assets/Image/jester.png" id="1_wejfk"]
 
 [resource]
 script = ExtResource("1_lqkt8")
@@ -9,7 +9,7 @@ Name = "Spit on the Stage"
 Description = "Get the yucks out of your system"
 Cost = 0
 Hilarity = 1
-CardIcon = ExtResource("1_22sr6")
+CardIcon = ExtResource("1_wejfk")
 CardNature = 1
 CardType = 1
 MadlibSentence = "*Hack* *Ptooey* Pardon, folks..."

@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://c5mwyt6214f8k"]
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://c5mwyt6214f8k"]
 
 [ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="1_m6k46"]
+[ext_resource type="Texture2D" uid="uid://b2u7b2y2d4q34" path="res://Assets/Image/jester.png" id="1_xftgq"]
 
 [resource]
 script = ExtResource("1_m6k46")
@@ -8,6 +9,7 @@ Name = "Threaten"
 Description = "Scare off the heckler with a veiled threat."
 Cost = 3
 Hilarity = 0
+CardIcon = ExtResource("1_xftgq")
 CardNature = 2
 CardType = 2
 MadlibSentence = "If you think my jokes are bloody awful, wait til I'm through with your [adjective] [bodypart]!"

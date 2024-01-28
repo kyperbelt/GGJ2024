@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://dlfeqh2ckrq63"]
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://dlfeqh2ckrq63"]
 
 [ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="1_hqitg"]
+[ext_resource type="Texture2D" uid="uid://b2u7b2y2d4q34" path="res://Assets/Image/jester.png" id="1_lyvee"]
 
 [resource]
 script = ExtResource("1_hqitg")
@@ -8,6 +9,7 @@ Name = "Mythical setup"
 Description = "A legendary opening..."
 Cost = 1
 Hilarity = 2
+CardIcon = ExtResource("1_lyvee")
 CardNature = 3
 CardType = 1
 MadlibSentence = "Never sleep with a [mythical], especially at their cave..."

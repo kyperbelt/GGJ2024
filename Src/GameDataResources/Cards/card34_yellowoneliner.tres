@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://cy15fej0obav6"]
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://cy15fej0obav6"]
 
 [ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="1_6kgki"]
+[ext_resource type="Texture2D" uid="uid://b2u7b2y2d4q34" path="res://Assets/Image/jester.png" id="1_kybl4"]
 
 [resource]
 script = ExtResource("1_6kgki")
@@ -8,6 +9,7 @@ Name = "Vile One-Liner"
 Description = "It's gross because it's true!"
 Cost = 0
 Hilarity = 0
+CardIcon = ExtResource("1_kybl4")
 CardNature = 3
 CardType = 4
 MadlibSentence = "Whoops! Just dropped my [bodypart]!"
