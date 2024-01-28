@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://cue5iwcyq0s32"]
+
+[ext_resource type="Script" path="res://Src/DrawButton.cs" id="1_g8h2w"]
+[ext_resource type="Texture2D" uid="uid://ilyrv3nx0lve" path="res://Assets/Image/UI/UI-Discard.png" id="2_jiljo"]
+
+[node name="DiscardButton" type="Control"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_g8h2w")
+DrawPileNumber = 12
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 47.0
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 48.0
+texture_normal = ExtResource("2_jiljo")
+
+[node name="DiscardPileLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 25.0
+offset_right = 49.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 14
+text = "12"
+horizontal_alignment = 2
+vertical_alignment = 2
