@@ -14,7 +14,7 @@ public partial class Card : MarginContainer
 	{
         if (Data != null && Visual != null)
         {
-            Visual.ReadyUpData(Data);
+            Visual.SetCardData(Data);
         }
     }
 

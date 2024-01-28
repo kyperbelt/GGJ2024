@@ -1,16 +1,19 @@
 [gd_scene load_steps=14 format=3 uid="uid://c78i2c6vv3yjh"]
 
 [ext_resource type="Script" path="res://Src/Battle/Battle.cs" id="1_rmdn6"]
-[ext_resource type="Resource" uid="uid://jyw4u34ro2uo" path="res://Src/GameDataResources/card_firsttest.tres" id="2_6a6gp"]
+
 [ext_resource type="PackedScene" uid="uid://cw1wqd1hploxl" path="res://Src/GameObjects/CharacterComic.tscn" id="2_p4s1p"]
 [ext_resource type="PackedScene" uid="uid://dsilctsheo4vk" path="res://Src/Battle/SpeechBubble.tscn" id="3_303of"]
-[ext_resource type="Resource" path="res://Src/GameDataResources/card_firsttest2.tres" id="3_b3kcb"]
-[ext_resource type="Resource" path="res://Src/GameDataResources/card_firsttest3.tres" id="4_ajtcf"]
 [ext_resource type="Resource" uid="uid://6biimll0m8c6" path="res://Src/GameDataResources/king_heckler.tres" id="4_fl14m"]
 [ext_resource type="Texture2D" uid="uid://4mf7vcer6f4e" path="res://Assets/Image/player.png" id="4_lkicy"]
 [ext_resource type="Texture2D" uid="uid://sh7j2jmfys5j" path="res://Assets/Image/heckler.png" id="5_cshp5"]
 [ext_resource type="Texture2D" uid="uid://dyeblxal5vxm8" path="res://Assets/Image/background_Only.png" id="5_jbv2y"]
 [ext_resource type="Resource" uid="uid://bx7300lrikfk3" path="res://Src/GameDataResources/jester.tres" id="6_k30cd"]
+[ext_resource type="Resource" uid="uid://jyw4u34ro2uo" path="res://Src/GameDataResources/Cards/card_firsttest.tres" id="2_6a6gp"]
+[ext_resource type="Resource" uid="uid://cb3px87lk3svv" path="res://Src/GameDataResources/Cards/card_firsttest2.tres" id="3_b3kcb"]
+[ext_resource type="Resource" uid="uid://lb8sfsjjhno5" path="res://Src/GameDataResources/Cards/card_firsttest3.tres" id="4_ajtcf"]
+[ext_resource type="Texture2D" uid="uid://4mf7vcer6f4e" path="res://Assets/Image/player.png" id="4_lkicy"]
+[ext_resource type="Texture2D" uid="uid://sh7j2jmfys5j" path="res://Assets/Image/heckler.png" id="5_cshp5"]
 [ext_resource type="PackedScene" uid="uid://clktnj6qgdq6e" path="res://Src/Confidence.tscn" id="8_6wgla"]
 [ext_resource type="Texture2D" uid="uid://dm27o4v8p3r03" path="res://Assets/Image/heckler_new.png" id="9_m4h0b"]
 
@@ -49,11 +52,12 @@ position = Vector2(-493, -36)
 scale = Vector2(0.5, 0.5)
 
 [node name="MarginContainer" parent="Heckler2" instance=ExtResource("8_6wgla")]
-offset_left = 64.0
-offset_top = -222.0
-offset_right = 432.0
-offset_bottom = -153.0
+offset_left = 62.0
+offset_top = -200.0
+offset_right = 430.0
+offset_bottom = -169.0
 MaxHealth = 30
+PlayerColor = Color(0.956863, 0.188235, 0, 1)
 
 [node name="Player" type="Sprite2D" parent="."]
 visible = false
@@ -72,10 +76,11 @@ scale = Vector2(0.5, 0.5)
 
 [node name="MarginContainer" parent="Player2" instance=ExtResource("8_6wgla")]
 offset_left = -367.0
-offset_top = -354.0
-offset_right = -56.0
+offset_top = -315.0
+offset_right = -38.0
 offset_bottom = -285.0
 MaxHealth = 30
+PlayerColor = Color(0.239216, 0.313726, 1, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = 0

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://d2bdnga34tw6k"]
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://cb3px87lk3svv"]
 
 [ext_resource type="Texture2D" uid="uid://6a77qat7j1de" path="res://Assets/Image/characterBattler.png" id="1_yyvam"]
 [ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="2_tkv12"]
@@ -6,8 +6,10 @@
 [resource]
 script = ExtResource("2_tkv12")
 Name = "Black Humor"
-Description = "Tell a joke about the black plague. Just a little black humor."
+Description = "Tell a joke about the black plague. Just a little plague humor."
 Cost = 2
 Hilarity = 3
 CardIcon = ExtResource("1_yyvam")
 CardNature = 4
+CardType = 4
+MadlibSentence = "*cough cough* Sorry, folks. Must have picked up something from [verb.ing] with the [noun.s] last night."

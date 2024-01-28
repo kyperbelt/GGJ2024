@@ -19,7 +19,13 @@ public partial class CardData : Resource
     public Texture2D CardIcon { get; set; }
 
     [Export]
-    public CardHumorTypeEnum CardNature { get; set; }
+    public CardHumor CardNature { get; set; }
+
+    [Export]
+    public CardType CardType { get; set; }
+
+    [Export(PropertyHint.MultilineText)]
+    public string MadlibSentence { get; set; }
 
     public override string ToString()
     {

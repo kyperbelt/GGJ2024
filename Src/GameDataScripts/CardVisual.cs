@@ -10,6 +10,9 @@ public partial class CardVisual : Control
     public MoveWithMouse MouseMover { get; set; }
 
     [Export]
+    public TextureRect CardBack { get; set; }
+
+    [Export]
     public TextureRect CardGraphic { get; set; }
 
     [Export]
@@ -24,20 +27,36 @@ public partial class CardVisual : Control
     [Export]
     public Label CostLabel { get; set; }
 
+    private CardData _data;
+
+    private string madlibString;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        if (_data != null)
+        {
+            ReadyUpData(_data);
+        }
+    }
 
+    public void SetCardData(CardData data)
+    {
+        _data = data;
+        ReadyUpData(_data);
     }
 
     public void ReadyUpData(CardData newData)
     {
         CardGraphic.Texture = newData.CardIcon;
-
+        if (CardBack != null)
+            CardBack.SelfModulate = newData.CardNature.ToColor();
         TitleLabel.Text = newData.Name;
         DescriptionLabel.Text = newData.Description;
-        EffectLabel.Text = newData.CardNature.ToLabelString();
+        EffectLabel.Text = newData.CardType.ToLabelString();
         CostLabel.Text = newData.Cost.ToString();
+
+        madlibString = newData.MadlibSentence;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -74,5 +93,20 @@ public partial class CardVisual : Control
                 MouseMover.IsFollowingMouse = false;
             }
         }
+    }
+
+    private void ForceTestMadlibs()
+    {
+        var _madLibafier = GetTree().Root.GetNode<MadLibafier>("TestCardsScene/MadLibafier");
+
+        if (_madLibafier == null)
+        {
+            GD.PushError("MadLibafier not found in scene");
+            return;
+        }
+
+        // test madlibifier 
+        string testString = madlibString;
+        GD.Print(_madLibafier.GetMadLib(testString));
     }
 }

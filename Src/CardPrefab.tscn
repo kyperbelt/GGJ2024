@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Src/GameDataScripts/Card.cs" id="1_23nc2"]
 [ext_resource type="Script" path="res://Src/MoveWithMouse.cs" id="1_nobg5"]
 [ext_resource type="Texture2D" uid="uid://blfdcnv71yk2o" path="res://Assets/Image/icon.svg" id="2_0vjn4"]
+[ext_resource type="Resource" uid="uid://jyw4u34ro2uo" path="res://Src/GameDataResources/Cards/card_firsttest.tres" id="2_6nb62"]
 [ext_resource type="Texture2D" uid="uid://brvx788d2jou6" path="res://Assets/Image/square.png" id="3_vg2nn"]
-[ext_resource type="Resource" uid="uid://jyw4u34ro2uo" path="res://Src/GameDataResources/card_firsttest.tres" id="3_ysxfk"]
 [ext_resource type="Script" path="res://Src/GameDataScripts/CardVisual.cs" id="4_mp6xj"]
 [ext_resource type="Texture2D" uid="uid://yvmqqmtj5rn0" path="res://Assets/Image/circle.png" id="5_wlae5"]
 
@@ -73,7 +73,7 @@ custom_minimum_size = Vector2(151, 200)
 offset_right = 151.0
 offset_bottom = 200.0
 script = ExtResource("1_23nc2")
-Data = ExtResource("3_ysxfk")
+Data = ExtResource("2_6nb62")
 Visual = NodePath("MoveWithMouse/CardVisual")
 
 [node name="MoveWithMouse" type="Control" parent="."]

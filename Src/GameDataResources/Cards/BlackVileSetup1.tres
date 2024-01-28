@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://jtt3auhtk4eh"]
+
+[ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="1_2df0t"]
+
+[resource]
+script = ExtResource("1_2df0t")
+Name = "Setups"
+Description = "asdfasdfasdf"
+Cost = 10
+Hilarity = 1000
+CardNature = 4
+CardType = 2
+MadlibSentence = ""
