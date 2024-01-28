@@ -1,4 +1,5 @@
 using Godot;
+using System;
 using System.Collections.Generic;
 
 [GlobalClass]
@@ -15,6 +16,8 @@ public partial class MadLibafier : Node
     {
         AddToGroup("MadLibafier");
         LoadMapLibFile();
+        long milliseconds = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+        GD.Seed((ulong)milliseconds);
     }
 
     /// <summary>
@@ -31,10 +34,10 @@ public partial class MadLibafier : Node
             string replacement = GetRandomReplacement(key);
             if (replacement == key)
             {
-                GD.Print("MadLibafier: key not found in madLibs dictionary: " + key);
+                GD.PushError("MadLibafier: key not found in madLibs dictionary: " + key);
                 replacement = "<" + key + ">";
             }
-            newString = newString.Replace("[" + key + "]", replacement);
+            newString = ReplaceFirst(newString, "[" + key + "]", replacement);
             start = newString.IndexOf("[");
             end = newString.IndexOf("]");
         }
@@ -47,8 +50,9 @@ public partial class MadLibafier : Node
     /// </summary>
     private string GetRandomReplacement(string key)
     {
+        string old = key;
         string[] splitKey = key.Split(".");
-        key = splitKey[0];
+        string newKey = splitKey[0];
         string participleRule = null; // .ing .ed .s for persentTense, pastTense, plural respectively
 
         if (splitKey.Length > 1)
@@ -57,9 +61,9 @@ public partial class MadLibafier : Node
             participleRule = splitKey[1];
         }
 
-        if (madLibs.ContainsKey(key))
+        if (madLibs.ContainsKey(newKey))
         {
-            List<MadLibReplacement> values = madLibs[key];
+            List<MadLibReplacement> values = madLibs[newKey];
             int index = (int)GD.RandRange(0, values.Count - 1);
             MadLibReplacement replacement = values[index];
             if (participleRule == null)
@@ -83,8 +87,18 @@ public partial class MadLibafier : Node
         }
         else
         {
-            return key;
+            return old;
         }
+    }
+
+    public string ReplaceFirst(string text, string search, string replace)
+    {
+        int pos = text.IndexOf(search);
+        if (pos < 0)
+        {
+            return text;
+        }
+        return text.Substring(0, pos) + replace + text.Substring(pos + search.Length);
     }
 
     /// <summary>
@@ -155,12 +169,12 @@ public partial class MadLibafier : Node
             for (int i = 0; i < values.Length; i++)
             {
                 string[] data = values[i].Trim().Split("|");
-                string value = values[0].Trim();
+                string value = data[0].Trim();
                 string presentTenseValue = null; // .ing for example running
                 string pastTenseValue = null;
                 string pluralValue = null;
 
-                for (int j = 0; j < data.Length; j++)
+                for (int j = 1; j < data.Length; j++)
                 {
                     value = data[j].Trim();
                     string[] extraData = value.Split(".");
@@ -173,16 +187,17 @@ public partial class MadLibafier : Node
                     }
                     switch (type)
                     {
-                        case "past":
+                        case "ed":
                             pastTenseValue = replacementValue;
                             break;
-                        case "plural":
+                        case "s":
                             pluralValue = replacementValue;
                             break;
-                        case "present":
+                        case "ing":
                             presentTenseValue = replacementValue;
                             break;
                         default:
+                            GD.PushError("Invalid type: " + extraData[0] + " the only valid types are: past, plural, present");
                             break;
                     }
                 }
@@ -191,11 +206,11 @@ public partial class MadLibafier : Node
                 {
                     if (madLibs.ContainsKey(key))
                     {
-                        madLibs[key].Add(new MadLibReplacement(key, value, pastTenseValue, pluralValue));
+                        madLibs[key].Add(new MadLibReplacement(key, value, pastTenseValue, presentTenseValue, pluralValue));
                     }
                     else
                     {
-                        madLibs.Add(key, new List<MadLibReplacement> { new MadLibReplacement(key, value, pastTenseValue, pluralValue) });
+                        madLibs.Add(key, new List<MadLibReplacement> { new MadLibReplacement(key, value, pastTenseValue, presentTenseValue, pluralValue) });
 
                     }
                 }
@@ -215,11 +230,12 @@ public partial class MadLibafier : Node
 
         // TODO: Add replacement for pluralTwo and pluralMany at some point kind of how yarnspinner does it for pluralizations. Dont want to waste too much time on this right now though.
 
-        public MadLibReplacement(string key, string replacement, string pastTenseReplacement, string pluralReplacement)
+        public MadLibReplacement(string key, string replacement, string pastTenseReplacement, string presentTenseReplacement, string pluralReplacement)
         {
             this.key = key;
             this.replacement = replacement;
             this.pastTenseReplacement = pastTenseReplacement;
+            this.presentTenseReplacement = presentTenseReplacement;
             this.pluralReplacement = pluralReplacement;
         }
 

@@ -12,3 +12,4 @@ Description = "Hobbito the hobbit"
 FrontImage = ExtResource("2_go6v3")
 BackImage = ExtResource("1_frssp")
 MaxConfidence = 0
+CurrentConfidence = 0

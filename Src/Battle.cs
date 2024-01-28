@@ -12,9 +12,13 @@ public partial class Battle : Node2D
             GD.PushError("MadLibafier not found in Battle scene");
         }
 
-        // test madlibifier 
         string testString = "The [adjective] [noun] [verb.ing] [preposition] the [adjective] [noun].";
+        // test madlibifier 
         GD.Print(_madLibafier.GetMadLib(testString));
+        for(int i = 0; i < 100; i++)
+        {
+            GD.Print(_madLibafier.GetMadLib(testString));
+        } 
     }
 
     public override void _Process(double delta)

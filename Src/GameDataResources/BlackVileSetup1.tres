@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://jtt3auhtk4eh"]
+
+[ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="1_2df0t"]
+[ext_resource type="Texture2D" uid="uid://6a77qat7j1de" path="res://Assets/Image/characterBattler.png" id="1_vwg44"]
+
+[resource]
+script = ExtResource("1_2df0t")
+Name = "Setups"
+Description = "asdfasdfasdf"
+Cost = 10
+Hilarity = 1000
+CardGraphic = ExtResource("1_vwg44")
+CardNature = 4

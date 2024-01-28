@@ -2,6 +2,7 @@ using Godot;
 
 namespace ComedyDeckBuilder
 {
+    [Tool]
     public partial class Card : Control
     {
         [Export]
