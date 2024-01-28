@@ -5,6 +5,7 @@ using System;
 public partial class Confidence : MarginContainer
 {
     int maxHealth = 0;
+    Color playerColor;
 
     [Export]
     public int MaxHealth
@@ -22,6 +23,17 @@ public partial class Confidence : MarginContainer
         }
     }
 
+    [Export]
+    public Color PlayerColor
+    {
+        get { return playerColor; }
+        set
+        {
+            playerColor = value;
+            _progressBar.TintProgress = playerColor;
+        }
+    }
+
     private Label _label;
     private TextureProgressBar _progressBar;
     private int _currentHealth = 0;
@@ -32,8 +44,8 @@ public partial class Confidence : MarginContainer
     {
         _label = GetNode<Label>("TextLabel");
         _progressBar = GetNode<TextureProgressBar>("Confidence");
-	_progressBar.MaxValue = maxHealth;
-	_label.Text = _currentHealth + "/" + maxHealth;
+	    _progressBar.MaxValue = maxHealth;
+	    _label.Text = _currentHealth + "/" + maxHealth;
     }
 
     public void SetCurrentHealth(int health)
