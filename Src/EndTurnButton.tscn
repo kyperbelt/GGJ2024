@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://bl5is6jbnpo5i"]
+
+[ext_resource type="Script" path="res://Src/EndTurnButton.cs" id="1_dt2hl"]
+[ext_resource type="Texture2D" uid="uid://csof3y6endoqv" path="res://Assets/Image/UI/UI-Endturn_normal.png" id="2_a7pp0"]
+[ext_resource type="Texture2D" uid="uid://f1qdg4yi2e5x" path="res://Assets/Image/UI/UI-Endturn_pressed.png" id="3_mh1x0"]
+[ext_resource type="Texture2D" uid="uid://k0vojou2i4r7" path="res://Assets/Image/UI/UI-Endturn_hover.png" id="4_ab8o4"]
+
+[node name="EndTurnButton" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_dt2hl")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("2_a7pp0")
+texture_pressed = ExtResource("3_mh1x0")
+texture_hover = ExtResource("4_ab8o4")
