@@ -9,6 +9,12 @@ public partial class Battle : Node2D
     [Signal]
     public delegate void MaterialCostChangedEventHandler(int oldValue, int newValue);
 
+    [Signal]
+    public delegate void BattleLostEventHandler();
+
+    [Signal]
+    public delegate void BattleWonEventHandler();
+
     // private MadLibafier _madLibafier;
     [Export]
     private CharacterComic _playerCharacter;
@@ -205,6 +211,7 @@ public partial class Battle : Node2D
         }
         if (_playerCharacter.CurrentConfidence <= 0)
         {
+            EmitSignal(SignalName.BattleLost);
             GD.Print($"\ud83d\udca5\ud83d\udca5\ud83d\udca5 You lose!");
             return;
         }
@@ -320,6 +327,7 @@ public partial class Battle : Node2D
         _hecklerCharacter.CurrentConfidence -= cardDamage;
         if (_hecklerCharacter.CurrentConfidence <= 0)
         {
+            EmitSignal(SignalName.BattleWon);
             GD.Print($"\ud83c\udf89\ud83c\udf89\ud83c\udf89 You win!");
             return;
         }
@@ -340,6 +348,7 @@ public partial class Battle : Node2D
 
     private void EndPlayerTurn()
     {
+        if (_turnType != TurnType.Player) return;
         // End turn, discard any remaining cards from hand
         GD.Print($"\ud83d\ude80 End Player Turn");
         int i = 0;
