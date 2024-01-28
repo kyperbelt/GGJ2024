@@ -21,7 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://bpbod0o1rqhhn" path="res://Src/Material.tscn" id="14_35sk0"]
 [ext_resource type="Texture2D" uid="uid://blfdcnv71yk2o" path="res://Assets/Image/icon.svg" id="15_12xd1"]
 [ext_resource type="PackedScene" uid="uid://cue5iwcyq0s32" path="res://Src/DiscardButton.tscn" id="15_txk18"]
-[ext_resource type="PackedScene" path="res://Src/DrawButton.tscn" id="16_7hj8e"]
+[ext_resource type="PackedScene" uid="uid://cihi4bj6wumnw" path="res://Src/DrawButton.tscn" id="16_7hj8e"]
 [ext_resource type="AudioStream" uid="uid://rakgecbs7p3i" path="res://Assets/Sound/Drowsy_Maggie_WIP.mp3" id="17_476x3"]
 [ext_resource type="Script" path="res://Src/GameDataScripts/CharacterData.cs" id="17_xv602"]
 [ext_resource type="PackedScene" uid="uid://bl5is6jbnpo5i" path="res://Src/EndTurnButton.tscn" id="18_xt1j5"]
@@ -31,10 +31,7 @@
 [ext_resource type="AudioStream" uid="uid://bogcj3e1u5krt" path="res://Assets/Sound/draw_card.wav" id="29_k5keg"]
 [ext_resource type="AudioStream" uid="uid://i7ai5fewsv4l" path="res://Assets/Sound/button_press.wav" id="29_xqacw"]
 
-[sub_resource type="Resource" id="Resource_22ygs"]
-[ext_resource type="AudioStream" uid="uid://b6sgw2kv7vtqr" path="res://Assets/Sound/crowdboo01.wav" id="29_l7c83"]
-[ext_resource type="AudioStream" uid="uid://c4hbq7aco2ouj" path="res://Assets/Sound/crowdlaugh01.wav" id="29_vyoso"]
-
+[sub_resource type="Resource" id="Resource_3bcm6"]
 resource_local_to_scene = true
 script = ExtResource("17_xv602")
 CharacterName = "King Heckler"
@@ -85,7 +82,7 @@ _data = {
 "idle": SubResource("Animation_jqod2")
 }
 
-[sub_resource type="Resource" id="Resource_pbugd"]
+[sub_resource type="Resource" id="Resource_j83ei"]
 resource_local_to_scene = true
 script = ExtResource("17_xv602")
 CharacterName = "Jester"
@@ -133,7 +130,7 @@ _data = {
 "idle": SubResource("Animation_6kcx8")
 }
 
-[node name="Battle" type="Node2D" node_paths=PackedStringArray("_playerCharacter", "_hecklerCharacter", "_playerSpeechBubble", "_hecklerSpeechBubble", "_handArea", "_crowdLaughPlayer", "_crowdBooPlayer")]
+[node name="Battle" type="Node2D" node_paths=PackedStringArray("_playerCharacter", "_hecklerCharacter", "_playerSpeechBubble", "_hecklerSpeechBubble", "_handArea")]
 script = ExtResource("1_rmdn6")
 _playerCharacter = NodePath("Player2")
 _hecklerCharacter = NodePath("Heckler2")
@@ -141,8 +138,6 @@ _playerSpeechBubble = NodePath("Player2/PlayerSpeechBubble")
 _hecklerSpeechBubble = NodePath("Heckler2/HecklerSpeechBubble")
 _cardPrototypes = Array[Object]([ExtResource("3_b3kcb"), ExtResource("4_ajtcf"), ExtResource("2_6a6gp"), ExtResource("5_oclyu"), ExtResource("6_kk6a3"), ExtResource("7_jotk8"), ExtResource("8_fwkun"), ExtResource("9_80kes"), ExtResource("10_ykg05"), ExtResource("9_80kes"), ExtResource("11_oi6tg")])
 _handArea = NodePath("HandArea")
-_crowdLaughPlayer = NodePath("CrowdLaugh")
-_crowdBooPlayer = NodePath("CrowdBoo")
 _deckSize = 10
 
 [node name="Background" type="TextureRect" parent="."]
@@ -170,7 +165,7 @@ editor_only = false
 position = Vector2(705, 231)
 CharacterConfidenceUi = NodePath("HecklerHealthBar")
 CharacterFacingDirection = 0
-CharacterData = SubResource("Resource_22ygs")
+CharacterData = SubResource("Resource_3bcm6")
 
 [node name="Sprite2D" parent="Heckler2" index="0"]
 material = SubResource("ShaderMaterial_6wlj0")
@@ -216,7 +211,7 @@ PlayerColor = Color(0.239216, 0.313726, 1, 1)
 position = Vector2(550, 491)
 scale = Vector2(1.5, 1.5)
 CharacterConfidenceUi = NodePath("../PlayerHealthBar")
-CharacterData = SubResource("Resource_pbugd")
+CharacterData = SubResource("Resource_j83ei")
 
 [node name="Sprite2D" parent="Player2" index="0"]
 position = Vector2(-180.667, -46)
@@ -295,11 +290,6 @@ volume_db = 2.737
 [node name="ButtonSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("29_xqacw")
 volume_db = 2.0
-[node name="CrowdBoo" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("29_l7c83")
-
-[node name="CrowdLaugh" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("29_vyoso")
 
 [connection signal="pressed" from="EndTurnButton" to="." method="EndPlayerTurn"]
 [connection signal="pressed" from="EndTurnButton" to="ButtonSound" method="play" binds= [0.0]]
