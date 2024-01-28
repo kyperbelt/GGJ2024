@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cq7vxvx74hov8"
-path="res://.godot/imported/background_Only.png-9bed9a51b7ed4b21032f5a49494b5709.ctex"
+uid="uid://dw8stqw6bpi3b"
+path="res://.godot/imported/CardIllustration_Mythical.png-465ebbb98cf71f9211fecdb7ec5a01b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Image/background_Only.png"
-dest_files=["res://.godot/imported/background_Only.png-9bed9a51b7ed4b21032f5a49494b5709.ctex"]
+source_file="res://Assets/Image/UI/CardIllustration_Mythical.png"
+dest_files=["res://.godot/imported/CardIllustration_Mythical.png-465ebbb98cf71f9211fecdb7ec5a01b5.ctex"]
 
 [params]
 

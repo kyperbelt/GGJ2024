@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cq7vxvx74hov8"
-path="res://.godot/imported/background_Only.png-9bed9a51b7ed4b21032f5a49494b5709.ctex"
+uid="uid://gifb6qtm3ggg"
+path="res://.godot/imported/CardNature_Blood.png-6840f8b59973b55e331dcce26cfc77c6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Image/background_Only.png"
-dest_files=["res://.godot/imported/background_Only.png-9bed9a51b7ed4b21032f5a49494b5709.ctex"]
+source_file="res://Assets/Image/UI/CardNature_Blood.png"
+dest_files=["res://.godot/imported/CardNature_Blood.png-6840f8b59973b55e331dcce26cfc77c6.ctex"]
 
 [params]
 

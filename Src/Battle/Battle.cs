@@ -252,6 +252,7 @@ public partial class Battle : Node2D
         for (int i = 0; i < DrawAmount; ++i)
         {
             await DrawCard();
+            GD.Print($"Draw Card {i}");
 
         }
         PrintDeck();
@@ -403,7 +404,6 @@ public partial class Battle : Node2D
     {
         _hand.RemoveAt(index);
         _handArea.DiscardCard(index);
-
         await ToSignal(_handArea, HandArea.SignalName.CardDiscardAnimationFinished);
         _discard.Add(data);
         _discardPileUx.DiscardPileNumber = _discard.Count;
