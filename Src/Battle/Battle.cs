@@ -58,87 +58,98 @@ public partial class Battle : Node2D
 	
 	public override void _UnhandledInput(InputEvent @event)
 	{
-		if (@event is InputEventKey eventKey)
+		if (@event is not InputEventKey eventKey) return;
+		if (!eventKey.Pressed) return;
+		switch (eventKey.Keycode)
 		{
-			if (!eventKey.Pressed) return;
-			switch (eventKey.Keycode)
+			case Key.Space:
 			{
-				case Key.Space:
+				// Temp logic to advance turn and show new dialogue
+				var targetBubble = _turnType switch
 				{
-					// Temp logic to advance turn and show new dialogue
-					var targetBubble = _turnType switch
-					{
-						TurnType.Player => _playerSpeechBubble,
-						TurnType.Heckler => _hecklerSpeechBubble,
-						_ => throw new InvalidOperationException($"Unknown turn type: {_turnType}"),
-					};
-					targetBubble.ShowDialogueLine("The [adjective] [noun] [verb.ing] [preposition] the [adjective] [noun].");
-					_turnType = _turnType == TurnType.Player ? TurnType.Heckler : TurnType.Player;
-					break;
-				}
-				case Key.D:
-				{
-					// Draw card
-					if (_deck.Count == 0)
-					{
-						// Try to reshuffle discard pile
-						_discard.Shuffle();
-						_deck.AddRange(_discard);
-						_discard.Clear();
-						GD.Print("Try to reshuffle discard pile.");
-						PrintDiscard();
-						PrintDeck();
-					}
-					
-					if (_deck.Count > 0)
-					{
-						var nextCard = _deck[0];
-						_deck.RemoveAt(0);
-						GD.Print($"\ud83d\ude80 Draw Card: {nextCard}");
-						_hand.Add(nextCard);
-						PrintDeck();
-						PrintHand();
-					}
-					else
-					{
-						GD.Print("Deck and Discard are Empty!");
-					}
-					break;
-				}
-				case Key.P:
-				{
-					// Play card
-					if (_hand.Count == 0)
-					{
-						GD.PushError("Hand is Empty!");
-					}
-					else
-					{
-						var card = _hand[0];
-						_hand.RemoveAt(0);
-						GD.Print($"\ud83d\ude80 Play Card: {card}");
-						_discard.Add(card);
-						PrintHand();
-						PrintDiscard();
-					}
-					break;
-				}
-				case Key.X:
-				{
-					// End turn, discard any remaining cards from hand
-					GD.Print($"\ud83d\ude80 End Turn");
-					foreach (var card in _hand)
-					{
-						_discard.Add(card);
-						GD.Print($"\ud83d\ude80 Discard Card: {card}");
-					}
-					_hand.Clear();
-					PrintHand();
-					PrintDiscard();
-					break;
-				}
+					TurnType.Player => _playerSpeechBubble,
+					TurnType.Heckler => _hecklerSpeechBubble,
+					_ => throw new InvalidOperationException($"Unknown turn type: {_turnType}"),
+				};
+				targetBubble.ShowDialogueLine("The [adjective] [noun] [verb.ing] [preposition] the [adjective] [noun].");
+				_turnType = _turnType == TurnType.Player ? TurnType.Heckler : TurnType.Player;
+				break;
+			}
+			case Key.D:
+			{
+				DrawCard();
+				break;
+			}
+			case Key.P:
+			{
+				PlayCard();
+				break;
+			}
+			case Key.X:
+			{
+				EndTurn();
+				break;
 			}
 		}
+	}
+
+	private void DrawCard()
+	{
+		if (_deck.Count == 0)
+		{
+			// Try to reshuffle discard pile
+			_discard.Shuffle();
+			_deck.AddRange(_discard);
+			_discard.Clear();
+			GD.Print("Try to reshuffle discard pile.");
+			PrintDiscard();
+			PrintDeck();
+		}
+		
+		if (_deck.Count > 0)
+		{
+			var nextCard = _deck[0];
+			_deck.RemoveAt(0);
+			GD.Print($"\ud83d\ude80 Draw Card: {nextCard}");
+			_hand.Add(nextCard);
+			PrintDeck();
+			PrintHand();
+		}
+		else
+		{
+			GD.Print("Deck and Discard are Empty!");
+		}
+	}
+
+	private void PlayCard()
+	{
+		if (_hand.Count == 0)
+		{
+			GD.PushError("Hand is Empty!");
+		}
+		else
+		{
+			var card = _hand[0];
+			_hand.RemoveAt(0);
+			GD.Print($"\ud83d\ude80 Play Card: {card}");
+			_discard.Add(card);
+			PrintHand();
+			PrintDiscard();
+		}
+	}
+
+	private void EndTurn()
+	{
+		// End turn, discard any remaining cards from hand
+		GD.Print($"\ud83d\ude80 End Turn");
+		foreach (var card in _hand)
+		{
+			_discard.Add(card);
+			GD.Print($"\ud83d\ude80 Discard Card: {card}");
+		}
+		_hand.Clear();
+		PrintHand();
+		PrintDiscard();
 	}
 
 	private void PrintDeck()
