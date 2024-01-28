@@ -94,11 +94,13 @@ public partial class CardVisual : Control
 
     private void ForceTestMadlibs()
     {
-        var _madLibafier = GetTree().Root.GetNode<MadLibafier>("TestCardsScene/MadLibafier");
+        string scenename = GetTree().CurrentScene.Name;
+
+        var _madLibafier = GetTree().Root.GetNodeOrNull<MadLibafier>($"{scenename}/MadLibafier");
 
         if (_madLibafier == null)
         {
-            GD.PushError("MadLibafier not found in scene");
+            GD.PrintErr("MadLibafier not found in scene");
             return;
         }
 
