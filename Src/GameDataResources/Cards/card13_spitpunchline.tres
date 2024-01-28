@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://c7sa81h81kxw1"]
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://logrf6yvh1ws"]
 
 [ext_resource type="Texture2D" uid="uid://b2u7b2y2d4q34" path="res://Assets/Image/jester.png" id="1_gajg5"]
 [ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="1_x7262"]

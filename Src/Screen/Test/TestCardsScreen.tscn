@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://du5j3307furgy"]
+[gd_scene load_steps=8 format=3 uid="uid://du5j3307furgy"]
 
 [ext_resource type="PackedScene" uid="uid://dyqry5rpyj40p" path="res://Src/CardPrefab.tscn" id="1_hk7kf"]
 [ext_resource type="Resource" uid="uid://bcq64aefqx0yf" path="res://Src/GameDataResources/Cards/card12_spitback.tres" id="3_dte3h"]
 [ext_resource type="Resource" uid="uid://cky1bojgl0je7" path="res://Src/GameDataResources/Cards/card11_spitsetup.tres" id="4_wp5kn"]
 [ext_resource type="Script" path="res://Src/Util/MadLibafier.cs" id="5_cfv36"]
-[ext_resource type="Resource" uid="uid://c7sa81h81kxw1" path="res://Src/GameDataResources/Cards/card14_spitoneliner.tres" id="12_stm1d"]
+[ext_resource type="Resource" uid="uid://logrf6yvh1ws" path="res://Src/GameDataResources/Cards/card13_spitpunchline.tres" id="5_wiadc"]
+[ext_resource type="Resource" uid="uid://lb8sfsjjhno5" path="res://Src/GameDataResources/Cards/card_firsttest3.tres" id="7_18n7l"]
+[ext_resource type="Resource" uid="uid://b6nfp0qs5td4n" path="res://Src/GameDataResources/Cards/card14_spitoneliner.tres" id="12_stm1d"]
 
 [node name="TestCardsScene" type="Node2D"]
 
@@ -25,19 +27,26 @@ offset_right = 329.0
 offset_bottom = 214.0
 Data = ExtResource("3_dte3h")
 
-[node name="Card22" parent="." instance=ExtResource("1_hk7kf")]
-offset_left = 209.0
-offset_top = 263.0
-offset_right = 360.0
-offset_bottom = 463.0
-Data = ExtResource("3_dte3h")
+[node name="Card3" parent="." instance=ExtResource("1_hk7kf")]
+offset_left = 349.0
+offset_top = 13.0
+offset_right = 500.0
+offset_bottom = 213.0
+Data = ExtResource("5_wiadc")
+
+[node name="Card4" parent="." instance=ExtResource("1_hk7kf")]
+offset_left = 520.0
+offset_top = 12.0
+offset_right = 671.0
+offset_bottom = 212.0
+Data = ExtResource("12_stm1d")
 
 [node name="Card5" parent="." instance=ExtResource("1_hk7kf")]
 offset_left = 725.0
 offset_top = 18.0
 offset_right = 876.0
 offset_bottom = 218.0
-Data = ExtResource("12_stm1d")
+Data = ExtResource("7_18n7l")
 
 [node name="Card6" parent="." instance=ExtResource("1_hk7kf")]
 visible = false
@@ -45,11 +54,6 @@ offset_left = 832.0
 offset_top = 13.0
 offset_right = 983.0
 offset_bottom = 213.0
-
-[node name="Card23" parent="." instance=ExtResource("1_hk7kf")]
-offset_left = 391.0
-offset_right = 542.0
-offset_bottom = 200.0
 
 [node name="Card7" parent="." instance=ExtResource("1_hk7kf")]
 visible = false
