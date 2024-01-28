@@ -6,12 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://dsilctsheo4vk" path="res://Src/Battle/SpeechBubble.tscn" id="3_303of"]
 [ext_resource type="Resource" uid="uid://cb3px87lk3svv" path="res://Src/GameDataResources/Cards/card_firsttest2.tres" id="3_b3kcb"]
 [ext_resource type="Resource" uid="uid://lb8sfsjjhno5" path="res://Src/GameDataResources/Cards/card_firsttest3.tres" id="4_ajtcf"]
-[ext_resource type="Resource" uid="uid://6biimll0m8c6" path="res://Src/GameDataResources/king_heckler.tres" id="4_fl14m"]
+[ext_resource type="Resource" path="res://Src/GameDataResources/king_heckler.tres" id="4_fl14m"]
 [ext_resource type="Texture2D" uid="uid://4mf7vcer6f4e" path="res://Assets/Image/player.png" id="4_lkicy"]
 [ext_resource type="Texture2D" uid="uid://sh7j2jmfys5j" path="res://Assets/Image/heckler.png" id="5_cshp5"]
 [ext_resource type="Texture2D" uid="uid://dyeblxal5vxm8" path="res://Assets/Image/background_Only.png" id="5_jbv2y"]
 [ext_resource type="Resource" uid="uid://dlfeqh2ckrq63" path="res://Src/GameDataResources/Cards/card31_yellowsetup2.tres" id="5_oclyu"]
-[ext_resource type="Resource" uid="uid://bx7300lrikfk3" path="res://Src/GameDataResources/jester.tres" id="6_k30cd"]
+[ext_resource type="Resource" path="res://Src/GameDataResources/jester.tres" id="6_k30cd"]
 [ext_resource type="Resource" uid="uid://cg8mn4abq7iw4" path="res://Src/GameDataResources/Cards/card41_darksetup.tres" id="6_kk6a3"]
 [ext_resource type="Resource" uid="uid://curaj5wkshdk4" path="res://Src/GameDataResources/Cards/card44_darkoneliner2.tres" id="7_jotk8"]
 [ext_resource type="PackedScene" uid="uid://clktnj6qgdq6e" path="res://Src/Confidence.tscn" id="8_6wgla"]
@@ -22,7 +22,7 @@
 [ext_resource type="Resource" uid="uid://d2kxyqpy2a1gp" path="res://Src/GameDataResources/Cards/card12_spitback2.tres" id="11_oi6tg"]
 [ext_resource type="PackedScene" uid="uid://bpbod0o1rqhhn" path="res://Src/Material.tscn" id="14_35sk0"]
 [ext_resource type="PackedScene" uid="uid://cue5iwcyq0s32" path="res://Src/DiscardButton.tscn" id="15_txk18"]
-[ext_resource type="PackedScene" uid="uid://cihi4bj6wumnw" path="res://Src/DrawButton.tscn" id="16_7hj8e"]
+[ext_resource type="PackedScene" path="res://Src/DrawButton.tscn" id="16_7hj8e"]
 [ext_resource type="AudioStream" uid="uid://rakgecbs7p3i" path="res://Assets/Sound/Drowsy_Maggie_WIP.mp3" id="17_476x3"]
 [ext_resource type="PackedScene" uid="uid://bl5is6jbnpo5i" path="res://Src/EndTurnButton.tscn" id="18_xt1j5"]
 [ext_resource type="Script" path="res://Src/Screen/Test/HandArea.cs" id="19_5tbop"]
@@ -105,8 +105,10 @@ _data = {
 "idle": SubResource("Animation_6kcx8")
 }
 
-[node name="Battle" type="Node2D" node_paths=PackedStringArray("_playerSpeechBubble", "_hecklerSpeechBubble", "_handArea")]
+[node name="Battle" type="Node2D" node_paths=PackedStringArray("_playerCharacter", "_hecklerCharacter", "_playerSpeechBubble", "_hecklerSpeechBubble", "_handArea")]
 script = ExtResource("1_rmdn6")
+_playerCharacter = NodePath("Player2")
+_hecklerCharacter = NodePath("Heckler2")
 _playerSpeechBubble = NodePath("Player2/PlayerSpeechBubble")
 _hecklerSpeechBubble = NodePath("Heckler2/HecklerSpeechBubble")
 _cardPrototypes = Array[Object]([ExtResource("3_b3kcb"), ExtResource("4_ajtcf"), ExtResource("2_6a6gp"), ExtResource("5_oclyu"), ExtResource("6_kk6a3"), ExtResource("7_jotk8"), ExtResource("8_fwkun"), ExtResource("9_80kes"), ExtResource("10_ykg05"), ExtResource("9_80kes"), ExtResource("11_oi6tg")])
@@ -134,9 +136,9 @@ offset_bottom = 379.0
 border_width = 3.6
 editor_only = false
 
-[node name="Heckler2" parent="." node_paths=PackedStringArray("CharacterConfidence") instance=ExtResource("2_p4s1p")]
+[node name="Heckler2" parent="." node_paths=PackedStringArray("CharacterConfidenceUi") instance=ExtResource("2_p4s1p")]
 position = Vector2(705, 231)
-CharacterConfidence = NodePath("MarginContainer")
+CharacterConfidenceUi = NodePath("HecklerHealthBar")
 CharacterFacingDirection = 0
 CharacterData = ExtResource("4_fl14m")
 
@@ -150,7 +152,7 @@ texture = ExtResource("9_m4h0b")
 position = Vector2(-493, -36)
 scale = Vector2(0.5, 0.5)
 
-[node name="MarginContainer" parent="Heckler2" instance=ExtResource("8_6wgla")]
+[node name="HecklerHealthBar" parent="Heckler2" instance=ExtResource("8_6wgla")]
 offset_left = 62.0
 offset_top = -200.0
 offset_right = 430.0
@@ -170,7 +172,7 @@ position = Vector2(135, 514)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_lkicy")
 
-[node name="MarginContainer" parent="." instance=ExtResource("8_6wgla")]
+[node name="PlayerHealthBar" parent="." instance=ExtResource("8_6wgla")]
 offset_left = 13.6962
 offset_top = 17.6651
 offset_right = 342.696
@@ -179,10 +181,10 @@ scale = Vector2(0.75, 0.75)
 MaxHealth = 30
 PlayerColor = Color(0.239216, 0.313726, 1, 1)
 
-[node name="Player2" parent="." node_paths=PackedStringArray("CharacterConfidence") instance=ExtResource("2_p4s1p")]
+[node name="Player2" parent="." node_paths=PackedStringArray("CharacterConfidenceUi") instance=ExtResource("2_p4s1p")]
 position = Vector2(550, 491)
 scale = Vector2(1.5, 1.5)
-CharacterConfidence = NodePath("../MarginContainer")
+CharacterConfidenceUi = NodePath("../PlayerHealthBar")
 CharacterData = ExtResource("6_k30cd")
 
 [node name="PlayerSpeechBubble" parent="Player2" instance=ExtResource("3_303of")]

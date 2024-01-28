@@ -11,6 +11,12 @@ public partial class Battle : Node2D
 
     // private MadLibafier _madLibafier;
     [Export]
+    private CharacterComic _playerCharacter;
+    
+    [Export]
+    private CharacterComic _hecklerCharacter;
+    
+    [Export]
     private SpeechBubble _playerSpeechBubble;
 
     [Export]
@@ -182,8 +188,18 @@ public partial class Battle : Node2D
         GD.Print($"\ud83d\ude80 Start Heckler Turn");
         _turnType = TurnType.Heckler;
         await ToSignal(GetTree().CreateTimer(1), "timeout");
-        ShowMadLibsSpeechBubble("The [adjective] [noun] [verb.ing] [preposition] the [adjective] [noun]."
-);
+        ShowMadLibsSpeechBubble("The [adjective] [noun] [verb.ing] [preposition] the [adjective] [noun].");
+        
+        // Temp logic for doing damage on heckler turn
+        var randomDamage = Random.Shared.Next(0, 6);
+        _playerCharacter.CurrentConfidence -= randomDamage;
+        GD.Print($"Heckler does {randomDamage} damage to player.");
+        if (_playerCharacter.CurrentConfidence <= 0)
+        {
+            GD.Print($"\ud83d\udca5\ud83d\udca5\ud83d\udca5 You lose!");
+            return;
+        }
+        
         await ToSignal(GetTree().CreateTimer(1), "timeout");
         GD.Print($"\ud83d\ude80 End Heckler Turn");
         StartPlayerTurn();
@@ -233,7 +249,7 @@ public partial class Battle : Node2D
         }
     }
 
-    private void PlayCard( int index)
+    private void PlayCard(int cardToPlayInHandIndex)
     {
         if (_hand.Count == 0)
         {
@@ -241,8 +257,6 @@ public partial class Battle : Node2D
             return;
         }
 
-        // TODO: let player choose a card. Use first card in hand for now.
-        int cardToPlayInHandIndex = index;
         var card = _hand[cardToPlayInHandIndex];
 
         // Check if we can afford this card
@@ -256,12 +270,19 @@ public partial class Battle : Node2D
         // Play card.
         MaterialAmount -= card.Cost;
 
-        // TODO: process card's effects
-
         GD.Print($"\ud83d\ude80 Play Card Succeeded: {card}");
         ShowMadLibsSpeechBubble(card.MadlibSentence);
-
+        
         DiscardCard(cardToPlayInHandIndex, card);
+        
+        // Do damage
+        _hecklerCharacter.CurrentConfidence -= card.Hilarity;
+        if (_hecklerCharacter.CurrentConfidence <= 0)
+        {
+            GD.Print($"\ud83c\udf89\ud83c\udf89\ud83c\udf89 You win!");
+            return;
+        }
+        // TODO: process card's effects on audience
 
         PrintHand();
         PrintDiscard();
