@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://k4rc04lprht0"]
+[gd_scene load_steps=2 format=3 uid="uid://k4rc04lprht0"]
+
+[ext_resource type="Script" path="res://Src/Screen/GameScreen.cs" id="1_s8j42"]
 
 [node name="LoseScreen" type="Node"]
+script = ExtResource("1_s8j42")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 8
@@ -15,10 +18,9 @@ offset_bottom = 37.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer"]
+[node name="Button" type="Button" parent="MarginContainer"]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 54
-bbcode_enabled = true
-text = "LOL YOU SUCK"
-fit_content = true
-scroll_active = false
+theme_override_font_sizes/font_size = 36
+text = "You Lost - Play Again?"
+
+[connection signal="pressed" from="MarginContainer/Button" to="." method="SetScreen" binds= ["BattleScreen"]]

@@ -8,4 +8,4 @@ script = ExtResource("1_mx6tm")
 
 [node name="Battle" parent="." instance=ExtResource("2_5i6s0")]
 
-[connection signal="BattleLost" from="Battle" to="." method="SetScreen" binds= ["MainScreen"]]
+[connection signal="BattleLost" from="Battle" to="." method="SetScreen" binds= ["LoseScreen"]]
