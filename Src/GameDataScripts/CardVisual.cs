@@ -27,6 +27,9 @@ public partial class CardVisual : Control
     [Export]
     public Label CostLabel { get; set; }
 
+    [Export]
+    public Label HilarityLabel { get; set; }
+
     private CardData _data;
 
     private string madlibString;
@@ -55,6 +58,7 @@ public partial class CardVisual : Control
         DescriptionLabel.Text = newData.Description;
         EffectLabel.Text = newData.CardType.ToLabelString();
         CostLabel.Text = newData.Cost.ToString();
+        HilarityLabel.Text = newData.Hilarity.ToString();
 
         madlibString = newData.MadlibSentence;
     }
