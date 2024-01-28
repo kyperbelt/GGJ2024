@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dyqry5rpyj40p"]
+[gd_scene load_steps=6 format=3 uid="uid://dff3rwya1b82f"]
 
 [ext_resource type="Script" path="res://Src/GameDataScripts/Card.cs" id="1_23nc2"]
 [ext_resource type="Script" path="res://Src/MoveWithMouse.cs" id="1_nobg5"]
