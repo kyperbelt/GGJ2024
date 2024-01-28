@@ -7,4 +7,4 @@ exclamation: Fie, For sooth, Horrors
 mythical: dragon, unicorn, satyr, angel, merman, snail
 profession: cardinal, baker, butcher, librarian, midwife, apothecary, knight, serf, squire, king
 bodypart: face, head, knees, arm, leg, belly, neck, spine, heart, liver, eyes, nose
-color: blue, green, red, yellow, clear, purple, dark, black, brown
+color: blue, green, red, yellow, clear, purple, brown, gray, cyan
