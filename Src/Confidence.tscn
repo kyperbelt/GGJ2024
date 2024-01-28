@@ -11,7 +11,7 @@ offset_right = 502.0
 offset_bottom = 27.0
 script = ExtResource("1_h04bi")
 MaxHealth = 100
-PlayerColor = Color(0.635294, 0.478431, 0.784314, 1)
+PlayerColor = Color(0.0509804, 0.647059, 0.588235, 1)
 
 [node name="Confidence" type="TextureProgressBar" parent="."]
 layout_mode = 2
@@ -24,7 +24,7 @@ texture_under = SubResource("CanvasTexture_8oo1e")
 texture_progress = SubResource("CanvasTexture_jcwpr")
 tint_under = Color(0.147672, 0.147672, 0.147672, 1)
 tint_over = Color(0, 0, 0, 1)
-tint_progress = Color(0.635294, 0.478431, 0.784314, 1)
+tint_progress = Color(0.0509804, 0.647059, 0.588235, 1)
 
 [node name="TextLabel" type="Label" parent="."]
 layout_mode = 2

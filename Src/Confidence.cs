@@ -30,6 +30,10 @@ public partial class Confidence : MarginContainer
         set
         {
             playerColor = value;
+            if (_progressBar == null)
+            {
+                return;
+            }
             _progressBar.TintProgress = playerColor;
         }
     }
@@ -56,6 +60,6 @@ public partial class Confidence : MarginContainer
             return;
         }
         _label.Text = $"{health}/{maxHealth}";
-	_progressBar.Value = health;
+	    _progressBar.Value = health;
     }
 }
