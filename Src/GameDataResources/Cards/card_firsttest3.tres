@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://ojhajsue12r5"]
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://lb8sfsjjhno5"]
 
 [ext_resource type="Texture2D" uid="uid://6a77qat7j1de" path="res://Assets/Image/characterBattler.png" id="1_qjmvs"]
 [ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="2_dk5x4"]
@@ -11,3 +11,5 @@ Cost = 1
 Hilarity = 2
 CardIcon = ExtResource("1_qjmvs")
 CardNature = 2
+CardType = 4
+MadlibSentence = ""

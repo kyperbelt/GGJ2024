@@ -1,25 +1,33 @@
-[gd_scene load_steps=2 format=3 uid="uid://du5j3307furgy"]
+[gd_scene load_steps=3 format=3 uid="uid://du5j3307furgy"]
 
 [ext_resource type="PackedScene" uid="uid://dyqry5rpyj40p" path="res://Src/CardPrefab.tscn" id="1_hk7kf"]
+[ext_resource type="Script" path="res://Src/Util/MadLibafier.cs" id="5_cfv36"]
 
 [node name="TestCardsScene" type="Node2D"]
 
-[node name="CardPrefab" parent="." instance=ExtResource("1_hk7kf")]
-offset_left = 340.0
-offset_top = 446.0
-offset_right = 340.0
-offset_bottom = 446.0
+[node name="MadLibafier" type="Node" parent="."]
+script = ExtResource("5_cfv36")
 
-[node name="CardPrefab2" parent="." instance=ExtResource("1_hk7kf")]
-offset_left = 508.0
-offset_top = 447.0
-offset_right = 508.0
-offset_bottom = 447.0
+[node name="Card" parent="." instance=ExtResource("1_hk7kf")]
+offset_left = 108.0
+offset_top = 36.0
+offset_right = 259.0
+offset_bottom = 236.0
 
-[node name="CardPrefab3" parent="." instance=ExtResource("1_hk7kf")]
-offset_left = 671.0
-offset_top = 447.0
-offset_right = 671.0
-offset_bottom = 447.0
+[node name="Card2" parent="." instance=ExtResource("1_hk7kf")]
+offset_left = 289.0
+offset_top = 36.0
+offset_right = 440.0
+offset_bottom = 236.0
 
-[editable path="CardPrefab"]
+[node name="Card3" parent="." instance=ExtResource("1_hk7kf")]
+offset_left = 466.0
+offset_top = 36.0
+offset_right = 617.0
+offset_bottom = 236.0
+
+[node name="Card4" parent="." instance=ExtResource("1_hk7kf")]
+offset_left = 649.0
+offset_top = 34.0
+offset_right = 800.0
+offset_bottom = 234.0

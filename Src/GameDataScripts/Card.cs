@@ -14,7 +14,7 @@ public partial class Card : Control
 	{
         if (Data != null && Visual != null)
         {
-            Visual.ReadyUpData(Data);
+            Visual.SetCardData(Data);
         }
     }
 

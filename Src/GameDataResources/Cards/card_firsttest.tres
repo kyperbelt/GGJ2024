@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://jyw4u34ro2uo"]
+
+[ext_resource type="Texture2D" uid="uid://6a77qat7j1de" path="res://Assets/Image/characterBattler.png" id="1_afhfe"]
+[ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="2_bskx4"]
+
+[resource]
+script = ExtResource("2_bskx4")
+Name = "Statistics Joke"
+Description = "Tell a joke about regal demographics. Only 1% of your audience will get it."
+Cost = 3
+Hilarity = 5
+CardIcon = ExtResource("1_afhfe")
+CardNature = 1
+CardType = 1
+MadlibSentence = "Did you know that 1% of the [noun.s] and 99% of the [adjective] [noun.s] are [verb.ing] in the same bed?"
