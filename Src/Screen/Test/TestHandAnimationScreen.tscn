@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbnedn807sep1"]
+
+[ext_resource type="PackedScene" uid="uid://c78i2c6vv3yjh" path="res://Src/Battle/Battle.tscn" id="1_nu8mv"]
+[ext_resource type="PackedScene" uid="uid://dyqry5rpyj40p" path="res://Src/CardPrefab.tscn" id="2_o8nnx"]
+
+[node name="TestHandAnimations" type="Node2D"]
+
+[node name="Battle" parent="." instance=ExtResource("1_nu8mv")]
+_cardPrototypes = null
+_deckSize = 64
+
+[node name="HandArea" type="ReferenceRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 280.0
+offset_top = 431.0
+offset_right = 908.0
+offset_bottom = 649.0
+
+[node name="Card3" parent="HandArea" node_paths=PackedStringArray("Visual") instance=ExtResource("2_o8nnx")]
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 151.0
+offset_bottom = 200.0
+Visual = NodePath("../Card/MoveWithMouse/CardVisual")
+
+[node name="Card" parent="HandArea" instance=ExtResource("2_o8nnx")]
+visible = false
+layout_mode = 1
+anchor_right = 0.241
+anchor_bottom = 1.0
+offset_right = -0.348007
+offset_bottom = -1.0
+
+[node name="HBoxContainer" type="GridContainer" parent="HandArea"]
+custom_minimum_size = Vector2(31.67, 0)
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="HandArea/HBoxContainer"]
+custom_minimum_size = Vector2(150, 200)
+layout_mode = 2
+
+[node name="Card2" parent="HandArea/HBoxContainer/MarginContainer" node_paths=PackedStringArray("Visual") instance=ExtResource("2_o8nnx")]
+layout_mode = 2
+Visual = NodePath("../../../Card/MoveWithMouse/CardVisual")
+
+[node name="MarginContainer2" type="MarginContainer" parent="HandArea/HBoxContainer"]
+custom_minimum_size = Vector2(150, 200)
+layout_mode = 2
+
+[node name="Card2" parent="HandArea/HBoxContainer/MarginContainer2" node_paths=PackedStringArray("Visual") instance=ExtResource("2_o8nnx")]
+layout_mode = 2
+Visual = NodePath("../../../Card/MoveWithMouse/CardVisual")

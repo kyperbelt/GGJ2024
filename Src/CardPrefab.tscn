@@ -69,19 +69,26 @@ _data = {
 }
 
 [node name="Card" type="Control" node_paths=PackedStringArray("Visual")]
+custom_minimum_size = Vector2(151, 200)
 layout_mode = 3
-anchors_preset = 0
+anchor_right = 0.133
+anchor_bottom = 0.306
+offset_right = -0.216003
+offset_bottom = -0.28801
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_23nc2")
 Data = ExtResource("3_ysxfk")
 Visual = NodePath("MoveWithMouse/CardVisual")
 
 [node name="MoveWithMouse" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 76.0
 offset_top = 124.0
-offset_right = 76.0
-offset_bottom = 124.0
+offset_right = -77.0
+offset_bottom = -74.0
 script = ExtResource("1_nobg5")
 
 [node name="CardVisual" type="Control" parent="MoveWithMouse" node_paths=PackedStringArray("CardAnimator", "MouseMover", "CardGraphic", "TitleLabel", "DescriptionLabel", "EffectLabel", "CostLabel")]
