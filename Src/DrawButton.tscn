@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://cihi4bj6wumnw"]
+
+[ext_resource type="Script" path="res://Src/DrawButton.cs" id="1_mtv3k"]
+[ext_resource type="Texture2D" uid="uid://ch6x7a4nvookd" path="res://Assets/Image/UI/UI-Deck.png" id="2_06w2e"]
+
+[node name="DrawButton" type="Control"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_mtv3k")
+DrawPileNumber = 7
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 47.0
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 48.0
+texture_normal = ExtResource("2_06w2e")
+
+[node name="DrawPileLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 25.0
+offset_right = 49.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 14
+text = "91"
+horizontal_alignment = 2
+vertical_alignment = 2
