@@ -5,9 +5,9 @@
 [resource]
 script = ExtResource("1_2df0t")
 Name = "Setups"
-Description = "asdfasdfasdf"
+Description = "Start a vile story.."
 Cost = 10
 Hilarity = 1000
 CardNature = 4
 CardType = 2
-MadlibSentence = ""
+MadlibSentence = "The King has such a [adjective] [bodypart], he can't tell the local [profession] from a [color] [mythical] "

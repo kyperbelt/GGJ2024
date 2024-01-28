@@ -12,4 +12,4 @@ Hilarity = 2
 CardIcon = ExtResource("1_qjmvs")
 CardNature = 2
 CardType = 4
-MadlibSentence = ""
+MadlibSentence = "The King has such a [adjective] [bodypart], he can't tell the local [profession] from a [color] [mythical] "
