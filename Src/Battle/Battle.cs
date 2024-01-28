@@ -51,6 +51,12 @@ public partial class Battle : Node2D
     private CardHumor _crowdFavoriteHumour;
     private CardHumor _crowdDislikedHumour;
     
+    [Export]
+    private AudioStreamPlayer _crowdLaughPlayer;
+    
+    [Export]
+    private AudioStreamPlayer _crowdBooPlayer;
+    
     public int MaterialAmount
     {
         get => _material;
@@ -279,7 +285,7 @@ public partial class Battle : Node2D
         return 0;
     }
 
-    private async Task<bool> PlayCard( int cardToPlayInHandIndex)
+    private async Task<bool> PlayCard(int cardToPlayInHandIndex)
     {
         if (_hand.Count == 0)
         {
@@ -367,6 +373,16 @@ public partial class Battle : Node2D
         {
             GD.Print($"Played crowd favorite humour: {_crowdFavoriteHumour}. Multiplier of {CrowdFavoriteHumourMultiplier} will apply on next played card.");
             _crowdFavoriteHumourMultiplier = CrowdFavoriteHumourMultiplier;
+        }
+        
+        // Play crowd reaction sound effect
+        if (_crowdDislikedHumour == card.CardNature)
+        {
+            _crowdBooPlayer.Play();
+        }
+        else
+        {
+            _crowdLaughPlayer.Play();
         }
 
         PrintHand();
