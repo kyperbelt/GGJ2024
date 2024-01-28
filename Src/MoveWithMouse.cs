@@ -24,6 +24,18 @@ public partial class MoveWithMouse : Control
     {
     }
 
+    public void SnapBack()
+    {
+        if (UseSpawnPointForSnapBack)
+        {
+            GlobalPosition = SnapBackPosition;
+        }
+        else
+        {
+            GlobalPosition = new Vector2(0, 0);
+        }
+    }
+
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
@@ -33,10 +45,10 @@ public partial class MoveWithMouse : Control
         {
             GlobalPosition = MousePosition;
         }
-        else if (WillSnapBackOnRelease && IsSnapBackSet)
-        {
-            GlobalPosition = SnapBackPosition;
-        }
+        // else if (WillSnapBackOnRelease && IsSnapBackSet)
+        // {
+        //     GlobalPosition = SnapBackPosition;
+        // }
 
     }
 }

@@ -9,6 +9,7 @@ public partial class Card : MarginContainer
     public CardData Data { get; set; }
 
     private CardVisual Visual { get; set; }
+    public CardVisual CardVisual { get => Visual; set => Visual = value; }
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()

@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="2_tkv12"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("2_tkv12")
 Name = "Black Humor"
 Description = "Tell a joke about the black plague. Just a little plague humor."

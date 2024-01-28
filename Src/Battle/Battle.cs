@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using GGJ2024.Util;
 using Godot;
 
@@ -8,6 +9,12 @@ public partial class Battle : Node2D
 {
     [Signal]
     public delegate void MaterialCostChangedEventHandler(int oldValue, int newValue);
+
+    [Signal]
+    public delegate void BattleLostEventHandler();
+
+    [Signal]
+    public delegate void BattleWonEventHandler();
 
     // private MadLibafier _madLibafier;
     [Export]
@@ -102,15 +109,11 @@ public partial class Battle : Node2D
         if (_handArea != null)
         {
             _handArea.Connect(HandArea.SignalName.CardPlayed, Callable.From<int, Vector2>(
-                (i, pos) =>
+                async (i, pos) =>
                 {
-		    GD.Print("Heckler Area Clicked" + pos);
-		    GD.Print("Heckler Area Bounds" + _hecklerArea.GetGlobalRect());
-		    GD.Print("Heckler Area Clicked" + _hecklerArea.GetGlobalRect().HasPoint(pos));
-                    if (_hecklerArea.GetGlobalRect().HasPoint(pos))
+                    if (!_hecklerArea.GetGlobalRect().HasPoint(pos) || !await PlayCard(i))
                     {
-                        PlayCard(i);
-
+                       _handArea.GetChild<Card>(i).CardVisual.MouseMover.SnapBack(); 
                     }
                 }));
         }
@@ -189,20 +192,20 @@ public partial class Battle : Node2D
         StartPlayerTurn();
     }
 
-    private void DrawHand()
+    private async void DrawHand()
     {
-        GD.Print("Draw new hand.");
         for (int i = 0; i < DrawAmount; ++i)
         {
-            DrawCard();
+            await DrawCard();
+
         }
         PrintDeck();
         PrintHand();
     }
 
-    private void DrawCard()
+    private async Task<int> DrawCard()
     {
-        if (Engine.IsEditorHint()) return;
+        if (Engine.IsEditorHint()) return 0;
         if (_deck.Count == 0)
         {
             // Try to reshuffle discard pile
@@ -226,19 +229,21 @@ public partial class Battle : Node2D
             GD.Print($"\ud83d\ude80 Draw Card: {nextCard}");
             _hand.Add(nextCard);
             _handArea.DrawCard(nextCard);
+            await ToSignal(_handArea, HandArea.SignalName.CardDrawnAnimationFinished);
         }
         else
         {
             GD.Print("Tried to draw a card but deck and discard are empty!");
         }
+        return 0;
     }
 
-    private void PlayCard( int index)
+    private async Task<bool> PlayCard( int index)
     {
         if (_hand.Count == 0)
         {
             GD.PushError("Play Card: Hand is Empty!");
-            return;
+            return false;
         }
 
         // TODO: let player choose a card. Use first card in hand for now.
@@ -250,7 +255,7 @@ public partial class Battle : Node2D
         {
             GD.Print($"Play Card: Can't afford card. Cost: {card.Cost} Material:{MaterialAmount}");
             ShowCantAffordSpeechBubble();
-            return;
+            return false;
         }
 
         // Play card.
@@ -261,33 +266,37 @@ public partial class Battle : Node2D
         GD.Print($"\ud83d\ude80 Play Card Succeeded: {card}");
         ShowMadLibsSpeechBubble(card.MadlibSentence);
 
-        DiscardCard(cardToPlayInHandIndex, card);
+        await DiscardCard(cardToPlayInHandIndex, card);
 
         PrintHand();
         PrintDiscard();
         PrintPlayerStats();
+        return true;
     }
 
-    private void DiscardCard(int index, CardData data)
+    private async Task<int> DiscardCard(int index, CardData data)
     {
         _hand.RemoveAt(index);
         _handArea.DiscardCard(index);
+
+        await ToSignal(_handArea, HandArea.SignalName.CardDiscardAnimationFinished);
         _discard.Add(data);
         _discardPileUx.DiscardPileNumber = _discard.Count;
+        return 0;
     }
 
-    private void EndPlayerTurn()
+    private async void EndPlayerTurn()
     {
         // End turn, discard any remaining cards from hand
         GD.Print($"\ud83d\ude80 End Player Turn");
-        int i = 0;
-        foreach (var card in _hand)
+        for(int i = _hand.Count-1; i >= 0; i--)
         {
+            var card = _hand[i];
             GD.Print($"\ud83d\ude80 Discard Card: {card}");
             _handArea.DiscardCard(i);
+            await ToSignal(_handArea, HandArea.SignalName.CardDiscardAnimationFinished);
             _discard.Add(card);
             _discardPileUx.DiscardPileNumber = _discard.Count;
-            i++;
         }
         _hand.Clear();
         PrintHand();

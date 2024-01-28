@@ -147,6 +147,7 @@ scale = Vector2(3, 3)
 texture = ExtResource("9_m4h0b")
 
 [node name="HecklerSpeechBubble" parent="Heckler2" instance=ExtResource("3_303of")]
+z_index = 1000
 position = Vector2(-493, -36)
 scale = Vector2(0.5, 0.5)
 
@@ -186,6 +187,7 @@ CharacterConfidence = NodePath("../MarginContainer")
 CharacterData = ExtResource("6_k30cd")
 
 [node name="PlayerSpeechBubble" parent="Player2" instance=ExtResource("3_303of")]
+z_index = 99
 position = Vector2(-233, -90)
 scale = Vector2(0.325, 0.325)
 
@@ -209,12 +211,6 @@ offset_right = 78.0
 offset_bottom = 584.0
 scale = Vector2(2, 2)
 
-[node name="DiscardButton" parent="." instance=ExtResource("15_txk18")]
-offset_left = 1073.0
-offset_top = 561.0
-offset_right = 1123.0
-offset_bottom = 611.0
-
 [node name="DrawButton" parent="." instance=ExtResource("16_7hj8e")]
 offset_left = 25.0
 offset_top = 423.0
@@ -234,7 +230,13 @@ offset_right = 1018.0
 offset_bottom = 399.0
 scale = Vector2(2, 2)
 
-[node name="HandArea" type="HBoxContainer" parent="."]
+[node name="DiscardButton" parent="." instance=ExtResource("15_txk18")]
+offset_left = 1073.0
+offset_top = 561.0
+offset_right = 1123.0
+offset_bottom = 611.0
+
+[node name="HandArea" type="HBoxContainer" parent="." node_paths=PackedStringArray("DrawButton", "DiscardButton")]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(771, 218)
 offset_left = 284.0
@@ -247,6 +249,8 @@ mouse_filter = 2
 theme_override_constants/separation = 10
 script = ExtResource("19_5tbop")
 CardPrefab = ExtResource("20_uk465")
+DrawButton = NodePath("../DrawButton")
+DiscardButton = NodePath("../DiscardButton")
 
 [connection signal="pressed" from="EndTurnButton" to="." method="EndPlayerTurn"]
 
