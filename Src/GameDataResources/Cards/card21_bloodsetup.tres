@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://bcnaxc8pf0pa8"]
+
+[ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="1_er7l5"]
+[ext_resource type="Texture2D" uid="uid://b2u7b2y2d4q34" path="res://Assets/Image/jester.png" id="1_v0n1r"]
+
+[resource]
+script = ExtResource("1_er7l5")
+Name = "Brawler Starter"
+Description = "Start up a fight story..."
+Cost = 0
+Hilarity = 1
+CardIcon = ExtResource("1_v0n1r")
+CardNature = 2
+CardType = 1
+MadlibSentence = "So's I was fighting with the [profession] again, real fisticuffs..."

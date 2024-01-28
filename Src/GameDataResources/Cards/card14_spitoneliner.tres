@@ -1,15 +1,15 @@
 [gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://b6nfp0qs5td4n"]
 
-[ext_resource type="Texture2D" uid="uid://4mf7vcer6f4e" path="res://Assets/Image/player.png" id="1_onbbq"]
+[ext_resource type="Texture2D" uid="uid://b2u7b2y2d4q34" path="res://Assets/Image/jester.png" id="1_nljvk"]
 [ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="1_x7262"]
 
 [resource]
 script = ExtResource("1_x7262")
 Name = "Spit out a catch phrase"
 Description = "Nothing like a tried, true, and tasteful snotty remark!"
-Cost = 0
-Hilarity = 0
-CardIcon = ExtResource("1_onbbq")
+Cost = 5
+Hilarity = 15
+CardIcon = ExtResource("1_nljvk")
 CardNature = 1
 CardType = 4
-MadlibSentence = "*Hack* *Ptoo* Tastes like [adjective] [noun]!"
+MadlibSentence = "*Hack* *Ptoo* Tastes like [adjective] [mythical]!"

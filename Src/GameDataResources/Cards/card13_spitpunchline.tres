@@ -7,11 +7,11 @@
 script = ExtResource("1_x7262")
 Name = "Flemmy Finisher"
 Description = "Snort out a story closer."
-Cost = 0
-Hilarity = 0
+Cost = 2
+Hilarity = 5
 CardIcon = ExtResource("1_gajg5")
 CardNature = 1
 CardType = 3
-MadlibSentence = "And the good [noun] goes \"Is that yours?\"
+MadlibSentence = "And the good [profession] says \"[exclamation]! Is that yours?\"
 *Snort*
 \"No! It's snot!\""

@@ -1,17 +1,35 @@
-[gd_scene load_steps=8 format=3 uid="uid://du5j3307furgy"]
+[gd_scene load_steps=25 format=3 uid="uid://du5j3307furgy"]
 
 [ext_resource type="PackedScene" uid="uid://dyqry5rpyj40p" path="res://Src/CardPrefab.tscn" id="1_hk7kf"]
 [ext_resource type="Resource" uid="uid://bcq64aefqx0yf" path="res://Src/GameDataResources/Cards/card12_spitback.tres" id="3_dte3h"]
 [ext_resource type="Resource" uid="uid://cky1bojgl0je7" path="res://Src/GameDataResources/Cards/card11_spitsetup.tres" id="4_wp5kn"]
 [ext_resource type="Script" path="res://Src/Util/MadLibafier.cs" id="5_cfv36"]
 [ext_resource type="Resource" uid="uid://logrf6yvh1ws" path="res://Src/GameDataResources/Cards/card13_spitpunchline.tres" id="5_wiadc"]
-[ext_resource type="Resource" uid="uid://lb8sfsjjhno5" path="res://Src/GameDataResources/Cards/card_firsttest3.tres" id="7_18n7l"]
+[ext_resource type="Resource" uid="uid://bcnaxc8pf0pa8" path="res://Src/GameDataResources/Cards/card21_bloodsetup.tres" id="7_ca2te"]
+[ext_resource type="Resource" uid="uid://c5mwyt6214f8k" path="res://Src/GameDataResources/Cards/card22_bloodcomeback.tres" id="8_74a1p"]
+[ext_resource type="Resource" uid="uid://b0k51lre386b" path="res://Src/GameDataResources/Cards/card23_bloodpunchline.tres" id="9_3vmr6"]
+[ext_resource type="Resource" uid="uid://skfqeosdi86k" path="res://Src/GameDataResources/Cards/card24_bloodoneliner.tres" id="10_p0o4t"]
+[ext_resource type="Resource" uid="uid://wkf6y0i0ghkc" path="res://Src/GameDataResources/Cards/card31_yellowsetup.tres" id="11_8rmhd"]
+[ext_resource type="Resource" uid="uid://ba2ntmocvwwtp" path="res://Src/GameDataResources/Cards/card32_yellowcomeback.tres" id="12_67sem"]
 [ext_resource type="Resource" uid="uid://b6nfp0qs5td4n" path="res://Src/GameDataResources/Cards/card14_spitoneliner.tres" id="12_stm1d"]
+[ext_resource type="Resource" uid="uid://cygbe5od8tibl" path="res://Src/GameDataResources/Cards/card33_yellowpunchline.tres" id="13_or35v"]
+[ext_resource type="Resource" uid="uid://cy15fej0obav6" path="res://Src/GameDataResources/Cards/card34_yellowoneliner.tres" id="14_8hwjj"]
+[ext_resource type="Resource" uid="uid://cg8mn4abq7iw4" path="res://Src/GameDataResources/Cards/card41_darksetup.tres" id="15_6f3cb"]
+[ext_resource type="Resource" uid="uid://gsvr7kuthmi6" path="res://Src/GameDataResources/Cards/card42_darkcomeback.tres" id="16_7fo7v"]
+[ext_resource type="Resource" uid="uid://cr0cujq45l6jx" path="res://Src/GameDataResources/Cards/card43_darkpunchline.tres" id="17_7rfj8"]
+[ext_resource type="Resource" uid="uid://cwvwfdpckagdc" path="res://Src/GameDataResources/Cards/card44_darkoneliner1.tres" id="18_7h2uk"]
+[ext_resource type="Resource" uid="uid://curaj5wkshdk4" path="res://Src/GameDataResources/Cards/card44_darkoneliner2.tres" id="19_mo8ry"]
+[ext_resource type="Resource" uid="uid://dlfeqh2ckrq63" path="res://Src/GameDataResources/Cards/card31_yellowsetup2.tres" id="20_25xjq"]
+[ext_resource type="Resource" uid="uid://bun60titj2brl" path="res://Src/GameDataResources/Cards/card14_spitoneliner2.tres" id="21_lxjhd"]
+[ext_resource type="Resource" uid="uid://br5rm5hh2s5vw" path="res://Src/GameDataResources/Cards/card23_bloodpunchline2.tres" id="22_ql8m7"]
+[ext_resource type="Resource" uid="uid://d2kxyqpy2a1gp" path="res://Src/GameDataResources/Cards/card12_spitback2.tres" id="23_0wtay"]
+[ext_resource type="Resource" uid="uid://dac6oajh5n4t5" path="res://Src/GameDataResources/Cards/card34_yellowoneliner2.tres" id="24_qfcuo"]
 
 [node name="TestCardsScene" type="Node2D"]
 
 [node name="MadLibafier" type="Node" parent="."]
 script = ExtResource("5_cfv36")
+madLibFile = "res://Assets/MadLibs/medievalLibs.txt"
 
 [node name="Card" parent="." instance=ExtResource("1_hk7kf")]
 offset_left = 12.0
@@ -35,127 +53,134 @@ offset_bottom = 213.0
 Data = ExtResource("5_wiadc")
 
 [node name="Card4" parent="." instance=ExtResource("1_hk7kf")]
-offset_left = 520.0
+offset_left = 513.0
 offset_top = 12.0
-offset_right = 671.0
+offset_right = 664.0
 offset_bottom = 212.0
 Data = ExtResource("12_stm1d")
 
 [node name="Card5" parent="." instance=ExtResource("1_hk7kf")]
-offset_left = 725.0
-offset_top = 18.0
-offset_right = 876.0
-offset_bottom = 218.0
-Data = ExtResource("7_18n7l")
+offset_left = 678.0
+offset_top = 11.0
+offset_right = 829.0
+offset_bottom = 211.0
+Data = ExtResource("7_ca2te")
 
 [node name="Card6" parent="." instance=ExtResource("1_hk7kf")]
-visible = false
-offset_left = 832.0
-offset_top = 13.0
-offset_right = 983.0
-offset_bottom = 213.0
+offset_left = 838.0
+offset_top = 9.0
+offset_right = 989.0
+offset_bottom = 209.0
+Data = ExtResource("8_74a1p")
 
 [node name="Card7" parent="." instance=ExtResource("1_hk7kf")]
-visible = false
-offset_left = 997.0
+offset_left = 995.0
 offset_top = 13.0
-offset_right = 1148.0
+offset_right = 1146.0
 offset_bottom = 213.0
+Data = ExtResource("9_3vmr6")
 
 [node name="Card8" parent="." instance=ExtResource("1_hk7kf")]
-visible = false
 offset_left = 10.0
 offset_top = 225.0
 offset_right = 161.0
 offset_bottom = 425.0
+Data = ExtResource("10_p0o4t")
 
 [node name="Card9" parent="." instance=ExtResource("1_hk7kf")]
-visible = false
 offset_left = 177.0
 offset_top = 224.0
 offset_right = 328.0
 offset_bottom = 424.0
+Data = ExtResource("11_8rmhd")
 
 [node name="Card10" parent="." instance=ExtResource("1_hk7kf")]
-visible = false
 offset_left = 343.0
 offset_top = 224.0
 offset_right = 494.0
 offset_bottom = 424.0
+Data = ExtResource("12_67sem")
 
 [node name="Card11" parent="." instance=ExtResource("1_hk7kf")]
-visible = false
 offset_left = 505.0
 offset_top = 222.0
 offset_right = 656.0
 offset_bottom = 422.0
+Data = ExtResource("13_or35v")
 
 [node name="Card12" parent="." instance=ExtResource("1_hk7kf")]
-visible = false
 offset_left = 666.0
 offset_top = 222.0
 offset_right = 817.0
 offset_bottom = 422.0
+Data = ExtResource("14_8hwjj")
 
 [node name="Card13" parent="." instance=ExtResource("1_hk7kf")]
-visible = false
 offset_left = 831.0
 offset_top = 224.0
 offset_right = 982.0
 offset_bottom = 424.0
+Data = ExtResource("15_6f3cb")
 
 [node name="Card14" parent="." instance=ExtResource("1_hk7kf")]
-visible = false
 offset_left = 997.0
 offset_top = 222.0
 offset_right = 1148.0
 offset_bottom = 422.0
+Data = ExtResource("16_7fo7v")
 
 [node name="Card15" parent="." instance=ExtResource("1_hk7kf")]
-visible = false
 offset_left = 10.0
 offset_top = 435.0
 offset_right = 161.0
 offset_bottom = 635.0
+Data = ExtResource("17_7rfj8")
 
 [node name="Card16" parent="." instance=ExtResource("1_hk7kf")]
-visible = false
 offset_left = 178.0
 offset_top = 435.0
 offset_right = 329.0
 offset_bottom = 635.0
+Data = ExtResource("18_7h2uk")
 
 [node name="Card17" parent="." instance=ExtResource("1_hk7kf")]
-visible = false
 offset_left = 342.0
 offset_top = 435.0
 offset_right = 493.0
 offset_bottom = 635.0
+Data = ExtResource("19_mo8ry")
 
 [node name="Card18" parent="." instance=ExtResource("1_hk7kf")]
-visible = false
 offset_left = 507.0
 offset_top = 433.0
 offset_right = 658.0
 offset_bottom = 633.0
+Data = ExtResource("20_25xjq")
 
 [node name="Card19" parent="." instance=ExtResource("1_hk7kf")]
-visible = false
 offset_left = 669.0
 offset_top = 433.0
 offset_right = 820.0
 offset_bottom = 633.0
+Data = ExtResource("21_lxjhd")
 
 [node name="Card20" parent="." instance=ExtResource("1_hk7kf")]
-visible = false
 offset_left = 831.0
 offset_top = 433.0
 offset_right = 982.0
 offset_bottom = 633.0
+Data = ExtResource("22_ql8m7")
 
 [node name="Card21" parent="." instance=ExtResource("1_hk7kf")]
-visible = false
 offset_left = 996.0
 offset_top = 432.0
 offset_right = 1147.0
 offset_bottom = 632.0
+Data = ExtResource("23_0wtay")
+
+[node name="Card22" parent="." instance=ExtResource("1_hk7kf")]
+offset_left = 668.0
+offset_top = 556.0
+offset_right = 819.0
+offset_bottom = 756.0
+Data = ExtResource("24_qfcuo")

@@ -16,7 +16,7 @@ public partial class Card : MarginContainer
         Visual = GetNode<CardVisual>("MoveWithMouse/CardVisual");
         if (Data != null && Visual != null)
         {
-            GD.Print(Visual);
+            // GD.Print(Visual);
             Visual.SetCardData(Data);
             Visual.Connect(CardVisual.SignalName.CardReleased, Callable.From<Vector2>((x) => EmitSignal(SignalName.CardReleased, x)));
         }

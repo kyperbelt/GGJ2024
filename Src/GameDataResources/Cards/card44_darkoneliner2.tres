@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://curaj5wkshdk4"]
+
+[ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="1_kbe80"]
+[ext_resource type="Texture2D" uid="uid://b2u7b2y2d4q34" path="res://Assets/Image/jester.png" id="1_rlthq"]
+
+[resource]
+script = ExtResource("1_kbe80")
+Name = "Underground Comedy"
+Description = "Really makes you think..."
+Cost = 2
+Hilarity = 4
+CardIcon = ExtResource("1_rlthq")
+CardNature = 4
+CardType = 4
+MadlibSentence = "[exclamation]! I know the show's bad now, but it gets [adverb] better.
+hundreds of years from now, you get a pine box view. Maybe a tour of the catacombs!"

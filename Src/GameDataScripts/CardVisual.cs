@@ -30,6 +30,9 @@ public partial class CardVisual : Control
     [Export]
     public Label CostLabel { get; set; }
 
+    [Export]
+    public Label HilarityLabel { get; set; }
+
     private CardData _data;
 
     private string madlibString;
@@ -58,6 +61,7 @@ public partial class CardVisual : Control
         DescriptionLabel.Text = newData.Description;
         EffectLabel.Text = newData.CardType.ToLabelString();
         CostLabel.Text = newData.Cost.ToString();
+        HilarityLabel.Text = newData.Hilarity.ToString();
 
         madlibString = newData.MadlibSentence;
     }
@@ -85,7 +89,6 @@ public partial class CardVisual : Control
         {
             if (butt.Pressed)
             {
-                GD.Print("Mouse Clicked");
                 MouseMover.IsFollowingMouse = true;
                 if (!MouseMover.IsSnapBackSet){
                     MouseMover.SnapBackPosition = MouseMover.GlobalPosition;
@@ -94,7 +97,6 @@ public partial class CardVisual : Control
             }
             else
             {
-                GD.Print("Mouse Released");
                 MouseMover.IsFollowingMouse = false;
                 EmitSignal(SignalName.CardReleased, MouseMover.GlobalPosition);
             }
@@ -103,16 +105,19 @@ public partial class CardVisual : Control
 
     private void ForceTestMadlibs()
     {
-        var _madLibafier = GetTree().Root.GetNode<MadLibafier>("TestCardsScene/MadLibafier");
+        string scenename = GetTree().CurrentScene.Name;
+
+        var _madLibafier = GetTree().Root.GetNodeOrNull<MadLibafier>($"{scenename}/MadLibafier");
 
         if (_madLibafier == null)
         {
-            GD.PushError("MadLibafier not found in scene");
+            GD.PrintErr("MadLibafier not found in scene");
             return;
         }
 
         // test madlibifier 
         string testString = madlibString;
         GD.Print(_madLibafier.GetMadLib(testString));
+        GD.Print("-----");
     }
 }

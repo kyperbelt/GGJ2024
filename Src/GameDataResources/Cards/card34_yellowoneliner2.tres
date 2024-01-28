@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://dac6oajh5n4t5"]
+
+[ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="1_ua01u"]
+[ext_resource type="Texture2D" uid="uid://b2u7b2y2d4q34" path="res://Assets/Image/jester.png" id="1_vugc4"]
+
+[resource]
+script = ExtResource("1_ua01u")
+Name = "Splitting Image"
+Description = "REALLY give a piece of yourself to a fan..."
+Cost = 3
+Hilarity = 5
+CardIcon = ExtResource("1_vugc4")
+CardNature = 3
+CardType = 4
+MadlibSentence = "Oh no!! That was the favorite part of my [bodypart]!
+Oh well, you can keep it, [profession]..."
