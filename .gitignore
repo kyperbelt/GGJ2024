@@ -520,3 +520,6 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 # End JetBrains.gitignore
+
+# Stuff for GGJ2024
+/Unversioned

@@ -1,8 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://dff3rwya1b82f"]
+[gd_scene load_steps=11 format=3 uid="uid://dyqry5rpyj40p"]
 
 [ext_resource type="Script" path="res://Src/GameDataScripts/Card.cs" id="1_23nc2"]
 [ext_resource type="Script" path="res://Src/MoveWithMouse.cs" id="1_nobg5"]
 [ext_resource type="Texture2D" uid="uid://blfdcnv71yk2o" path="res://Assets/Image/icon.svg" id="2_0vjn4"]
+[ext_resource type="Texture2D" uid="uid://brvx788d2jou6" path="res://Assets/Image/square.png" id="3_vg2nn"]
+[ext_resource type="Resource" uid="uid://jyw4u34ro2uo" path="res://Src/GameDataResources/card_firsttest.tres" id="3_ysxfk"]
+[ext_resource type="Script" path="res://Src/GameDataScripts/CardVisual.cs" id="4_mp6xj"]
+[ext_resource type="Texture2D" uid="uid://yvmqqmtj5rn0" path="res://Assets/Image/circle.png" id="5_wlae5"]
 
 [sub_resource type="Animation" id="Animation_t3b23"]
 length = 0.001
@@ -64,7 +68,12 @@ _data = {
 "card_hover": SubResource("Animation_81dim")
 }
 
-[node name="CardPrefab" type="Node2D"]
+[node name="Card" type="Control" node_paths=PackedStringArray("Visual")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_23nc2")
+Data = ExtResource("3_ysxfk")
+Visual = NodePath("MoveWithMouse/CardVisual")
 
 [node name="MoveWithMouse" type="Control" parent="."]
 layout_mode = 3
@@ -75,51 +84,157 @@ offset_right = 76.0
 offset_bottom = 124.0
 script = ExtResource("1_nobg5")
 
-[node name="Card" type="Control" parent="MoveWithMouse" node_paths=PackedStringArray("MouseMover", "CardAnimator")]
-layout_mode = 3
+[node name="CardVisual" type="Control" parent="MoveWithMouse" node_paths=PackedStringArray("CardAnimator", "MouseMover", "CardGraphic", "TitleLabel", "DescriptionLabel", "EffectLabel", "CostLabel")]
 anchors_preset = 0
 offset_left = -76.0
 offset_top = -124.0
 offset_right = 75.0
 offset_bottom = 73.0
-script = ExtResource("1_23nc2")
-MouseMover = NodePath("..")
+script = ExtResource("4_mp6xj")
 CardAnimator = NodePath("CardAnimator")
+MouseMover = NodePath("..")
+CardGraphic = NodePath("Control/CardBack/CardIcon")
+TitleLabel = NodePath("Control/CardBack/TextureRect3/TitleLabel")
+DescriptionLabel = NodePath("Control/CardBack/TextureRect2/DescriptionLabel")
+EffectLabel = NodePath("Control/CardBack/TextureRect4/EffectLabel")
+CostLabel = NodePath("Control/CardBack/CostCircle/CostLabel")
 
-[node name="ClickHandler" type="PanelContainer" parent="MoveWithMouse/Card"]
+[node name="ClickHandler" type="PanelContainer" parent="MoveWithMouse/CardVisual"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 153.0
 offset_bottom = 200.0
 
-[node name="CardAnimator" type="AnimationPlayer" parent="MoveWithMouse/Card"]
+[node name="CardAnimator" type="AnimationPlayer" parent="MoveWithMouse/CardVisual"]
 libraries = {
 "": SubResource("AnimationLibrary_leqbw")
 }
 
-[node name="Control" type="Control" parent="MoveWithMouse/Card"]
+[node name="Control" type="Control" parent="MoveWithMouse/CardVisual"]
 layout_mode = 1
 anchor_right = 0.132
 anchor_bottom = 0.305
 offset_right = -19.932
 offset_bottom = -60.085
 
-[node name="CardBack" type="TextureRect" parent="MoveWithMouse/Card/Control"]
+[node name="CardBack" type="TextureRect" parent="MoveWithMouse/CardVisual/Control"]
+self_modulate = Color(0.694118, 0.6, 0.482353, 1)
 layout_mode = 2
 offset_right = 152.0
 offset_bottom = 198.0
 mouse_filter = 2
-texture = ExtResource("2_0vjn4")
+texture = ExtResource("3_vg2nn")
+expand_mode = 1
 
-[node name="CardIcon" type="TextureRect" parent="MoveWithMouse/Card/Control/CardBack"]
+[node name="CardIcon" type="TextureRect" parent="MoveWithMouse/CardVisual/Control/CardBack"]
 layout_mode = 0
 offset_left = 12.0
 offset_top = 8.0
 offset_right = 140.0
-offset_bottom = 136.0
+offset_bottom = 107.0
 mouse_filter = 2
 texture = ExtResource("2_0vjn4")
+expand_mode = 1
 
-[connection signal="gui_input" from="MoveWithMouse/Card/ClickHandler" to="MoveWithMouse/Card" method="OnMouseInputEvent"]
-[connection signal="mouse_entered" from="MoveWithMouse/Card/ClickHandler" to="MoveWithMouse/Card" method="OnMouseHover"]
-[connection signal="mouse_exited" from="MoveWithMouse/Card/ClickHandler" to="MoveWithMouse/Card" method="OnMouseLeave"]
+[node name="TextureRect3" type="TextureRect" parent="MoveWithMouse/CardVisual/Control/CardBack"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 2.0
+offset_right = 125.0
+offset_bottom = 18.0
+mouse_filter = 2
+texture = ExtResource("3_vg2nn")
+expand_mode = 1
+
+[node name="TitleLabel" type="Label" parent="MoveWithMouse/CardVisual/Control/CardBack/TextureRect3"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 12
+text = "Taaa7"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="MoveWithMouse/CardVisual/Control/CardBack"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 114.0
+offset_right = 138.0
+offset_bottom = 189.0
+mouse_filter = 2
+texture = ExtResource("3_vg2nn")
+expand_mode = 1
+
+[node name="DescriptionLabel" type="Label" parent="MoveWithMouse/CardVisual/Control/CardBack/TextureRect2"]
+self_modulate = Color(0.054902, 0.054902, 0.054902, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 2.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 11
+text = "Stanley worked for a company in a big building where he was Employee #427."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+justification_flags = 162
+clip_text = true
+
+[node name="TextureRect4" type="TextureRect" parent="MoveWithMouse/CardVisual/Control/CardBack"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 95.0
+offset_right = 109.0
+offset_bottom = 111.0
+mouse_filter = 2
+texture = ExtResource("3_vg2nn")
+expand_mode = 1
+
+[node name="EffectLabel" type="Label" parent="MoveWithMouse/CardVisual/Control/CardBack/TextureRect4"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 10
+text = "Black Bile"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CostCircle" type="TextureRect" parent="MoveWithMouse/CardVisual/Control/CardBack"]
+self_modulate = Color(1, 0.32549, 0.411765, 1)
+layout_mode = 0
+offset_left = -6.0
+offset_top = -8.0
+offset_right = 34.0
+offset_bottom = 32.0
+mouse_filter = 2
+texture = ExtResource("5_wlae5")
+expand_mode = 1
+
+[node name="CostLabel" type="Label" parent="MoveWithMouse/CardVisual/Control/CardBack/CostCircle"]
+self_modulate = Color(0.054902, 0.054902, 0.054902, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="gui_input" from="MoveWithMouse/CardVisual/ClickHandler" to="MoveWithMouse/CardVisual" method="OnMouseInputEvent"]
+[connection signal="mouse_entered" from="MoveWithMouse/CardVisual/ClickHandler" to="MoveWithMouse/CardVisual" method="OnMouseHover"]
+[connection signal="mouse_exited" from="MoveWithMouse/CardVisual/ClickHandler" to="MoveWithMouse/CardVisual" method="OnMouseLeave"]

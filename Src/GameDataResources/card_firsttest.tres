@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://jyw4u34ro2uo"]
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://jyw4u34ro2uo"]
 
+[ext_resource type="Texture2D" uid="uid://6a77qat7j1de" path="res://Assets/Image/characterBattler.png" id="1_ky0tv"]
 [ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="1_q6nqs"]
 
 [resource]
 script = ExtResource("1_q6nqs")
-Name = ""
-Description = ""
-Cost = 0
-Hilarity = 0
-CardNature = 0
+Name = "Statistics Joke"
+Description = "Tell a joke about regal demographics. Only 1% of your audience will get it."
+Cost = 3
+Hilarity = 5
+CardIcon = ExtResource("1_ky0tv")
+CardNature = 1

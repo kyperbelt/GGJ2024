@@ -6,7 +6,7 @@ public partial class CardData : Resource
     [Export]
     public string Name { get; set; }
 
-    [Export]
+    [Export(PropertyHint.MultilineText)]
     public string Description { get; set; }
 
     [Export]
@@ -16,8 +16,8 @@ public partial class CardData : Resource
     public int Hilarity { get; set; } // The 'funniness' value
 
     [Export]
-    public Texture2D CardGraphic { get; set; }
+    public Texture2D CardIcon { get; set; }
 
     [Export]
-    public CardNatureEnum CardNature { get; set; }
+    public CardHumorTypeEnum CardNature { get; set; }
 }
