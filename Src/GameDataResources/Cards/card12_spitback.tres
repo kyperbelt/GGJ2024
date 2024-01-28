@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://bcq64aefqx0yf"]
+
+[ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="1_8l007"]
+[ext_resource type="Texture2D" uid="uid://dm27o4v8p3r03" path="res://Assets/Image/heckler_new.png" id="1_p6gyd"]
+
+[resource]
+script = ExtResource("1_8l007")
+Name = "Hacky comeback"
+Description = "Clear out the hecklers with a hack of your own."
+Cost = 0
+Hilarity = 0
+CardIcon = ExtResource("1_p6gyd")
+CardNature = 1
+CardType = 2
+MadlibSentence = "Hold still... I got something the size of a [noun] to send ya! *Snooort* *Hack*"

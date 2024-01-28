@@ -16,14 +16,13 @@ offset_top = 431.0
 offset_right = 908.0
 offset_bottom = 649.0
 
-[node name="Card3" parent="HandArea" node_paths=PackedStringArray("Visual") instance=ExtResource("2_o8nnx")]
+[node name="Card3" parent="HandArea" instance=ExtResource("2_o8nnx")]
 layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_right = 151.0
 offset_bottom = 200.0
-Visual = NodePath("../Card/MoveWithMouse/CardVisual")
 
 [node name="Card" parent="HandArea" instance=ExtResource("2_o8nnx")]
 visible = false
@@ -48,14 +47,12 @@ columns = 10
 custom_minimum_size = Vector2(150, 200)
 layout_mode = 2
 
-[node name="Card2" parent="HandArea/HBoxContainer/MarginContainer" node_paths=PackedStringArray("Visual") instance=ExtResource("2_o8nnx")]
+[node name="Card2" parent="HandArea/HBoxContainer/MarginContainer" instance=ExtResource("2_o8nnx")]
 layout_mode = 2
-Visual = NodePath("../../../Card/MoveWithMouse/CardVisual")
 
 [node name="MarginContainer2" type="MarginContainer" parent="HandArea/HBoxContainer"]
 custom_minimum_size = Vector2(150, 200)
 layout_mode = 2
 
-[node name="Card2" parent="HandArea/HBoxContainer/MarginContainer2" node_paths=PackedStringArray("Visual") instance=ExtResource("2_o8nnx")]
+[node name="Card2" parent="HandArea/HBoxContainer/MarginContainer2" instance=ExtResource("2_o8nnx")]
 layout_mode = 2
-Visual = NodePath("../../../Card/MoveWithMouse/CardVisual")

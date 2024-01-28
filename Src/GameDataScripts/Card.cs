@@ -6,14 +6,15 @@ public partial class Card : Control
 	[Export]
 	public CardData Data { get; set; }
 
-	[Export]
-	public CardVisual Visual {get; set;}
+	private CardVisual Visual { get; set; }
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
+	Visual = GetNode<CardVisual>("MoveWithMouse/CardVisual");
         if (Data != null && Visual != null)
         {
+			GD.Print(Visual);
             Visual.SetCardData(Data);
         }
     }
