@@ -1,5 +1,6 @@
 using Godot;
 
+[GlobalClass]
 [Tool]
 public partial class CharacterComic : Area2D
 {

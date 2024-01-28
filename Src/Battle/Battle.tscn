@@ -1,26 +1,37 @@
-[gd_scene load_steps=5 format=3 uid="uid://c78i2c6vv3yjh"]
+[gd_scene load_steps=7 format=3 uid="uid://c78i2c6vv3yjh"]
 
 [ext_resource type="Script" path="res://Src/Battle/Battle.cs" id="1_rmdn6"]
+[ext_resource type="PackedScene" uid="uid://cw1wqd1hploxl" path="res://Src/GameObjects/CharacterComic.tscn" id="2_p4s1p"]
 [ext_resource type="PackedScene" uid="uid://dsilctsheo4vk" path="res://Src/Battle/SpeechBubble.tscn" id="3_303of"]
 [ext_resource type="Texture2D" uid="uid://4mf7vcer6f4e" path="res://Assets/Image/player.png" id="4_lkicy"]
 [ext_resource type="Texture2D" uid="uid://sh7j2jmfys5j" path="res://Assets/Image/heckler.png" id="5_cshp5"]
+[ext_resource type="Resource" uid="uid://bx7300lrikfk3" path="res://Src/GameDataResources/jester.tres" id="6_k30cd"]
 
 [node name="Battle" type="Node2D" node_paths=PackedStringArray("_playerSpeechBubble", "_hecklerSpeechBubble")]
 script = ExtResource("1_rmdn6")
-_playerSpeechBubble = NodePath("Player/PlayerSpeechBubble")
-_hecklerSpeechBubble = NodePath("Heckler/HecklerSpeechBubble")
+_playerSpeechBubble = NodePath("Player2/PlayerSpeechBubble")
+_hecklerSpeechBubble = NodePath("Heckler2/HecklerSpeechBubble")
+
+[node name="Heckler2" parent="." instance=ExtResource("2_p4s1p")]
+
+[node name="HecklerSpeechBubble" parent="Heckler2" instance=ExtResource("3_303of")]
+position = Vector2(213, 122)
+scale = Vector2(0.5, 0.5)
 
 [node name="Player" type="Sprite2D" parent="."]
-position = Vector2(131, 525)
+position = Vector2(135, 514)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_lkicy")
-
-[node name="PlayerSpeechBubble" parent="Player" instance=ExtResource("3_303of")]
 
 [node name="Heckler" type="Sprite2D" parent="."]
 position = Vector2(1020, 126)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_cshp5")
 
-[node name="HecklerSpeechBubble" parent="Heckler" instance=ExtResource("3_303of")]
-position = Vector2(-1612, -8)
+[node name="Player2" parent="." instance=ExtResource("2_p4s1p")]
+position = Vector2(372, 501)
+CharacterData = ExtResource("6_k30cd")
+
+[node name="PlayerSpeechBubble" parent="Player2" instance=ExtResource("3_303of")]
+position = Vector2(-233, -90)
+scale = Vector2(0.5, 0.5)

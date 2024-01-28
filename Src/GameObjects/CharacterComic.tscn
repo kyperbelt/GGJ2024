@@ -12,4 +12,5 @@ CharacterData = ExtResource("2_ynea3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(3, -71)
+scale = Vector2(2, 2)
 texture = ExtResource("2_br1pq")

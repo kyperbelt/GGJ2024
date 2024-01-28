@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=4 format=3 uid="uid://bx7300lrikfk3"]
+
+[ext_resource type="Texture2D" uid="uid://b2u7b2y2d4q34" path="res://Assets/Image/jester.png" id="1_jw8en"]
+[ext_resource type="Texture2D" uid="uid://blfdcnv71yk2o" path="res://Assets/Image/icon.svg" id="2_vjlcs"]
+[ext_resource type="Script" path="res://Src/GameDataScripts/CharacterData.cs" id="3_0cus7"]
+
+[resource]
+script = ExtResource("3_0cus7")
+CharacterName = "Jester"
+ChracterMadLibsFile = "res://Assets/MadLibs/defaultLibs.txt"
+Description = "Jester Comic"
+FrontImage = ExtResource("2_vjlcs")
+BackImage = ExtResource("1_jw8en")
+MaxConfidence = 30
+CurrentConfidence = 30
