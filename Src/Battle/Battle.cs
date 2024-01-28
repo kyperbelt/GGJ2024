@@ -44,7 +44,12 @@ public partial class Battle : Node2D
     // Additional player stats
     private int _material = MaterialPerTurn;
     private int _setupMultiplier = 1;
+    private int _crowdFavoriteHumourMultiplier = 1;
     private bool _playerJustTookDamage = false;
+    
+    // Crowd stats
+    private CardHumor _crowdFavoriteHumour;
+    private CardHumor _crowdDislikedHumour;
     
     public int MaterialAmount
     {
@@ -67,6 +72,7 @@ public partial class Battle : Node2D
     private const int DrawAmount = 5;
     private const int MaterialPerTurn = 5;
     private const int ComebackDamageMultiplier = 2;
+    private const int CrowdFavoriteHumourMultiplier = 2;
 
     private enum TurnType
     {
@@ -101,6 +107,15 @@ public partial class Battle : Node2D
             var randomCardProto = _cardPrototypes[randomCardProtoIndex];
             _deck.Add(randomCardProto);
         }
+        
+        // Randomize crowd's favorite/disliked humours
+        _crowdFavoriteHumour = CardEnumExtension.RandomCardHumour();
+        // Ensure disliked is unique from favorite
+        do
+        {
+            _crowdDislikedHumour = CardEnumExtension.RandomCardHumour();
+        } while (_crowdDislikedHumour == _crowdFavoriteHumour);
+        GD.Print($"Picked Crowd Favorite Humour: {_crowdFavoriteHumour}, Crowd Disliked Humour: {_crowdDislikedHumour}");
 
         _materialObjectUx = GetNode<Material>("Material");
         _materialObjectUx.MaxMaterialValue = MaterialPerTurn;
@@ -292,7 +307,7 @@ public partial class Battle : Node2D
         
         PrintPlayerStats();
         
-        var cardDamage = card.Hilarity;
+        var damageMultiplier = 1;
         
         // Check for special card type effects
         switch (card.CardType)
@@ -304,7 +319,7 @@ public partial class Battle : Node2D
             }
             case CardType.Punchline:
             {
-                cardDamage *= _setupMultiplier;
+                damageMultiplier += _setupMultiplier;
                 _setupMultiplier = 1;
                 break;
             }
@@ -313,7 +328,7 @@ public partial class Battle : Node2D
                 if (_playerJustTookDamage)
                 {
                     GD.Print("Player gets comeback bonus!");
-                    cardDamage *= ComebackDamageMultiplier;
+                    damageMultiplier += ComebackDamageMultiplier;
                 }
                 break;
             }
@@ -321,8 +336,24 @@ public partial class Battle : Node2D
         
         _playerJustTookDamage = false;
         
+        // Check if crowd dislikes humour type. If so, heal heckler instead of damaging.
+        if (_crowdDislikedHumour == card.CardNature)
+        {
+            GD.Print($"Crowd dislikes humour type:{card.CardNature}. Healing Heckler instead of damaging.");
+            damageMultiplier *= -1;
+        }
+        
+        // Apply crowd favorite humour multiplier from last turn if applicable.
+        if (_crowdFavoriteHumourMultiplier != 1)
+        {
+            GD.Print($"Apply crowd favorite humour multiplier from last turn = {_crowdFavoriteHumourMultiplier}");
+            damageMultiplier += _crowdFavoriteHumourMultiplier;
+            _crowdFavoriteHumourMultiplier = 1;
+        }
+        
         // Do damage
-        GD.Print($"Player did {cardDamage} damage to heckler (base damage = {card.Hilarity}).");
+        var cardDamage = card.Hilarity * damageMultiplier;
+        GD.Print($"Player did {cardDamage} damage to heckler (base damage = {card.Hilarity}, multiplier = {damageMultiplier}).");
         _hecklerCharacter.CurrentConfidence -= cardDamage;
         if (_hecklerCharacter.CurrentConfidence <= 0)
         {
@@ -330,7 +361,13 @@ public partial class Battle : Node2D
             GD.Print($"\ud83c\udf89\ud83c\udf89\ud83c\udf89 You win!");
             return true;
         }
-        // TODO: process card's effects on audience
+
+        // Check if crowd likes humour type. If so, add multiplier on next turn.
+        if (_crowdFavoriteHumour == card.CardNature)
+        {
+            GD.Print($"Played crowd favorite humour: {_crowdFavoriteHumour}. Multiplier of {CrowdFavoriteHumourMultiplier} will apply on next played card.");
+            _crowdFavoriteHumourMultiplier = CrowdFavoriteHumourMultiplier;
+        }
 
         PrintHand();
         PrintDiscard();
@@ -372,7 +409,7 @@ public partial class Battle : Node2D
 
     private void PrintPlayerStats()
     {
-        GD.Print($"Player Stats: Material: {_material} SetupMultiplier: {_setupMultiplier}");
+        GD.Print($"Player Stats: Material: {_material} SetupMultiplier: {_setupMultiplier} CrowdFavoriteHumourMultiplier: {_crowdFavoriteHumourMultiplier}");
     }
 
     private void PrintDeck()
