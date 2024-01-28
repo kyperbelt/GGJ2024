@@ -1,3 +1,4 @@
+ using System;
  using Godot;
 using System.Runtime.CompilerServices;
 
@@ -28,6 +29,19 @@ public enum CardType
 
 public static class CardEnumExtension
 {
+    public static CardHumor RandomCardHumour()
+    {
+        var randomIndex = Random.Shared.Next(0, 4);
+        return randomIndex switch
+        {
+            0 => CardHumor.Blood,
+            1 => CardHumor.Phlegm,
+            2 => CardHumor.Yellow_Bile,
+            3 => CardHumor.Black_Bile,
+            _ => throw new InvalidOperationException(
+                $"Unexpected random number '{randomIndex}' when generating {nameof(RandomCardHumour)}"),
+        };
+    }
 
     public static string ToLabelString(this CardType _type)
     {
