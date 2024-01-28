@@ -11,8 +11,20 @@ public partial class CharacterComic : Area2D
         Back
     }
 
+    Confidence _characterConfidence;
     [Export] 
-    Confidence _characterConfidencePath;
+    public Confidence CharacterConfidence
+    {
+        get => _characterConfidence;
+        set
+        {
+            _characterConfidence = value;
+            if (_characterData != null && _characterConfidence != null) {
+                _characterConfidence.MaxHealth = _characterData.MaxConfidence;
+                _characterConfidence.SetCurrentHealth(_characterData.CurrentConfidence);
+            }
+        }
+    }
 
     private CharacterFacing _characterFacing = CharacterFacing.Front;
     [Export]
@@ -51,6 +63,10 @@ public partial class CharacterComic : Area2D
             {
                 _characterData = value;
                 CharacterFacingDirection = _characterFacing;
+                if (_characterConfidence != null) {
+                    _characterConfidence.MaxHealth = _characterData.MaxConfidence;
+                    _characterConfidence.SetCurrentHealth(_characterData.CurrentConfidence);
+                }
             }
             else
             {
@@ -67,6 +83,10 @@ public partial class CharacterComic : Area2D
     {
         _sprite = GetNode<Sprite2D>("Sprite2D");
         CharacterFacingDirection = _characterFacing;
+        if (_characterData != null && _characterConfidence != null) {
+            _characterConfidence.MaxHealth = _characterData.MaxConfidence;
+            _characterConfidence.SetCurrentHealth(_characterData.CurrentConfidence);
+        }
 
     }
 

@@ -8,7 +8,7 @@
 script = ExtResource("3_0cus7")
 CharacterName = "Jester"
 ChracterMadLibsFile = "res://Assets/MadLibs/defaultLibs.txt"
-Description = "Jester Comic"
+Description = "The Jester jack of all trades."
 FrontImage = ExtResource("2_vjlcs")
 BackImage = ExtResource("1_jw8en")
 MaxConfidence = 30

@@ -24,28 +24,31 @@ position = Vector2(1020, 126)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_cshp5")
 
-[node name="Heckler2" parent="." instance=ExtResource("2_p4s1p")]
+[node name="Heckler2" parent="." node_paths=PackedStringArray("CharacterConfidence") instance=ExtResource("2_p4s1p")]
 position = Vector2(783, 208)
+CharacterConfidence = NodePath("MarginContainer")
 CharacterFacingDirection = 0
 CharacterData = ExtResource("4_fl14m")
+
+[node name="HecklerSpeechBubble" parent="Heckler2" instance=ExtResource("3_303of")]
+position = Vector2(-535, -77)
+scale = Vector2(0.5, 0.5)
 
 [node name="MarginContainer" parent="Heckler2" instance=ExtResource("8_6wgla")]
 offset_left = -14.0
 offset_top = 62.0
 offset_right = 354.0
 offset_bottom = 131.0
-
-[node name="HecklerSpeechBubble" parent="Heckler2" instance=ExtResource("3_303of")]
-position = Vector2(-535, -77)
-scale = Vector2(0.5, 0.5)
+MaxHealth = 30
 
 [node name="Player" type="Sprite2D" parent="."]
 position = Vector2(135, 514)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_lkicy")
 
-[node name="Player2" parent="." instance=ExtResource("2_p4s1p")]
-position = Vector2(372, 501)
+[node name="Player2" parent="." node_paths=PackedStringArray("CharacterConfidence") instance=ExtResource("2_p4s1p")]
+position = Vector2(372, 541)
+CharacterConfidence = NodePath("MarginContainer")
 CharacterData = ExtResource("6_k30cd")
 
 [node name="PlayerSpeechBubble" parent="Player2" instance=ExtResource("3_303of")]
@@ -57,3 +60,4 @@ offset_left = -367.0
 offset_top = -354.0
 offset_right = -56.0
 offset_bottom = -285.0
+MaxHealth = 30

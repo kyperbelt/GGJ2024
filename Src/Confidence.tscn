@@ -10,12 +10,10 @@
 offset_right = 503.0
 offset_bottom = 69.0
 script = ExtResource("1_h04bi")
-MaxHealth = 1000
+MaxHealth = 100
 
 [node name="Confidence" type="TextureProgressBar" parent="."]
 layout_mode = 2
-max_value = 1000.0
-value = 654.0
 nine_patch_stretch = true
 stretch_margin_left = 2
 stretch_margin_top = 2
@@ -30,7 +28,7 @@ tint_progress = Color(1, 0, 0.0196078, 1)
 [node name="TextLabel" type="Label" parent="."]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
-text = "654/1000"
+text = "0/100"
 horizontal_alignment = 1
 
 [connection signal="value_changed" from="Confidence" to="." method="SetCurrentHealth"]

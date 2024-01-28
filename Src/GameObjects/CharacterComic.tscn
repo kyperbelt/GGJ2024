@@ -1,14 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://cw1wqd1hploxl"]
+[gd_scene load_steps=3 format=3 uid="uid://cw1wqd1hploxl"]
 
 [ext_resource type="Script" path="res://Src/GameObjects/CharacterComic.cs" id="1_4wajf"]
 [ext_resource type="Texture2D" uid="uid://6a77qat7j1de" path="res://Assets/Image/characterBattler.png" id="2_br1pq"]
-[ext_resource type="Resource" uid="uid://bkugwpd7ytc6g" path="res://Src/GameDataResources/hobbito.tres" id="2_ynea3"]
 
 [node name="CharacterComic" type="Area2D"]
 position = Vector2(1, 0)
 script = ExtResource("1_4wajf")
 CharacterFacingDirection = 1
-CharacterData = ExtResource("2_ynea3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(3, -71)

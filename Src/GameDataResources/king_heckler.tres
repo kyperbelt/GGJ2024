@@ -11,5 +11,5 @@ ChracterMadLibsFile = "res://Assets/MadLibs/defaultLibs.txt"
 Description = "The king of heckling"
 FrontImage = ExtResource("2_gqf2i")
 BackImage = ExtResource("1_fapqo")
-MaxConfidence = 0
-CurrentConfidence = 0
+MaxConfidence = 30
+CurrentConfidence = 30
