@@ -68,6 +68,7 @@ public partial class MadLibafier : Node
             MadLibReplacement replacement = values[index];
             if (participleRule == null)
             {
+                GD.PushError("returning replacement " + replacement.replacement);
                 return replacement.replacement;
             }
 

@@ -1,7 +1,7 @@
 using Godot;
 
 [GlobalClass]
-public partial class Card : Control
+public partial class Card : MarginContainer 
 {
 	[Export]
 	public CardData Data { get; set; }

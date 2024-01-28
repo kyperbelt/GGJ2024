@@ -68,35 +68,24 @@ _data = {
 "card_hover": SubResource("Animation_81dim")
 }
 
-[node name="Card" type="Control" node_paths=PackedStringArray("Visual")]
+[node name="Card" type="MarginContainer" node_paths=PackedStringArray("Visual")]
 custom_minimum_size = Vector2(151, 200)
-layout_mode = 3
-anchor_right = 0.133
-anchor_bottom = 0.306
-offset_right = -0.216003
-offset_bottom = -0.28801
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 151.0
+offset_bottom = 200.0
 script = ExtResource("1_23nc2")
 Data = ExtResource("3_ysxfk")
 Visual = NodePath("MoveWithMouse/CardVisual")
 
 [node name="MoveWithMouse" type="Control" parent="."]
-layout_mode = 1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 76.0
-offset_top = 124.0
-offset_right = -77.0
-offset_bottom = -74.0
+layout_mode = 2
 script = ExtResource("1_nobg5")
 
 [node name="CardVisual" type="Control" parent="MoveWithMouse" node_paths=PackedStringArray("CardAnimator", "MouseMover", "CardGraphic", "TitleLabel", "DescriptionLabel", "EffectLabel", "CostLabel")]
 anchors_preset = 0
-offset_left = -76.0
-offset_top = -124.0
-offset_right = 75.0
-offset_bottom = 73.0
+offset_left = 2.0
+offset_top = 1.00001
+offset_right = 153.0
+offset_bottom = 198.0
 script = ExtResource("4_mp6xj")
 CardAnimator = NodePath("CardAnimator")
 MouseMover = NodePath("..")
@@ -241,6 +230,11 @@ grow_vertical = 2
 text = "999"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+layout_mode = 2
+border_width = 1.8
+editor_only = false
 
 [connection signal="gui_input" from="MoveWithMouse/CardVisual/ClickHandler" to="MoveWithMouse/CardVisual" method="OnMouseInputEvent"]
 [connection signal="mouse_entered" from="MoveWithMouse/CardVisual/ClickHandler" to="MoveWithMouse/CardVisual" method="OnMouseHover"]

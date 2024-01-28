@@ -63,6 +63,10 @@ public partial class CardVisual : Control
             {
                 GD.Print("Mouse Clicked");
                 MouseMover.IsFollowingMouse = true;
+                if (!MouseMover.IsSnapBackSet){
+                    MouseMover.SnapBackPosition = MouseMover.GlobalPosition;
+                    MouseMover.IsSnapBackSet = true;
+                }
             }
             else
             {
