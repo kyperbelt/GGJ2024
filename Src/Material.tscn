@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpbod0o1rqhhn"]
+
+[ext_resource type="Script" path="res://Src/Material.cs" id="1_smtx4"]
+[ext_resource type="Texture2D" uid="uid://dhdn3yae63u5j" path="res://Assets/Image/UI/UI-mana.png" id="2_d7wk8"]
+
+[node name="Material" type="MarginContainer"]
+anchors_preset = -1
+anchor_right = 0.007
+anchor_bottom = 0.013
+offset_right = 40.936
+offset_bottom = 40.576
+script = ExtResource("1_smtx4")
+MaterialValue = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(24, 24)
+texture = ExtResource("2_d7wk8")
+
+[node name="MaterialLabel" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 13
+text = "8"
+horizontal_alignment = 1
