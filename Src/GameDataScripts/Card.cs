@@ -14,6 +14,7 @@ public partial class Card : Control
 	{
         if (Data != null && Visual != null)
         {
+			GD.Print(Visual);
             Visual.SetCardData(Data);
         }
     }

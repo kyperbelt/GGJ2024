@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://c7sa81h81kxw1"]
+
+[ext_resource type="Texture2D" uid="uid://b2u7b2y2d4q34" path="res://Assets/Image/jester.png" id="1_gajg5"]
+[ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="1_x7262"]
+
+[resource]
+script = ExtResource("1_x7262")
+Name = "Flemmy Finisher"
+Description = "Snort out a story closer."
+Cost = 0
+Hilarity = 0
+CardIcon = ExtResource("1_gajg5")
+CardNature = 1
+CardType = 3
+MadlibSentence = "And the good [noun] goes \"Is that yours?\"
+*Snort*
+\"No! It's snot!\""
