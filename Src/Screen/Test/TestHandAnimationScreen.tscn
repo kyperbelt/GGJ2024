@@ -1,34 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbnedn807sep1"]
+[gd_scene load_steps=2 format=3 uid="uid://cbnedn807sep1"]
 
 [ext_resource type="PackedScene" uid="uid://c78i2c6vv3yjh" path="res://Src/Battle/Battle.tscn" id="1_nu8mv"]
-[ext_resource type="Texture2D" uid="uid://blfdcnv71yk2o" path="res://Assets/Image/icon.svg" id="2_gwq3k"]
-[ext_resource type="PackedScene" uid="uid://dyqry5rpyj40p" path="res://Src/CardPrefab.tscn" id="2_o8nnx"]
 
 [node name="TestHandAnimations" type="Node2D"]
 
 [node name="Battle" parent="." instance=ExtResource("1_nu8mv")]
-
-[node name="HandArea" type="HBoxContainer" parent="."]
-self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(771, 218)
-offset_left = 228.0
-offset_top = 389.0
-offset_right = 999.0
-offset_bottom = 607.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="TextureRect" type="TextureRect" parent="HandArea"]
-layout_mode = 2
-texture = ExtResource("2_gwq3k")
-
-[node name="TextureRect2" type="TextureRect" parent="HandArea"]
-layout_mode = 2
-texture = ExtResource("2_gwq3k")
-
-[node name="TextureRect3" type="TextureRect" parent="HandArea"]
-layout_mode = 2
-texture = ExtResource("2_gwq3k")
-
-[node name="Card" parent="HandArea" instance=ExtResource("2_o8nnx")]
-layout_mode = 2
+_deckSize = 8

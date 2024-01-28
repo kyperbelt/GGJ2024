@@ -1,30 +1,113 @@
-[gd_scene load_steps=14 format=3 uid="uid://c78i2c6vv3yjh"]
+[gd_scene load_steps=28 format=3 uid="uid://c78i2c6vv3yjh"]
 
 [ext_resource type="Script" path="res://Src/Battle/Battle.cs" id="1_rmdn6"]
-
+[ext_resource type="Resource" uid="uid://jyw4u34ro2uo" path="res://Src/GameDataResources/Cards/card_firsttest.tres" id="2_6a6gp"]
 [ext_resource type="PackedScene" uid="uid://cw1wqd1hploxl" path="res://Src/GameObjects/CharacterComic.tscn" id="2_p4s1p"]
 [ext_resource type="PackedScene" uid="uid://dsilctsheo4vk" path="res://Src/Battle/SpeechBubble.tscn" id="3_303of"]
+[ext_resource type="Resource" uid="uid://cb3px87lk3svv" path="res://Src/GameDataResources/Cards/card_firsttest2.tres" id="3_b3kcb"]
+[ext_resource type="Resource" uid="uid://lb8sfsjjhno5" path="res://Src/GameDataResources/Cards/card_firsttest3.tres" id="4_ajtcf"]
 [ext_resource type="Resource" uid="uid://6biimll0m8c6" path="res://Src/GameDataResources/king_heckler.tres" id="4_fl14m"]
 [ext_resource type="Texture2D" uid="uid://4mf7vcer6f4e" path="res://Assets/Image/player.png" id="4_lkicy"]
 [ext_resource type="Texture2D" uid="uid://sh7j2jmfys5j" path="res://Assets/Image/heckler.png" id="5_cshp5"]
 [ext_resource type="Texture2D" uid="uid://dyeblxal5vxm8" path="res://Assets/Image/background_Only.png" id="5_jbv2y"]
 [ext_resource type="Resource" uid="uid://bx7300lrikfk3" path="res://Src/GameDataResources/jester.tres" id="6_k30cd"]
-[ext_resource type="Resource" uid="uid://jyw4u34ro2uo" path="res://Src/GameDataResources/Cards/card_firsttest.tres" id="2_6a6gp"]
-[ext_resource type="Resource" uid="uid://cb3px87lk3svv" path="res://Src/GameDataResources/Cards/card_firsttest2.tres" id="3_b3kcb"]
-[ext_resource type="Resource" uid="uid://lb8sfsjjhno5" path="res://Src/GameDataResources/Cards/card_firsttest3.tres" id="4_ajtcf"]
-[ext_resource type="Texture2D" uid="uid://4mf7vcer6f4e" path="res://Assets/Image/player.png" id="4_lkicy"]
-[ext_resource type="Texture2D" uid="uid://sh7j2jmfys5j" path="res://Assets/Image/heckler.png" id="5_cshp5"]
 [ext_resource type="PackedScene" uid="uid://clktnj6qgdq6e" path="res://Src/Confidence.tscn" id="8_6wgla"]
 [ext_resource type="Texture2D" uid="uid://dm27o4v8p3r03" path="res://Assets/Image/heckler_new.png" id="9_m4h0b"]
+[ext_resource type="PackedScene" uid="uid://bpbod0o1rqhhn" path="res://Src/Material.tscn" id="14_35sk0"]
+[ext_resource type="PackedScene" uid="uid://cue5iwcyq0s32" path="res://Src/DiscardButton.tscn" id="15_txk18"]
+[ext_resource type="PackedScene" uid="uid://cihi4bj6wumnw" path="res://Src/DrawButton.tscn" id="16_7hj8e"]
+[ext_resource type="AudioStream" uid="uid://rakgecbs7p3i" path="res://Assets/Sound/Drowsy_Maggie_WIP.mp3" id="17_476x3"]
+[ext_resource type="PackedScene" uid="uid://bl5is6jbnpo5i" path="res://Src/EndTurnButton.tscn" id="18_xt1j5"]
+[ext_resource type="Script" path="res://Src/Screen/Test/HandArea.cs" id="19_5tbop"]
+[ext_resource type="PackedScene" uid="uid://dyqry5rpyj40p" path="res://Src/CardPrefab.tscn" id="20_uk465"]
 
-[node name="Battle" type="Node2D" node_paths=PackedStringArray("_playerSpeechBubble", "_hecklerSpeechBubble")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6wlj0"]
+
+[sub_resource type="Animation" id="Animation_jqod2"]
+resource_name = "idle"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.7, 1.1, 1.6, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-118, 91), Vector2(-154, 108), Vector2(-174, 114), Vector2(-174, 98), Vector2(-162, 82), Vector2(-150, 85)]
+}
+
+[sub_resource type="Animation" id="Animation_l65ea"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-118, 91)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sms7j"]
+_data = {
+"RESET": SubResource("Animation_l65ea"),
+"idle": SubResource("Animation_jqod2")
+}
+
+[sub_resource type="Animation" id="Animation_6kcx8"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(550, 491), Vector2(546, 498), Vector2(531, 497), Vector2(524, 477), Vector2(538, 458)]
+}
+
+[sub_resource type="Animation" id="Animation_mlpvc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(550, 491)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uf11i"]
+_data = {
+"RESET": SubResource("Animation_mlpvc"),
+"idle": SubResource("Animation_6kcx8")
+}
+
+[node name="Battle" type="Node2D" node_paths=PackedStringArray("_playerSpeechBubble", "_hecklerSpeechBubble", "_handArea")]
 script = ExtResource("1_rmdn6")
 _playerSpeechBubble = NodePath("Player2/PlayerSpeechBubble")
 _hecklerSpeechBubble = NodePath("Heckler2/HecklerSpeechBubble")
 _cardPrototypes = Array[Object]([ExtResource("3_b3kcb"), ExtResource("4_ajtcf"), ExtResource("2_6a6gp")])
-_deckSize = 5
+_handArea = NodePath("HandArea")
+_deckSize = 10
 
 [node name="Background" type="TextureRect" parent="."]
+texture_filter = 1
 offset_right = 420.0
 offset_bottom = 219.0
 scale = Vector2(2.749, 3)
@@ -36,6 +119,14 @@ position = Vector2(1020, 126)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_cshp5")
 
+[node name="HecklerArea" type="ReferenceRect" parent="."]
+offset_left = 528.0
+offset_top = 100.0
+offset_right = 1136.0
+offset_bottom = 379.0
+border_width = 3.6
+editor_only = false
+
 [node name="Heckler2" parent="." node_paths=PackedStringArray("CharacterConfidence") instance=ExtResource("2_p4s1p")]
 position = Vector2(705, 231)
 CharacterConfidence = NodePath("MarginContainer")
@@ -43,6 +134,7 @@ CharacterFacingDirection = 0
 CharacterData = ExtResource("4_fl14m")
 
 [node name="Sprite2D" parent="Heckler2" index="0"]
+material = SubResource("ShaderMaterial_6wlj0")
 position = Vector2(-118, 91)
 scale = Vector2(3, 3)
 texture = ExtResource("9_m4h0b")
@@ -59,31 +151,96 @@ offset_bottom = -169.0
 MaxHealth = 30
 PlayerColor = Color(0.956863, 0.188235, 0, 1)
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Heckler2"]
+libraries = {
+"": SubResource("AnimationLibrary_sms7j")
+}
+autoplay = "idle"
+
 [node name="Player" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(135, 514)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_lkicy")
 
+[node name="MarginContainer" parent="." instance=ExtResource("8_6wgla")]
+offset_left = 13.6962
+offset_top = 17.6651
+offset_right = 342.696
+offset_bottom = 86.6651
+scale = Vector2(0.75, 0.75)
+MaxHealth = 30
+PlayerColor = Color(0.239216, 0.313726, 1, 1)
+
 [node name="Player2" parent="." node_paths=PackedStringArray("CharacterConfidence") instance=ExtResource("2_p4s1p")]
-position = Vector2(372, 541)
-CharacterConfidence = NodePath("MarginContainer")
+position = Vector2(550, 491)
+scale = Vector2(1.5, 1.5)
+CharacterConfidence = NodePath("../MarginContainer")
 CharacterData = ExtResource("6_k30cd")
 
 [node name="PlayerSpeechBubble" parent="Player2" instance=ExtResource("3_303of")]
 position = Vector2(-233, -90)
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.325, 0.325)
 
-[node name="MarginContainer" parent="Player2" instance=ExtResource("8_6wgla")]
-offset_left = -367.0
-offset_top = -315.0
-offset_right = -38.0
-offset_bottom = -285.0
-MaxHealth = 30
-PlayerColor = Color(0.239216, 0.313726, 1, 1)
+[node name="PlayerAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uf11i")
+}
+autoplay = "idle"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = 0
 limit_top = 0
+
+[node name="Material" parent="." instance=ExtResource("14_35sk0")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -18.0
+offset_top = 488.0
+offset_right = 78.0
+offset_bottom = 584.0
+scale = Vector2(2, 2)
+
+[node name="DiscardButton" parent="." instance=ExtResource("15_txk18")]
+offset_left = 1073.0
+offset_top = 561.0
+offset_right = 1123.0
+offset_bottom = 611.0
+
+[node name="DrawButton" parent="." instance=ExtResource("16_7hj8e")]
+offset_left = 25.0
+offset_top = 423.0
+offset_right = 75.0
+offset_bottom = 473.0
+scale = Vector2(2, 2)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_476x3")
+volume_db = -32.796
+autoplay = true
+
+[node name="EndTurnButton" parent="." instance=ExtResource("18_xt1j5")]
+offset_left = 1018.0
+offset_top = 399.0
+offset_right = 1018.0
+offset_bottom = 399.0
+scale = Vector2(2, 2)
+
+[node name="HandArea" type="HBoxContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(771, 218)
+offset_left = 284.0
+offset_top = 398.0
+offset_right = 1055.0
+offset_bottom = 616.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/separation = 10
+script = ExtResource("19_5tbop")
+CardPrefab = ExtResource("20_uk465")
+
+[connection signal="pressed" from="EndTurnButton" to="." method="EndPlayerTurn"]
 
 [editable path="Heckler2"]

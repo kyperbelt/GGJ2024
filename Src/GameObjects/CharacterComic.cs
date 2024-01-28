@@ -76,6 +76,8 @@ public partial class CharacterComic : Area2D
         }
     }
 
+    [Export]
+    private Shader _shader;
     private Sprite2D _sprite;
 
     // Called when the node enters the scene tree for the first time.
@@ -93,5 +95,18 @@ public partial class CharacterComic : Area2D
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
+    }
+
+    public void HighLight(bool highlight)
+    {
+        ShaderMaterial material = _sprite.Material as ShaderMaterial;
+        if (highlight)
+        {
+            material.Shader = _shader;
+        }
+        else
+        {
+            material.Shader = null;
+        }
     }
 }

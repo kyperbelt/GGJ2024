@@ -24,3 +24,7 @@ window/stretch/scale_mode="integer"
 [dotnet]
 
 project/assembly_name="GGJ2024"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

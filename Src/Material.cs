@@ -4,7 +4,21 @@ using System;
 [Tool]
 public partial class Material : MarginContainer
 {
-	int materialValue = 0;
+	
+	private int _maxMaterialValue = 5;
+	[Export]
+	public int MaxMaterialValue
+	{
+		get { return _maxMaterialValue; }
+		set
+		{
+			_maxMaterialValue = value;
+			if (_label == null) return;
+			_label.Text = $"{MaterialValue}/{value}";
+		}
+	}
+
+	private int materialValue = 0;
 
 	[Export]
 	public int MaterialValue
@@ -12,9 +26,11 @@ public partial class Material : MarginContainer
 		get { return materialValue; }
 		set
 		{
+			// if (value > _maxMaterialValue) return; 
+			if (value < 0) return;
 			materialValue = value;
 			if (_label == null) return;
-			_label.Text = value.ToString();
+			_label.Text = $"{MaterialValue}/{MaxMaterialValue}";
 		}
 	}
 

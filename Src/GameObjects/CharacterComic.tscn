@@ -1,14 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://cw1wqd1hploxl"]
+[gd_scene load_steps=5 format=3 uid="uid://cw1wqd1hploxl"]
 
 [ext_resource type="Script" path="res://Src/GameObjects/CharacterComic.cs" id="1_4wajf"]
 [ext_resource type="Texture2D" uid="uid://6a77qat7j1de" path="res://Assets/Image/characterBattler.png" id="2_br1pq"]
+[ext_resource type="Shader" path="res://Assets/Shaders/Outline.gdshader" id="2_e123j"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l01jo"]
 
 [node name="CharacterComic" type="Area2D"]
 position = Vector2(1, 0)
 script = ExtResource("1_4wajf")
 CharacterFacingDirection = 1
+_shader = ExtResource("2_e123j")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_l01jo")
 position = Vector2(3, -71)
 scale = Vector2(2, 2)
 texture = ExtResource("2_br1pq")

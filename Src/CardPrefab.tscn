@@ -68,16 +68,17 @@ _data = {
 "card_hover": SubResource("Animation_81dim")
 }
 
-[node name="Card" type="MarginContainer" node_paths=PackedStringArray("Visual")]
+[node name="Card" type="MarginContainer"]
 custom_minimum_size = Vector2(151, 200)
 offset_right = 151.0
 offset_bottom = 200.0
+mouse_filter = 0
 script = ExtResource("1_23nc2")
 Data = ExtResource("2_6nb62")
-Visual = NodePath("MoveWithMouse/CardVisual")
 
 [node name="MoveWithMouse" type="Control" parent="."]
 layout_mode = 2
+mouse_filter = 1
 script = ExtResource("1_nobg5")
 
 [node name="CardVisual" type="Control" parent="MoveWithMouse" node_paths=PackedStringArray("CardAnimator", "MouseMover", "CardBack", "CardGraphic", "TitleLabel", "DescriptionLabel", "EffectLabel", "CostLabel")]
@@ -116,6 +117,7 @@ offset_bottom = -60.085
 
 [node name="CardBack" type="TextureRect" parent="MoveWithMouse/CardVisual/Control"]
 self_modulate = Color(0.694118, 0.6, 0.482353, 1)
+use_parent_material = true
 layout_mode = 2
 offset_right = 152.0
 offset_bottom = 198.0
@@ -132,29 +134,6 @@ offset_bottom = 107.0
 mouse_filter = 2
 texture = ExtResource("2_0vjn4")
 expand_mode = 1
-
-[node name="TextureRect3" type="TextureRect" parent="MoveWithMouse/CardVisual/Control/CardBack"]
-layout_mode = 0
-offset_left = 31.0
-offset_top = 2.0
-offset_right = 125.0
-offset_bottom = 18.0
-mouse_filter = 2
-texture = ExtResource("3_vg2nn")
-expand_mode = 1
-
-[node name="TitleLabel" type="Label" parent="MoveWithMouse/CardVisual/Control/CardBack/TextureRect3"]
-self_modulate = Color(0, 0, 0, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 12
-text = "Taaa7"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="TextureRect2" type="TextureRect" parent="MoveWithMouse/CardVisual/Control/CardBack"]
 layout_mode = 0
@@ -208,13 +187,36 @@ text = "Black Bile"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TextureRect3" type="TextureRect" parent="MoveWithMouse/CardVisual/Control/CardBack"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 2.0
+offset_right = 136.0
+offset_bottom = 18.0
+mouse_filter = 2
+texture = ExtResource("3_vg2nn")
+expand_mode = 1
+
+[node name="TitleLabel" type="Label" parent="MoveWithMouse/CardVisual/Control/CardBack/TextureRect3"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 12
+text = "Taaa7"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="CostCircle" type="TextureRect" parent="MoveWithMouse/CardVisual/Control/CardBack"]
 self_modulate = Color(1, 0.32549, 0.411765, 1)
 layout_mode = 0
-offset_left = -6.0
-offset_top = -8.0
-offset_right = 34.0
-offset_bottom = 32.0
+offset_left = -20.0
+offset_top = -21.0
+offset_right = 20.0
+offset_bottom = 19.0
 mouse_filter = 2
 texture = ExtResource("5_wlae5")
 expand_mode = 1
@@ -233,7 +235,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ReferenceRect" type="ReferenceRect" parent="."]
+visible = false
 layout_mode = 2
+mouse_filter = 2
 border_width = 1.8
 editor_only = false
 

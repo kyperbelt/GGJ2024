@@ -3,6 +3,9 @@ using Godot;
 [GlobalClass]
 public partial class CardVisual : Control
 {
+    [Signal]
+    public delegate void CardReleasedEventHandler(Vector2 position);
+    
     [Export]
     public AnimationPlayer CardAnimator { get; set; }
 
@@ -67,10 +70,12 @@ public partial class CardVisual : Control
     public void OnMouseHover()
     {
         CardAnimator.Play("card_hover");
+        MouseMover.ZIndex = 100;
     }
     public void OnMouseLeave()
     {
         CardAnimator.Play("RESET");
+        MouseMover.ZIndex = 0;
     }
 
     void OnMouseInputEvent(InputEvent ev)
@@ -91,6 +96,7 @@ public partial class CardVisual : Control
             {
                 GD.Print("Mouse Released");
                 MouseMover.IsFollowingMouse = false;
+                EmitSignal(SignalName.CardReleased, MouseMover.GlobalPosition);
             }
         }
     }

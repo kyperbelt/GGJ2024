@@ -10,15 +10,20 @@ anchor_bottom = 0.013
 offset_right = 40.936
 offset_bottom = 40.576
 script = ExtResource("1_smtx4")
-MaterialValue = 8
+MaxMaterialValue = 6
+MaterialValue = 5
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(24, 24)
+[node name="Sprite2D" type="TextureRect" parent="."]
+texture_filter = 1
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
 texture = ExtResource("2_d7wk8")
+expand_mode = 2
+stretch_mode = 4
 
 [node name="MaterialLabel" type="Label" parent="."]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 13
-text = "8"
+theme_override_font_sizes/font_size = 16
+text = "5/6"
 horizontal_alignment = 1
