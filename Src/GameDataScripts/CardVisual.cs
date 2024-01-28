@@ -80,13 +80,11 @@ public partial class CardVisual : Control
         {
             if (butt.Pressed)
             {
-                GD.Print("Mouse Clicked");
                 MouseMover.IsFollowingMouse = true;
                 ForceTestMadlibs();
             }
             else
             {
-                GD.Print("Mouse Released");
                 MouseMover.IsFollowingMouse = false;
             }
         }
@@ -107,5 +105,6 @@ public partial class CardVisual : Control
         // test madlibifier 
         string testString = madlibString;
         GD.Print(_madLibafier.GetMadLib(testString));
+        GD.Print("-----");
     }
 }

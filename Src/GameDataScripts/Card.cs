@@ -14,7 +14,6 @@ public partial class Card : Control
 	Visual = GetNode<CardVisual>("MoveWithMouse/CardVisual");
         if (Data != null && Visual != null)
         {
-			GD.Print(Visual);
             Visual.SetCardData(Data);
         }
     }
