@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://c78i2c6vv3yjh"]
+[gd_scene load_steps=40 format=3 uid="uid://c78i2c6vv3yjh"]
 
 [ext_resource type="Script" path="res://Src/Battle/Battle.cs" id="1_rmdn6"]
 [ext_resource type="Resource" uid="uid://jyw4u34ro2uo" path="res://Src/GameDataResources/Cards/card_firsttest.tres" id="2_6a6gp"]
@@ -8,7 +8,7 @@
 [ext_resource type="Resource" uid="uid://lb8sfsjjhno5" path="res://Src/GameDataResources/Cards/card_firsttest3.tres" id="4_ajtcf"]
 [ext_resource type="Texture2D" uid="uid://4mf7vcer6f4e" path="res://Assets/Image/player.png" id="4_lkicy"]
 [ext_resource type="Texture2D" uid="uid://sh7j2jmfys5j" path="res://Assets/Image/heckler.png" id="5_cshp5"]
-[ext_resource type="Texture2D" uid="uid://dyeblxal5vxm8" path="res://Assets/Image/background_Only.png" id="5_jbv2y"]
+[ext_resource type="Texture2D" uid="uid://cq7vxvx74hov8" path="res://Assets/Image/background_Only.png" id="5_jbv2y"]
 [ext_resource type="Resource" uid="uid://dlfeqh2ckrq63" path="res://Src/GameDataResources/Cards/card31_yellowsetup2.tres" id="5_oclyu"]
 [ext_resource type="Resource" uid="uid://cg8mn4abq7iw4" path="res://Src/GameDataResources/Cards/card41_darksetup.tres" id="6_kk6a3"]
 [ext_resource type="Resource" uid="uid://curaj5wkshdk4" path="res://Src/GameDataResources/Cards/card44_darkoneliner2.tres" id="7_jotk8"]
@@ -28,8 +28,10 @@
 [ext_resource type="Script" path="res://Src/Screen/Test/HandArea.cs" id="19_5tbop"]
 [ext_resource type="PackedScene" uid="uid://dyqry5rpyj40p" path="res://Src/CardPrefab.tscn" id="20_uk465"]
 [ext_resource type="Texture2D" uid="uid://b2u7b2y2d4q34" path="res://Assets/Image/jester.png" id="21_kixqa"]
+[ext_resource type="AudioStream" uid="uid://bogcj3e1u5krt" path="res://Assets/Sound/draw_card.wav" id="29_k5keg"]
+[ext_resource type="AudioStream" uid="uid://i7ai5fewsv4l" path="res://Assets/Sound/button_press.wav" id="29_xqacw"]
 
-[sub_resource type="Resource" id="Resource_tpewy"]
+[sub_resource type="Resource" id="Resource_22ygs"]
 resource_local_to_scene = true
 script = ExtResource("17_xv602")
 CharacterName = "King Heckler"
@@ -80,7 +82,7 @@ _data = {
 "idle": SubResource("Animation_jqod2")
 }
 
-[sub_resource type="Resource" id="Resource_2hkrl"]
+[sub_resource type="Resource" id="Resource_pbugd"]
 resource_local_to_scene = true
 script = ExtResource("17_xv602")
 CharacterName = "Jester"
@@ -163,7 +165,7 @@ editor_only = false
 position = Vector2(705, 231)
 CharacterConfidenceUi = NodePath("HecklerHealthBar")
 CharacterFacingDirection = 0
-CharacterData = SubResource("Resource_tpewy")
+CharacterData = SubResource("Resource_22ygs")
 
 [node name="Sprite2D" parent="Heckler2" index="0"]
 material = SubResource("ShaderMaterial_6wlj0")
@@ -209,7 +211,11 @@ PlayerColor = Color(0.239216, 0.313726, 1, 1)
 position = Vector2(550, 491)
 scale = Vector2(1.5, 1.5)
 CharacterConfidenceUi = NodePath("../PlayerHealthBar")
-CharacterData = SubResource("Resource_2hkrl")
+CharacterData = SubResource("Resource_pbugd")
+
+[node name="Sprite2D" parent="Player2" index="0"]
+position = Vector2(-180.667, -46)
+texture = ExtResource("21_kixqa")
 
 [node name="PlayerSpeechBubble" parent="Player2" instance=ExtResource("3_303of")]
 z_index = 99
@@ -243,7 +249,7 @@ offset_right = 75.0
 offset_bottom = 473.0
 scale = Vector2(2, 2)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_476x3")
 volume_db = -32.796
 autoplay = true
@@ -277,6 +283,16 @@ CardPrefab = ExtResource("20_uk465")
 DrawButton = NodePath("../DrawButton")
 DiscardButton = NodePath("../DiscardButton")
 
+[node name="CardMoveSound" type="AudioStreamPlayer" parent="HandArea"]
+stream = ExtResource("29_k5keg")
+volume_db = 2.737
+
+[node name="ButtonSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("29_xqacw")
+volume_db = 2.0
+
 [connection signal="pressed" from="EndTurnButton" to="." method="EndPlayerTurn"]
+[connection signal="pressed" from="EndTurnButton" to="ButtonSound" method="play" binds= [0.0]]
 
 [editable path="Heckler2"]
+[editable path="Player2"]

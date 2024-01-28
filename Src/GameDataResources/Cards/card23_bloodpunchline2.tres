@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://br5rm5hh2s5vw"]
 
-[ext_resource type="Texture2D" uid="uid://b2u7b2y2d4q34" path="res://Assets/Image/jester.png" id="1_htqb4"]
+[ext_resource type="Texture2D" uid="uid://c1ja8djo0jsw" path="res://Assets/Image/UI/CardIllustration_BloodyEnd.png" id="1_hirvw"]
 [ext_resource type="Script" path="res://Src/GameDataScripts/CardData.cs" id="1_hxe02"]
 
 [resource]
@@ -9,7 +9,7 @@ Name = "A hard-handed conclusion..."
 Description = "A kick ass finisher to your joke"
 Cost = 5
 Hilarity = 5
-CardIcon = ExtResource("1_htqb4")
+CardIcon = ExtResource("1_hirvw")
 CardNature = 2
 CardType = 3
 MadlibSentence = "Did I kick his ass? You bet I did! And then the [profession] came by and kicked mine...
