@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using GGJ2024.Util;
 using Godot;
 
 public partial class Battle : Node2D
@@ -17,6 +18,7 @@ public partial class Battle : Node2D
 
     private List<CardData> _deck = new();
     private List<CardData> _hand = new();
+    private List<CardData> _discard = new();
 
     [Export]
     private int _deckSize = 64;
@@ -79,9 +81,16 @@ public partial class Battle : Node2D
 					// Draw card
 					if (_deck.Count == 0)
 					{
-						GD.Print("Deck is Empty!");
+						// Try to reshuffle discard pile
+						_discard.Shuffle();
+						_deck.AddRange(_discard);
+						_discard.Clear();
+						GD.Print("Try to reshuffle discard pile.");
+						PrintDiscard();
+						PrintDeck();
 					}
-					else
+					
+					if (_deck.Count > 0)
 					{
 						var nextCard = _deck[0];
 						_deck.RemoveAt(0);
@@ -90,12 +99,48 @@ public partial class Battle : Node2D
 						PrintDeck();
 						PrintHand();
 					}
+					else
+					{
+						GD.Print("Deck and Discard are Empty!");
+					}
+					break;
+				}
+				case Key.P:
+				{
+					// Play card
+					if (_hand.Count == 0)
+					{
+						GD.PushError("Hand is Empty!");
+					}
+					else
+					{
+						var card = _hand[0];
+						_hand.RemoveAt(0);
+						GD.Print($"\ud83d\ude80 Play Card: {card}");
+						_discard.Add(card);
+						PrintHand();
+						PrintDiscard();
+					}
+					break;
+				}
+				case Key.X:
+				{
+					// End turn, discard any remaining cards from hand
+					GD.Print($"\ud83d\ude80 End Turn");
+					foreach (var card in _hand)
+					{
+						_discard.Add(card);
+						GD.Print($"\ud83d\ude80 Discard Card: {card}");
+					}
+					_hand.Clear();
+					PrintHand();
+					PrintDiscard();
 					break;
 				}
 			}
 		}
 	}
-	
+
 	private void PrintDeck()
 	{
 		GD.Print($"Current Deck: [{string.Join(", ", _deck.Select(card => card.Name))}]");
@@ -104,6 +149,11 @@ public partial class Battle : Node2D
 	private void PrintHand()
 	{
 		GD.Print($"Current Hand: [{string.Join(", ", _hand.Select(card => card.Name))}]");
+	}
+
+	private void PrintDiscard()
+	{
+		GD.Print($"Current Discard: [{string.Join(", ", _discard.Select(card => card.Name))}]");
 	}
 
     public override void _Process(double delta)
