@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://c370xnuqom0ov"]
+
+[ext_resource type="Script" path="res://Src/Screen/GameScreen.cs" id="1_x052t"]
+
+[node name="WinScreen" type="Node"]
+script = ExtResource("1_x052t")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_left = 363.0
+offset_top = 277.0
+offset_right = 777.0
+offset_bottom = 357.0
+
+[node name="Button" type="Button" parent="MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "You Won - Play Again?"
+
+[connection signal="pressed" from="MarginContainer/Button" to="." method="SetScreen" binds= ["BattleScreen"]]

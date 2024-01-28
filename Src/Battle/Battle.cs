@@ -18,6 +18,12 @@ public partial class Battle : Node2D
 
     // private MadLibafier _madLibafier;
     [Export]
+    private CharacterComic _playerCharacter;
+    
+    [Export]
+    private CharacterComic _hecklerCharacter;
+    
+    [Export]
     private SpeechBubble _playerSpeechBubble;
 
     [Export]
@@ -35,7 +41,11 @@ public partial class Battle : Node2D
     private List<CardData> _hand = new();
     private List<CardData> _discard = new();
 
-    private int _material = 5;
+    // Additional player stats
+    private int _material = MaterialPerTurn;
+    private int _setupMultiplier = 1;
+    private bool _playerJustTookDamage = false;
+    
     public int MaterialAmount
     {
         get => _material;
@@ -53,8 +63,10 @@ public partial class Battle : Node2D
     [Export]
     private int _deckSize = 64;
 
+    // Game rule constants
     private const int DrawAmount = 5;
     private const int MaterialPerTurn = 5;
+    private const int ComebackDamageMultiplier = 2;
 
     private enum TurnType
     {
@@ -104,7 +116,6 @@ public partial class Battle : Node2D
 
         _drawDeckPileUx = GetNode<DrawButton>("DrawButton");
         _drawDeckPileUx.DrawPileNumber = _deck.Count;
-
 
         if (_handArea != null)
         {
@@ -185,8 +196,23 @@ public partial class Battle : Node2D
         GD.Print($"\ud83d\ude80 Start Heckler Turn");
         _turnType = TurnType.Heckler;
         await ToSignal(GetTree().CreateTimer(1), "timeout");
-        ShowMadLibsSpeechBubble("The [adjective] [noun] [verb.ing] [preposition] the [adjective] [noun]."
-);
+        ShowMadLibsSpeechBubble("The [adjective] [noun] [verb.ing] [preposition] the [adjective] [noun].");
+        
+        // Temp logic for doing damage on heckler turn
+        var randomDamage = Random.Shared.Next(0, 6);
+        GD.Print($"Heckler does {randomDamage} damage to player.");
+        if (randomDamage > 0)
+        {
+            _playerCharacter.CurrentConfidence -= randomDamage;
+            _playerJustTookDamage = true;
+        }
+        if (_playerCharacter.CurrentConfidence <= 0)
+        {
+            EmitSignal(SignalName.BattleLost);
+            GD.Print($"\ud83d\udca5\ud83d\udca5\ud83d\udca5 You lose!");
+            return;
+        }
+        
         await ToSignal(GetTree().CreateTimer(1), "timeout");
         GD.Print($"\ud83d\ude80 End Heckler Turn");
         StartPlayerTurn();
@@ -238,7 +264,7 @@ public partial class Battle : Node2D
         return 0;
     }
 
-    private async Task<bool> PlayCard( int index)
+    private async Task<bool> PlayCard( int cardToPlayInHandIndex)
     {
         if (_hand.Count == 0)
         {
@@ -246,8 +272,6 @@ public partial class Battle : Node2D
             return false;
         }
 
-        // TODO: let player choose a card. Use first card in hand for now.
-        int cardToPlayInHandIndex = index;
         var card = _hand[cardToPlayInHandIndex];
 
         // Check if we can afford this card
@@ -261,12 +285,52 @@ public partial class Battle : Node2D
         // Play card.
         MaterialAmount -= card.Cost;
 
-        // TODO: process card's effects
-
         GD.Print($"\ud83d\ude80 Play Card Succeeded: {card}");
         ShowMadLibsSpeechBubble(card.MadlibSentence);
 
         await DiscardCard(cardToPlayInHandIndex, card);
+        
+        PrintPlayerStats();
+        
+        var cardDamage = card.Hilarity;
+        
+        // Check for special card type effects
+        switch (card.CardType)
+        {
+            case CardType.Set_Up:
+            {
+                _setupMultiplier += 1;
+                break;
+            }
+            case CardType.Punchline:
+            {
+                cardDamage *= _setupMultiplier;
+                _setupMultiplier = 1;
+                break;
+            }
+            case CardType.Comeback:
+            {
+                if (_playerJustTookDamage)
+                {
+                    GD.Print("Player gets comeback bonus!");
+                    cardDamage *= ComebackDamageMultiplier;
+                }
+                break;
+            }
+        }
+        
+        _playerJustTookDamage = false;
+        
+        // Do damage
+        GD.Print($"Player did {cardDamage} damage to heckler (base damage = {card.Hilarity}).");
+        _hecklerCharacter.CurrentConfidence -= cardDamage;
+        if (_hecklerCharacter.CurrentConfidence <= 0)
+        {
+            EmitSignal(SignalName.BattleWon);
+            GD.Print($"\ud83c\udf89\ud83c\udf89\ud83c\udf89 You win!");
+            return true;
+        }
+        // TODO: process card's effects on audience
 
         PrintHand();
         PrintDiscard();
@@ -287,6 +351,7 @@ public partial class Battle : Node2D
 
     private async void EndPlayerTurn()
     {
+        if (_turnType != TurnType.Player) return;
         // End turn, discard any remaining cards from hand
         GD.Print($"\ud83d\ude80 End Player Turn");
         for(int i = _hand.Count-1; i >= 0; i--)
@@ -307,7 +372,7 @@ public partial class Battle : Node2D
 
     private void PrintPlayerStats()
     {
-        GD.Print($"Player Stats: Material: {_material}");
+        GD.Print($"Player Stats: Material: {_material} SetupMultiplier: {_setupMultiplier}");
     }
 
     private void PrintDeck()

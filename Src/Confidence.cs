@@ -51,6 +51,11 @@ public partial class Confidence : MarginContainer
 	    _label.Text = _currentHealth + "/" + maxHealth;
     }
 
+    public void OnHealthChanged(int oldHealth, int newHealth)
+    {
+        SetCurrentHealth(newHealth);
+    }
+
     public void SetCurrentHealth(int health)
     {
         _currentHealth = health;

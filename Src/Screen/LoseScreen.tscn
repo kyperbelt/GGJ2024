@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://k4rc04lprht0"]
+
+[ext_resource type="Script" path="res://Src/Screen/GameScreen.cs" id="1_s8j42"]
+
+[node name="LoseScreen" type="Node"]
+script = ExtResource("1_s8j42")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -37.0
+offset_right = 200.0
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "You Lost - Play Again?"
+
+[connection signal="pressed" from="MarginContainer/Button" to="." method="SetScreen" binds= ["BattleScreen"]]

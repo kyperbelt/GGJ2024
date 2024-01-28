@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 [GlobalClass]
@@ -11,17 +12,19 @@ public partial class CharacterComic : Area2D
         Back
     }
 
-    Confidence _characterConfidence;
+    private Callable _characterConfidenceCallable;
+    Confidence _characterConfidenceUi;
     [Export] 
-    public Confidence CharacterConfidence
+    public Confidence CharacterConfidenceUi
     {
-        get => _characterConfidence;
+        get => _characterConfidenceUi;
         set
         {
-            _characterConfidence = value;
-            if (_characterData != null && _characterConfidence != null) {
-                _characterConfidence.MaxHealth = _characterData.MaxConfidence;
-                _characterConfidence.SetCurrentHealth(_characterData.CurrentConfidence);
+            _characterConfidenceUi = value;
+            // GD.Print($"CharacterComic {this} Set CharacterConfidence:{value}");
+            if (_characterData != null && _characterConfidenceUi != null) {
+                _characterConfidenceUi.MaxHealth = _characterData.MaxConfidence;
+                _characterConfidenceUi.SetCurrentHealth(_characterData.CurrentConfidence);
             }
         }
     }
@@ -51,7 +54,6 @@ public partial class CharacterComic : Area2D
         }
     }
 
-
     private CharacterData _characterData;
     [Export]
     public CharacterData CharacterData
@@ -61,11 +63,12 @@ public partial class CharacterComic : Area2D
         {
             if (value != null && value != _characterData)
             {
+                // GD.Print($"CharacterComic {this} Set CharacterData:{value}");
                 _characterData = value;
                 CharacterFacingDirection = _characterFacing;
-                if (_characterConfidence != null) {
-                    _characterConfidence.MaxHealth = _characterData.MaxConfidence;
-                    _characterConfidence.SetCurrentHealth(_characterData.CurrentConfidence);
+                if (_characterConfidenceUi != null) {
+                    _characterConfidenceUi.MaxHealth = _characterData.MaxConfidence;
+                    _characterConfidenceUi.SetCurrentHealth(_characterData.CurrentConfidence);
                 }
             }
             else
@@ -76,6 +79,18 @@ public partial class CharacterComic : Area2D
         }
     }
 
+    public int CurrentConfidence
+    {
+        get => _characterData.CurrentConfidence;
+        set
+        {
+            var oldConfidence = _characterData.CurrentConfidence;
+            _characterData.CurrentConfidence = value;
+            // Use value from CharacterData which has been properly clamped
+            _characterConfidenceUi.OnHealthChanged(oldConfidence, _characterData.CurrentConfidence);
+        }
+    }
+    
     [Export]
     private Shader _shader;
     private Sprite2D _sprite;
@@ -85,9 +100,9 @@ public partial class CharacterComic : Area2D
     {
         _sprite = GetNode<Sprite2D>("Sprite2D");
         CharacterFacingDirection = _characterFacing;
-        if (_characterData != null && _characterConfidence != null) {
-            _characterConfidence.MaxHealth = _characterData.MaxConfidence;
-            _characterConfidence.SetCurrentHealth(_characterData.CurrentConfidence);
+        if (_characterData != null && _characterConfidenceUi != null) {
+            _characterConfidenceUi.MaxHealth = _characterData.MaxConfidence;
+            _characterConfidenceUi.SetCurrentHealth(_characterData.CurrentConfidence);
         }
 
     }
