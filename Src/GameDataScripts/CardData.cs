@@ -20,4 +20,9 @@ public partial class CardData : Resource
 
     [Export]
     public CardHumorTypeEnum CardNature { get; set; }
+
+    public override string ToString()
+    {
+        return $"{base.ToString()}, {nameof(Name)}: {Name}, {nameof(Cost)}: {Cost}, {nameof(Hilarity)}: {Hilarity}, {nameof(CardNature)}: {CardNature}";
+    }
 }

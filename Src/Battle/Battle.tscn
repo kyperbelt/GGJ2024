@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c78i2c6vv3yjh"]
+[gd_scene load_steps=8 format=3 uid="uid://c78i2c6vv3yjh"]
 
 [ext_resource type="Script" path="res://Src/Battle/Battle.cs" id="1_rmdn6"]
+[ext_resource type="Resource" uid="uid://jyw4u34ro2uo" path="res://Src/GameDataResources/card_firsttest.tres" id="2_6a6gp"]
 [ext_resource type="PackedScene" uid="uid://dsilctsheo4vk" path="res://Src/Battle/SpeechBubble.tscn" id="3_303of"]
+[ext_resource type="Resource" uid="uid://d2bdnga34tw6k" path="res://Src/GameDataResources/card_firsttest2.tres" id="3_b3kcb"]
+[ext_resource type="Resource" uid="uid://ojhajsue12r5" path="res://Src/GameDataResources/card_firsttest3.tres" id="4_ajtcf"]
 [ext_resource type="Texture2D" uid="uid://4mf7vcer6f4e" path="res://Assets/Image/player.png" id="4_lkicy"]
 [ext_resource type="Texture2D" uid="uid://sh7j2jmfys5j" path="res://Assets/Image/heckler.png" id="5_cshp5"]
 
@@ -9,6 +12,8 @@
 script = ExtResource("1_rmdn6")
 _playerSpeechBubble = NodePath("Player/PlayerSpeechBubble")
 _hecklerSpeechBubble = NodePath("Heckler/HecklerSpeechBubble")
+_cardPrototypes = Array[Object]([ExtResource("2_6a6gp"), ExtResource("3_b3kcb"), ExtResource("4_ajtcf")])
+_deckSize = 5
 
 [node name="Player" type="Sprite2D" parent="."]
 position = Vector2(131, 525)
