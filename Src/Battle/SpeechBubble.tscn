@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsilctsheo4vk"]
+
+[ext_resource type="Script" path="res://Src/Battle/SpeechBubble.cs" id="1_x0dej"]
+[ext_resource type="Texture2D" uid="uid://b76cdxnf4f45s" path="res://Assets/Image/white.png" id="2_uf3v6"]
+[ext_resource type="Script" path="res://Src/Util/MadLibafier.cs" id="3_4ynsg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g4hlh"]
+font_size = 43
+font_color = Color(0, 0, 0, 1)
+
+[node name="SpeechBubble" type="Node2D" node_paths=PackedStringArray("_bubbleSprite", "_speechLabel", "_madLibafier", "_bubbleHideTimer")]
+script = ExtResource("1_x0dej")
+_bubbleSprite = NodePath("Bubble")
+_speechLabel = NodePath("Label")
+_madLibafier = NodePath("MadLibafier")
+_bubbleHideTimer = NodePath("BubbleHideTimer")
+
+[node name="Bubble" type="Sprite2D" parent="."]
+position = Vector2(804, -92)
+scale = Vector2(1113.02, 302.394)
+texture = ExtResource("2_uf3v6")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 264.0
+offset_top = -226.0
+offset_right = 1336.0
+offset_bottom = 40.0
+text = "I'm baby banjo tattooed vegan, nulla ascot put a bird on it activated charcoal. Laboris ex banh mi stumptown, tattooed coloring book VHS grailed tacos. "
+label_settings = SubResource("LabelSettings_g4hlh")
+autowrap_mode = 3
+
+[node name="MadLibafier" type="Node" parent="."]
+script = ExtResource("3_4ynsg")
+
+[node name="BubbleHideTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[connection signal="timeout" from="BubbleHideTimer" to="." method="OnBubbleHideTimer"]

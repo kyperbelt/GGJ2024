@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://6ux5f60iky0w"]
 
 [ext_resource type="Script" path="res://Src/Screen/GameScreen.cs" id="1_mx6tm"]
-[ext_resource type="PackedScene" uid="uid://cut3rtbgv0jgi" path="res://Src/Battle.tscn" id="2_5i6s0"]
+[ext_resource type="PackedScene" uid="uid://c78i2c6vv3yjh" path="res://Src/Battle/Battle.tscn" id="2_5i6s0"]
 
 [node name="BattleScreen" type="Node"]
 script = ExtResource("1_mx6tm")
