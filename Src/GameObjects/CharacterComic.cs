@@ -11,6 +11,9 @@ public partial class CharacterComic : Area2D
         Back
     }
 
+    [Export] 
+    Confidence _characterConfidencePath;
+
     private CharacterFacing _characterFacing = CharacterFacing.Front;
     [Export]
     public CharacterFacing CharacterFacingDirection
@@ -63,7 +66,7 @@ public partial class CharacterComic : Area2D
     public override void _Ready()
     {
         _sprite = GetNode<Sprite2D>("Sprite2D");
-	CharacterFacingDirection = _characterFacing;
+        CharacterFacingDirection = _characterFacing;
 
     }
 

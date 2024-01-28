@@ -1,15 +1,15 @@
 [gd_resource type="Resource" script_class="CharacterData" load_steps=4 format=3 uid="uid://6biimll0m8c6"]
 
-[ext_resource type="Texture2D" uid="uid://6a77qat7j1de" path="res://Assets/Image/characterBattler.png" id="1_tt34s"]
-[ext_resource type="Texture2D" uid="uid://dm27o4v8p3r03" path="res://Assets/Image/heckler_new.png" id="2_wgaqc"]
-[ext_resource type="Script" path="res://Src/GameDataScripts/CharacterData.cs" id="3_f7d0h"]
+[ext_resource type="Texture2D" uid="uid://blfdcnv71yk2o" path="res://Assets/Image/icon.svg" id="1_fapqo"]
+[ext_resource type="Texture2D" uid="uid://dm27o4v8p3r03" path="res://Assets/Image/heckler_new.png" id="2_gqf2i"]
+[ext_resource type="Script" path="res://Src/GameDataScripts/CharacterData.cs" id="3_2g2sq"]
 
 [resource]
-script = ExtResource("3_f7d0h")
+script = ExtResource("3_2g2sq")
 CharacterName = "King Heckler"
 ChracterMadLibsFile = "res://Assets/MadLibs/defaultLibs.txt"
 Description = "The king of heckling"
-FrontImage = ExtResource("2_wgaqc")
-BackImage = ExtResource("1_tt34s")
+FrontImage = ExtResource("2_gqf2i")
+BackImage = ExtResource("1_fapqo")
 MaxConfidence = 0
 CurrentConfidence = 0
