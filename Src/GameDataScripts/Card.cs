@@ -1,57 +1,25 @@
 using Godot;
 
-namespace ComedyDeckBuilder
+[GlobalClass]
+public partial class Card : Control
 {
-    public partial class Card : Control
-    {
-        [Export]
-        public CardData Data { get; set; }
+	[Export]
+	public CardData Data { get; set; }
 
-        [Export]
-        public MoveWithMouse MouseMover { get; set; }
+	[Export]
+	public CardVisual Visual {get; set;}
 
-        [Export]
-        public AnimationPlayer CardAnimator { get; set; }
-
-        [Export]
-        public Sprite2D CardGraphic { get; set; }
-
-        // Called when the node enters the scene tree for the first time.
-        public override void _Ready()
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
+	{
+        if (Data != null && Visual != null)
         {
-        }
-
-        // Called every frame. 'delta' is the elapsed time since the previous frame.
-        public override void _Process(double delta)
-        {
-        }
-
-        public void OnMouseHover()
-        {
-            CardAnimator.Play("card_hover");
-        }
-        public void OnMouseLeave()
-        {
-            CardAnimator.Play("RESET");
-        }
-
-        void OnMouseInputEvent(InputEvent ev)
-        {
-
-            if (ev is InputEventMouseButton butt)
-            {
-                if (butt.Pressed)
-                {
-                    GD.Print("Mouse Clicked");
-                    MouseMover.IsFollowingMouse = true;
-                }
-                else
-                {
-                    GD.Print("Mouse Released");
-                    MouseMover.IsFollowingMouse = false;
-                }
-            }
+            Visual.ReadyUpData(Data);
         }
     }
-}
 
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+	}
+}
