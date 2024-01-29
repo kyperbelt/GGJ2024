@@ -81,7 +81,7 @@ public partial class CharacterComic : Area2D
 
     public int CurrentConfidence
     {
-        get => _characterData.CurrentConfidence;
+        get => _characterData == null ? 0 : _characterData.CurrentConfidence;
         set
         {
             var oldConfidence = _characterData.CurrentConfidence;

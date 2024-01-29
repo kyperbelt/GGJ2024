@@ -245,6 +245,8 @@ public partial class Battle : Node2D
         {
             await DrawCard();
             GD.Print($"Draw Card {i}");
+            GD.Print("Hand: " + _hand.Count);
+            GD.Print("HandArea: " + _handArea.GetChildren().Count);
 
         }
         PrintDeck();

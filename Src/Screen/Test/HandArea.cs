@@ -61,7 +61,7 @@ public partial class HandArea : HBoxContainer
 
         GD.Print("card drawn");
         AddChild(cardInstance);
-        var timer = GetTree().CreateTimer(.1f);
+        var timer = GetTree().CreateTimer(.2f);
         await ToSignal(timer, "timeout");
         // await ToSignal(cardInstance, "ready");
 
@@ -81,6 +81,7 @@ public partial class HandArea : HBoxContainer
     public async void DiscardCard(int index)
     {
         
+        GD.Print("card discarded " + index + " ChildCount " + GetChildren().Count);
         Card card = GetChildren()[index] as Card;
         card.Modulate = new Color(1, 1, 1, 0.0f);
         Card cardInstance = CardPrefab.Instantiate<Card>();
@@ -92,6 +93,7 @@ public partial class HandArea : HBoxContainer
         card.QueueFree();
         await ToSignal(card, Node.SignalName.TreeExiting);
         
+
         Tween tween = GetTree().CreateTween();
         tween.TweenProperty(cardInstance, "global_position", DiscardButton.GlobalPosition, .2);
         await ToSignal(tween, "finished");
