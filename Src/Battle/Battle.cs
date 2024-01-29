@@ -170,26 +170,24 @@ public partial class Battle : Node2D
         switch (eventKey.Keycode)
         {
             case Key.Space:
-                {
-                    // Debug button
-                    ShowMadLibsSpeechBubble("[noun] stop.");
-                    break;
-                }
+                // Debug button
+                ShowMadLibsSpeechBubble("[noun] stop.");
+                break;
             case Key.D:
-                {
-                    DrawCard();
-                    break;
-                }
+                DrawCard();
+                break;
             case Key.P:
-                {
-                    PlayCard(0);
-                    break;
-                }
+                PlayCard(0);
+                break;
             case Key.X:
-                {
-                    EndPlayerTurn();
-                    break;
-                }
+                EndPlayerTurn();
+                break;
+            case Key.W:
+                EmitSignal(SignalName.BattleWon);
+                break;
+            case Key.L:
+                EmitSignal(SignalName.BattleLost);
+                break;
         }
     }
 

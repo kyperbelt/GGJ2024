@@ -1,9 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://c370xnuqom0ov"]
+[gd_scene load_steps=3 format=3 uid="uid://c370xnuqom0ov"]
 
 [ext_resource type="Script" path="res://Src/Screen/GameScreen.cs" id="1_x052t"]
+[ext_resource type="Texture2D" uid="uid://bvrrct1fsbjee" path="res://Assets/Image/Title/Title-BG.png" id="2_tiaji"]
 
 [node name="WinScreen" type="Node"]
 script = ExtResource("1_x052t")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_left = -82.0
+offset_top = -37.0
+offset_right = 1278.0
+offset_bottom = 672.0
+texture = ExtResource("2_tiaji")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 offset_left = 363.0
