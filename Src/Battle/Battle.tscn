@@ -27,7 +27,7 @@
 [ext_resource type="Resource" uid="uid://wkf6y0i0ghkc" path="res://Src/GameDataResources/Cards/card31_yellowsetup.tres" id="14_i6rqw"]
 [ext_resource type="Texture2D" uid="uid://blfdcnv71yk2o" path="res://Assets/Image/icon.svg" id="15_12xd1"]
 [ext_resource type="PackedScene" uid="uid://cue5iwcyq0s32" path="res://Src/DiscardButton.tscn" id="15_txk18"]
-[ext_resource type="PackedScene" path="res://Src/DrawButton.tscn" id="16_7hj8e"]
+[ext_resource type="PackedScene" uid="uid://cihi4bj6wumnw" path="res://Src/DrawButton.tscn" id="16_7hj8e"]
 [ext_resource type="Resource" uid="uid://cygbe5od8tibl" path="res://Src/GameDataResources/Cards/card33_yellowpunchline.tres" id="16_61ym5"]
 [ext_resource type="Resource" uid="uid://dac6oajh5n4t5" path="res://Src/GameDataResources/Cards/card34_yellowoneliner2.tres" id="17_kd01b"]
 [ext_resource type="Script" path="res://Src/GameDataScripts/CharacterData.cs" id="17_xv602"]
@@ -50,7 +50,7 @@
 [ext_resource type="AudioStream" uid="uid://ck71k50nawf7k" path="res://Assets/Sound/Drowsy_Maggie_loopable.mp3" id="36_moy5c"]
 [ext_resource type="Texture2D" uid="uid://gifb6qtm3ggg" path="res://Assets/Image/UI/CardNature_Blood.png" id="36_yl46l"]
 
-[sub_resource type="Resource" id="Resource_m10oc"]
+[sub_resource type="Resource" id="Resource_kpjxi"]
 resource_local_to_scene = true
 script = ExtResource("17_xv602")
 CharacterName = "King Heckler"
@@ -101,7 +101,7 @@ _data = {
 "idle": SubResource("Animation_jqod2")
 }
 
-[sub_resource type="Resource" id="Resource_ank82"]
+[sub_resource type="Resource" id="Resource_n85w6"]
 resource_local_to_scene = true
 script = ExtResource("17_xv602")
 CharacterName = "Jester"
@@ -189,7 +189,7 @@ editor_only = false
 position = Vector2(705, 231)
 CharacterConfidenceUi = NodePath("HecklerHealthBar")
 CharacterFacingDirection = 0
-CharacterData = SubResource("Resource_m10oc")
+CharacterData = SubResource("Resource_kpjxi")
 
 [node name="Sprite2D" parent="Heckler2" index="0"]
 material = SubResource("ShaderMaterial_6wlj0")
@@ -235,7 +235,7 @@ PlayerColor = Color(0.239216, 0.313726, 1, 1)
 position = Vector2(550, 491)
 scale = Vector2(1.5, 1.5)
 CharacterConfidenceUi = NodePath("../PlayerHealthBar")
-CharacterData = SubResource("Resource_ank82")
+CharacterData = SubResource("Resource_n85w6")
 
 [node name="Sprite2D" parent="Player2" index="0"]
 position = Vector2(-180.667, -46)
