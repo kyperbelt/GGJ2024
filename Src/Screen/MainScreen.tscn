@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ctk3f28uyligk"]
+[gd_scene load_steps=21 format=3 uid="uid://ctk3f28uyligk"]
 
 [ext_resource type="Script" path="res://Src/Screen/GameScreen.cs" id="1_qmx1g"]
 [ext_resource type="AudioStream" uid="uid://i7ai5fewsv4l" path="res://Assets/Sound/button_press.wav" id="2_mw1jg"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://g55r1wiql8nn" path="res://Assets/Image/Title/Title-Jester.png" id="8_o5xud"]
 [ext_resource type="Texture2D" uid="uid://rcfr8un5j6ok" path="res://Assets/Image/Title/Title-Stage.png" id="9_q4gnm"]
 [ext_resource type="Texture2D" uid="uid://b2f3n4eifuv6n" path="res://Assets/Image/Title/Title-text.png" id="10_h7d5i"]
+[ext_resource type="AudioStream" uid="uid://ck71k50nawf7k" path="res://Assets/Sound/Drowsy_Maggie_loopable.mp3" id="11_5ss2p"]
 
 [sub_resource type="Animation" id="Animation_hfsab"]
 length = 0.001
@@ -73,6 +74,105 @@ _data = {
 "spin": SubResource("Animation_5kjha")
 }
 
+[sub_resource type="Animation" id="Animation_j6nh7"]
+resource_name = "AnimateTitle"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Title-text:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.4, 5.9, 8.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(320, 243), Vector2(284, 304), Vector2(251, 227), Vector2(340, 215)]
+}
+
+[sub_resource type="Animation" id="Animation_p5w13"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Title-text:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(320, 243)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uvr7t"]
+_data = {
+"AnimateTitle": SubResource("Animation_j6nh7"),
+"RESET": SubResource("Animation_p5w13")
+}
+
+[sub_resource type="Animation" id="Animation_qqc1m"]
+resource_name = "EnterStage"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Title-jester:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 1, 1.8, 2.6, 3.5, 4.2, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1136, 579), Vector2(1126, 559), Vector2(1091, 523), Vector2(1055, 492), Vector2(1006, 471), Vector2(957, 445), Vector2(870, 427), Vector2(783, 428)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Title-jester:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 1, 1.8, 2.6, 3.5, 4.2, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.282743, 0.125664, -0.0575959, 0.225147, -0.340339, 0.225147, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_8wibj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Title-jester:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1136, 579)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Title-jester:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_38fke"]
+_data = {
+"EnterStage": SubResource("Animation_qqc1m"),
+"RESET": SubResource("Animation_8wibj")
+}
+
 [node name="MainScreen" type="Node"]
 script = ExtResource("1_qmx1g")
 
@@ -126,14 +226,22 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="ExampleAnimation" type="Node2D" parent="."]
+visible = false
 position = Vector2(579, 319)
 
 [node name="Icon" type="Sprite2D" parent="ExampleAnimation"]
 position = Vector2(219, 141)
 texture = ExtResource("2_n5g0q")
 
+[node name="TitleAnimator" type="AnimationPlayer" parent="."]
+root_node = NodePath("../ExampleAnimation")
+libraries = {
+"": SubResource("AnimationLibrary_uvr7t")
+}
+autoplay = "AnimateTitle"
+
 [node name="Title-jester" type="Sprite2D" parent="."]
-position = Vector2(851, 439)
+position = Vector2(1136, 579)
 scale = Vector2(1.92759, 1.91447)
 texture = ExtResource("8_o5xud")
 
@@ -143,9 +251,20 @@ scale = Vector2(1.82031, 2.01042)
 texture = ExtResource("9_q4gnm")
 
 [node name="Title-text" type="Sprite2D" parent="."]
-position = Vector2(586, 147)
-scale = Vector2(4.24648, 2.25556)
+position = Vector2(320, 243)
+scale = Vector2(4.37676, 3.02407)
 texture = ExtResource("10_h7d5i")
+
+[node name="JesterAnimator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_38fke")
+}
+autoplay = "EnterStage"
+
+[node name="TitleMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_5ss2p")
+volume_db = -22.801
+autoplay = true
 
 [connection signal="mouse_entered" from="BackgroundLayer/MarginContainer/VBoxContainer/HBoxContainer/PlayButton" to="UISelect" method="play" binds= [0.0]]
 [connection signal="pressed" from="BackgroundLayer/MarginContainer/VBoxContainer/HBoxContainer/PlayButton" to="." method="SetScreen" binds= ["BattleScreen"]]
