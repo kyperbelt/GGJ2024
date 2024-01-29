@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="HumourIconTexture" load_steps=6 format=3 uid="uid://cpw3t7cn0etmo"]
+
+[ext_resource type="Texture2D" uid="uid://c4ak7gstv3nf" path="res://Assets/Image/UI/CardNature_BlackBile.png" id="1_7kyns"]
+[ext_resource type="Script" path="res://Src/GameDataScripts/HumourIconTexture.cs" id="1_64k7x"]
+[ext_resource type="Texture2D" uid="uid://gifb6qtm3ggg" path="res://Assets/Image/UI/CardNature_Blood.png" id="2_ymmb6"]
+[ext_resource type="Texture2D" uid="uid://d2k2xuj4jqhcr" path="res://Assets/Image/UI/CardNature_Phlegm.png" id="3_frciq"]
+[ext_resource type="Texture2D" uid="uid://dhb5wfii5uw3f" path="res://Assets/Image/UI/CardNature_YellowBile.png" id="4_0hdhl"]
+
+[resource]
+script = ExtResource("1_64k7x")
+_bloodTexture = ExtResource("2_ymmb6")
+_phlegmTexture = ExtResource("3_frciq")
+_blackBileTexture = ExtResource("1_7kyns")
+_yellowBileTexture = ExtResource("4_0hdhl")

@@ -1,28 +1,14 @@
 using Godot;
 using System;
+using GGJ2024.GameDataScripts;
 
 public partial class HumourIcon : Sprite2D
 {
     [Export]
-    public Texture2D _bloodTexture;
-    
-    [Export]
-    public Texture2D _phlegmTexture;
-    
-    [Export]
-    public Texture2D _blackBileTexture;
-    
-    [Export]
-    public Texture2D _yellowBileTexture;
-    
+    private HumourIconTexture _humourIconTexture;
+
     public void SetHumour(CardHumor humour)
     {
-        Texture = humour switch
-        {
-            CardHumor.Blood => _bloodTexture,
-            CardHumor.Phlegm => _phlegmTexture,
-            CardHumor.Black_Bile => _blackBileTexture,
-            CardHumor.Yellow_Bile => _yellowBileTexture,
-        };
+        Texture = _humourIconTexture.GetTextureForHumour(humour);
     }
 }

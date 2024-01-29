@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://c78i2c6vv3yjh"]
+[gd_scene load_steps=47 format=3 uid="uid://c78i2c6vv3yjh"]
 
 [ext_resource type="Script" path="res://Src/Battle/Battle.cs" id="1_rmdn6"]
 [ext_resource type="Resource" uid="uid://jyw4u34ro2uo" path="res://Src/GameDataResources/Cards/card_firsttest.tres" id="2_6a6gp"]
@@ -33,9 +33,10 @@
 [ext_resource type="AudioStream" uid="uid://c4hbq7aco2ouj" path="res://Assets/Sound/crowdlaugh01.wav" id="31_6uesq"]
 [ext_resource type="Texture2D" uid="uid://y1tl8sbjntd0" path="res://Assets/Image/UI/UI-Masks_Happy.png" id="31_my0qf"]
 [ext_resource type="AudioStream" uid="uid://b6sgw2kv7vtqr" path="res://Assets/Sound/crowdboo01.wav" id="32_0kaqn"]
-[ext_resource type="Texture2D" uid="uid://dhdn3yae63u5j" path="res://Assets/Image/UI/UI-mana.png" id="32_unyim"]
 [ext_resource type="Script" path="res://Src/GameDataScripts/HumourIcon.cs" id="33_5nnmt"]
 [ext_resource type="Texture2D" uid="uid://bymnfm6xya6nd" path="res://Assets/Image/UI/UI-Masks_Angry.png" id="34_x3dcb"]
+[ext_resource type="Resource" uid="uid://cpw3t7cn0etmo" path="res://Src/GameDataResources/humour_icons.tres" id="36_5p5bw"]
+[ext_resource type="Texture2D" uid="uid://gifb6qtm3ggg" path="res://Assets/Image/UI/CardNature_Blood.png" id="36_yl46l"]
 
 [sub_resource type="Resource" id="Resource_47fvx"]
 resource_local_to_scene = true
@@ -317,8 +318,9 @@ texture = ExtResource("31_my0qf")
 
 [node name="FavoriteHumourIcon" type="Sprite2D" parent="CrowdHUD"]
 position = Vector2(458, 40)
-texture = ExtResource("32_unyim")
+texture = ExtResource("36_yl46l")
 script = ExtResource("33_5nnmt")
+_humourIconTexture = ExtResource("36_5p5bw")
 
 [node name="Ui-masksAngry" type="Sprite2D" parent="CrowdHUD"]
 position = Vector2(579, 40)
@@ -326,8 +328,9 @@ texture = ExtResource("34_x3dcb")
 
 [node name="DislikedHumourIcon" type="Sprite2D" parent="CrowdHUD"]
 position = Vector2(631, 40)
-texture = ExtResource("32_unyim")
+texture = ExtResource("36_yl46l")
 script = ExtResource("33_5nnmt")
+_humourIconTexture = ExtResource("36_5p5bw")
 
 [connection signal="pressed" from="EndTurnButton" to="." method="EndPlayerTurn"]
 [connection signal="pressed" from="EndTurnButton" to="ButtonSound" method="play" binds= [0.0]]
