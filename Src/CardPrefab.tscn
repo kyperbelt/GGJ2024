@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dyqry5rpyj40p"]
+[gd_scene load_steps=15 format=3 uid="uid://dyqry5rpyj40p"]
 
 [ext_resource type="Script" path="res://Src/GameDataScripts/Card.cs" id="1_23nc2"]
 [ext_resource type="Script" path="res://Src/MoveWithMouse.cs" id="1_nobg5"]
@@ -8,6 +8,9 @@
 [ext_resource type="Script" path="res://Src/GameDataScripts/CardVisual.cs" id="4_mp6xj"]
 [ext_resource type="Texture2D" uid="uid://yvmqqmtj5rn0" path="res://Assets/Image/circle.png" id="5_wlae5"]
 [ext_resource type="AudioStream" uid="uid://bogcj3e1u5krt" path="res://Assets/Sound/draw_card.wav" id="8_rahtj"]
+[ext_resource type="Texture2D" uid="uid://gifb6qtm3ggg" path="res://Assets/Image/UI/CardNature_Blood.png" id="8_tv511"]
+[ext_resource type="Script" path="res://Src/GameDataScripts/HumourIcon.cs" id="9_aheku"]
+[ext_resource type="Resource" uid="uid://cpw3t7cn0etmo" path="res://Src/GameDataResources/humour_icons.tres" id="10_syhdq"]
 
 [sub_resource type="Animation" id="Animation_t3b23"]
 length = 0.001
@@ -82,7 +85,7 @@ layout_mode = 2
 mouse_filter = 1
 script = ExtResource("1_nobg5")
 
-[node name="CardVisual" type="Control" parent="MoveWithMouse" node_paths=PackedStringArray("CardAnimator", "MouseMover", "CardBack", "CardGraphic", "TitleLabel", "DescriptionLabel", "EffectLabel", "CostLabel", "HilarityLabel")]
+[node name="CardVisual" type="Control" parent="MoveWithMouse" node_paths=PackedStringArray("CardAnimator", "MouseMover", "CardBack", "CardGraphic", "TitleLabel", "DescriptionLabel", "EffectLabel", "CostLabel", "HilarityLabel", "HumourIcon")]
 anchors_preset = 0
 offset_left = 2.0
 offset_top = 1.00001
@@ -98,6 +101,7 @@ DescriptionLabel = NodePath("Control/CardBack/TextureRect2/DescriptionLabel")
 EffectLabel = NodePath("Control/CardBack/TextureRect4/EffectLabel")
 CostLabel = NodePath("Control/CardBack/CostCircle/CostLabel")
 HilarityLabel = NodePath("Control/CardBack/HilarityCircle/HilarityLabel")
+HumourIcon = NodePath("Control/CardBack/HumourIcon")
 
 [node name="ClickHandler" type="PanelContainer" parent="MoveWithMouse/CardVisual"]
 self_modulate = Color(1, 1, 1, 0)
@@ -259,6 +263,12 @@ grow_vertical = 2
 text = "999"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="HumourIcon" type="Sprite2D" parent="MoveWithMouse/CardVisual/Control/CardBack"]
+position = Vector2(152, -1.00001)
+texture = ExtResource("8_tv511")
+script = ExtResource("9_aheku")
+_humourIconTexture = ExtResource("10_syhdq")
 
 [node name="ReferenceRect" type="ReferenceRect" parent="."]
 visible = false

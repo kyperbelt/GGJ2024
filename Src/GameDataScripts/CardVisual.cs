@@ -32,6 +32,9 @@ public partial class CardVisual : Control
 
     [Export]
     public Label HilarityLabel { get; set; }
+    
+    [Export]
+    public HumourIcon HumourIcon { get; set; }
 
     private CardData _data;
 
@@ -57,6 +60,7 @@ public partial class CardVisual : Control
         CardGraphic.Texture = newData.CardIcon;
         if (CardBack != null)
             CardBack.SelfModulate = newData.CardNature.ToColor();
+        HumourIcon.SetHumour(newData.CardNature);
         TitleLabel.Text = newData.Name;
         DescriptionLabel.Text = newData.Description;
         EffectLabel.Text = newData.CardType.ToLabelString();
