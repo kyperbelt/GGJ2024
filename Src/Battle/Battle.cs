@@ -225,14 +225,14 @@ public partial class Battle : Node2D
         GD.Print($"\ud83d\ude80 Start Heckler Turn");
         _turnType = TurnType.Heckler;
         await ToSignal(GetTree().CreateTimer(1), "timeout");
-        ShowMadLibsSpeechBubble("The [adjective] [noun] [verb.ing] [preposition] the [adjective] [noun].");
         
-        // Temp logic for doing damage on heckler turn
-        var randomDamage = Random.Shared.Next(0, 6);
-        GD.Print($"Heckler does {randomDamage} damage to player.");
-        if (randomDamage > 0)
+        // Play a random card from the list of all card types with simplified play logic
+        var randomCardProtoIndex = Random.Shared.Next(0, _cardPrototypes.Length);
+        var randomCardProto = _cardPrototypes[randomCardProtoIndex];
+        GD.Print($"Heckler does {randomCardProto.Hilarity} damage to player.");
+        if (randomCardProto.Hilarity > 0)
         {
-            _playerCharacter.CurrentConfidence -= randomDamage;
+            _playerCharacter.CurrentConfidence -= randomCardProto.Hilarity;
             _playerJustTookDamage = true;
         }
         if (_playerCharacter.CurrentConfidence <= 0)
@@ -241,6 +241,8 @@ public partial class Battle : Node2D
             GD.Print($"\ud83d\udca5\ud83d\udca5\ud83d\udca5 You lose!");
             return;
         }
+        
+        ShowMadLibsSpeechBubble(randomCardProto.MadlibSentence);
         
         await ToSignal(GetTree().CreateTimer(1), "timeout");
         GD.Print($"\ud83d\ude80 End Heckler Turn");
@@ -253,8 +255,6 @@ public partial class Battle : Node2D
         {
             await DrawCard();
             GD.Print($"Draw Card {i}");
-            GD.Print("Hand: " + _hand.Count);
-            GD.Print("HandArea: " + _handArea.GetChildren().Count);
 
         }
         PrintDeck();
