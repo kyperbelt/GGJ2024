@@ -1,7 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctk3f28uyligk"]
+[gd_scene load_steps=14 format=3 uid="uid://ctk3f28uyligk"]
 
 [ext_resource type="Script" path="res://Src/Screen/GameScreen.cs" id="1_qmx1g"]
+[ext_resource type="AudioStream" uid="uid://i7ai5fewsv4l" path="res://Assets/Sound/button_press.wav" id="2_mw1jg"]
 [ext_resource type="Texture2D" uid="uid://blfdcnv71yk2o" path="res://Assets/Image/icon.svg" id="2_n5g0q"]
+[ext_resource type="Texture2D" uid="uid://cs3bxyyo4o7xd" path="res://Assets/Image/Title/button_normal.png" id="3_yyx3h"]
+[ext_resource type="Texture2D" uid="uid://ciuna6uork780" path="res://Assets/Image/Title/button_pressed.png" id="4_vnke7"]
+[ext_resource type="Texture2D" uid="uid://ljmk8j3ubiox" path="res://Assets/Image/Title/button_hover.png" id="5_8gx4w"]
+[ext_resource type="Texture2D" uid="uid://bvrrct1fsbjee" path="res://Assets/Image/Title/Title-BG.png" id="7_j0tfa"]
+[ext_resource type="Texture2D" uid="uid://g55r1wiql8nn" path="res://Assets/Image/Title/Title-Jester.png" id="8_o5xud"]
+[ext_resource type="Texture2D" uid="uid://rcfr8un5j6ok" path="res://Assets/Image/Title/Title-Stage.png" id="9_q4gnm"]
+[ext_resource type="Texture2D" uid="uid://b2f3n4eifuv6n" path="res://Assets/Image/Title/Title-text.png" id="10_h7d5i"]
 
 [sub_resource type="Animation" id="Animation_hfsab"]
 length = 0.001
@@ -68,11 +76,54 @@ _data = {
 [node name="MainScreen" type="Node"]
 script = ExtResource("1_qmx1g")
 
+[node name="UISelect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_mw1jg")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_e2w3t")
 }
 autoplay = "spin"
+
+[node name="BackgroundLayer" type="Node" parent="."]
+
+[node name="Background" type="TextureRect" parent="BackgroundLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_j0tfa")
+
+[node name="MarginContainer" type="MarginContainer" parent="BackgroundLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="Padding" type="Control" parent="BackgroundLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.08
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BackgroundLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="PlayButton" type="TextureButton" parent="BackgroundLayer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+texture_normal = ExtResource("3_yyx3h")
+texture_pressed = ExtResource("4_vnke7")
+texture_hover = ExtResource("5_8gx4w")
+
+[node name="Padding2" type="Control" parent="BackgroundLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="ExampleAnimation" type="Node2D" parent="."]
 position = Vector2(579, 319)
@@ -81,32 +132,20 @@ position = Vector2(579, 319)
 position = Vector2(219, 141)
 texture = ExtResource("2_n5g0q")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Title-jester" type="Sprite2D" parent="."]
+position = Vector2(851, 439)
+scale = Vector2(1.92759, 1.91447)
+texture = ExtResource("8_o5xud")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
+[node name="Title-stage" type="Sprite2D" parent="."]
+position = Vector2(810, 430)
+scale = Vector2(1.82031, 2.01042)
+texture = ExtResource("9_q4gnm")
 
-[node name="Padding" type="Control" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
+[node name="Title-text" type="Sprite2D" parent="."]
+position = Vector2(586, 147)
+scale = Vector2(4.24648, 2.25556)
+texture = ExtResource("10_h7d5i")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 26
-text = "Play"
-
-[node name="Padding2" type="Control" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/PlayButton" to="." method="SetScreen" flags=3 binds= ["BattleScreen"]]
+[connection signal="mouse_entered" from="BackgroundLayer/MarginContainer/VBoxContainer/HBoxContainer/PlayButton" to="UISelect" method="play" binds= [0.0]]
+[connection signal="pressed" from="BackgroundLayer/MarginContainer/VBoxContainer/HBoxContainer/PlayButton" to="." method="SetScreen" binds= ["BattleScreen"]]
