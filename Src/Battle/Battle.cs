@@ -57,11 +57,18 @@ public partial class Battle : Node2D
     private CardHumor _crowdFavoriteHumour;
     private CardHumor _crowdDislikedHumour;
     
+    // Sound players
     [Export]
     private AudioStreamPlayer _crowdLaughPlayer;
     
     [Export]
     private AudioStreamPlayer _crowdBooPlayer;
+    
+    [Export]
+    private AudioStreamPlayer _cardFlipPlayer;
+    
+    [Export]
+    private AudioStreamPlayer _cardSlapPlayer;
     
     public int MaterialAmount
     {
@@ -285,6 +292,7 @@ public partial class Battle : Node2D
             GD.Print($"\ud83d\ude80 Draw Card: {nextCard}");
             _hand.Add(nextCard);
             _handArea.DrawCard(nextCard);
+            _cardFlipPlayer.Play();
             await ToSignal(_handArea, HandArea.SignalName.CardDrawnAnimationFinished);
         }
         else
@@ -393,6 +401,7 @@ public partial class Battle : Node2D
         {
             _crowdLaughPlayer.Play();
         }
+        _cardSlapPlayer.Play();
 
         PrintHand();
         PrintDiscard();

@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://c78i2c6vv3yjh"]
+[gd_scene load_steps=61 format=3 uid="uid://c78i2c6vv3yjh"]
 
 [ext_resource type="Script" path="res://Src/Battle/Battle.cs" id="1_rmdn6"]
 [ext_resource type="Resource" uid="uid://cky1bojgl0je7" path="res://Src/GameDataResources/Cards/card11_spitsetup.tres" id="2_4hspp"]
@@ -49,6 +49,8 @@
 [ext_resource type="Resource" uid="uid://cpw3t7cn0etmo" path="res://Src/GameDataResources/humour_icons.tres" id="36_5p5bw"]
 [ext_resource type="AudioStream" uid="uid://ck71k50nawf7k" path="res://Assets/Sound/Drowsy_Maggie_loopable.mp3" id="36_moy5c"]
 [ext_resource type="Texture2D" uid="uid://gifb6qtm3ggg" path="res://Assets/Image/UI/CardNature_Blood.png" id="36_yl46l"]
+[ext_resource type="AudioStream" uid="uid://bafobsdefm2wc" path="res://Assets/Sound/cardFlip.wav" id="45_ynjfo"]
+[ext_resource type="AudioStream" uid="uid://bijdoktvgyear" path="res://Assets/Sound/cardSlap.wav" id="46_y4fvq"]
 
 [sub_resource type="Resource" id="Resource_m10oc"]
 resource_local_to_scene = true
@@ -149,7 +151,7 @@ _data = {
 "idle": SubResource("Animation_6kcx8")
 }
 
-[node name="Battle" type="Node2D" node_paths=PackedStringArray("_playerCharacter", "_hecklerCharacter", "_playerSpeechBubble", "_hecklerSpeechBubble", "_crowdFavoriteHumourIcon", "_crowdDislikedHumourIcon", "_handArea", "_crowdLaughPlayer", "_crowdBooPlayer")]
+[node name="Battle" type="Node2D" node_paths=PackedStringArray("_playerCharacter", "_hecklerCharacter", "_playerSpeechBubble", "_hecklerSpeechBubble", "_crowdFavoriteHumourIcon", "_crowdDislikedHumourIcon", "_handArea", "_crowdLaughPlayer", "_crowdBooPlayer", "_cardFlipPlayer", "_cardSlapPlayer")]
 script = ExtResource("1_rmdn6")
 _playerCharacter = NodePath("Player2")
 _hecklerCharacter = NodePath("Heckler2")
@@ -161,6 +163,8 @@ _cardPrototypes = Array[Object]([ExtResource("2_4hspp"), ExtResource("11_oi6tg")
 _handArea = NodePath("HandArea")
 _crowdLaughPlayer = NodePath("CrowdSounds/CrowdLaughSound")
 _crowdBooPlayer = NodePath("CrowdSounds/CrowdBooSound")
+_cardFlipPlayer = NodePath("CardSounds/CardFlipSound")
+_cardSlapPlayer = NodePath("CardSounds/CardSlapSound")
 _deckSize = 10
 
 [node name="Background" type="TextureRect" parent="."]
@@ -321,6 +325,16 @@ stream = ExtResource("31_6uesq")
 
 [node name="CrowdBooSound" type="AudioStreamPlayer" parent="CrowdSounds"]
 stream = ExtResource("32_0kaqn")
+
+[node name="CardSounds" type="Node" parent="."]
+
+[node name="CardFlipSound" type="AudioStreamPlayer" parent="CardSounds"]
+stream = ExtResource("45_ynjfo")
+volume_db = 10.0
+
+[node name="CardSlapSound" type="AudioStreamPlayer" parent="CardSounds"]
+stream = ExtResource("46_y4fvq")
+volume_db = 10.0
 
 [node name="CrowdHUD" type="Node2D" parent="."]
 
