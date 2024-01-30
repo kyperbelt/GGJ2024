@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://g55r1wiql8nn" path="res://Assets/Image/Title/Title-Jester.png" id="8_o5xud"]
 [ext_resource type="Texture2D" uid="uid://rcfr8un5j6ok" path="res://Assets/Image/Title/Title-Stage.png" id="9_q4gnm"]
 [ext_resource type="Texture2D" uid="uid://b2f3n4eifuv6n" path="res://Assets/Image/Title/Title-text.png" id="10_h7d5i"]
-[ext_resource type="AudioStream" uid="uid://ck71k50nawf7k" path="res://Assets/Sound/Drowsy_Maggie_loopable.mp3" id="11_5ss2p"]
+[ext_resource type="AudioStream" path="res://Assets/Sound/The_Belfast_loopable.mp3" id="11_7wmna"]
 
 [sub_resource type="Animation" id="Animation_hfsab"]
 length = 0.001
@@ -262,8 +262,8 @@ libraries = {
 autoplay = "EnterStage"
 
 [node name="TitleMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_5ss2p")
-volume_db = -22.801
+stream = ExtResource("11_7wmna")
+volume_db = -9.0
 autoplay = true
 
 [connection signal="mouse_entered" from="BackgroundLayer/MarginContainer/VBoxContainer/HBoxContainer/PlayButton" to="UISelect" method="play" binds= [0.0]]
