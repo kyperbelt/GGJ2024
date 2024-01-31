@@ -65,6 +65,9 @@ public partial class Battle : Node2D
 	private AudioStreamPlayer _crowdBooPlayer;
 	
 	[Export]
+	private RandomAudioPlayer _crowdHecklerReactionPlayer;
+	
+	[Export]
 	private AudioStreamPlayer _cardFlipPlayer;
 	
 	[Export]
@@ -122,8 +125,7 @@ public partial class Battle : Node2D
 		// Create randomized deck
 		for (int i = 0; i < _deckSize; ++i)
 		{
-			var randomCardProtoIndex = Random.Shared.Next(0, _cardPrototypes.Length);
-			var randomCardProto = _cardPrototypes[randomCardProtoIndex];
+			var randomCardProto = _cardPrototypes.RandomElement();
 			_deck.Add(randomCardProto);
 		}
 		
@@ -232,13 +234,13 @@ public partial class Battle : Node2D
 		await ToSignal(GetTree().CreateTimer(1), "timeout");
 		
 		// Play a random card from the list of all card types with simplified play logic
-		var randomCardProtoIndex = Random.Shared.Next(0, _cardPrototypes.Length);
-		var randomCardProto = _cardPrototypes[randomCardProtoIndex];
+		var randomCardProto = _cardPrototypes.RandomElement();
 		GD.Print($"Heckler does {randomCardProto.Hilarity} damage to player.");
 		if (randomCardProto.Hilarity > 0)
 		{
 			_playerCharacter.CurrentConfidence -= randomCardProto.Hilarity;
 			_playerJustTookDamage = true;
+			_crowdHecklerReactionPlayer.PlayRandom();
 		}
 		if (_playerCharacter.CurrentConfidence <= 0)
 		{

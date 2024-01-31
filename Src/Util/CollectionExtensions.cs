@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GGJ2024.Util;
 
@@ -13,5 +14,13 @@ public static class CollectionExtensions
             (items[i], items[pos]) = (items[pos], items[i]);
         }
         return items;
+    }
+    
+    public static T RandomElement<T>(this IEnumerable<T> list)
+    {
+        // If there are no elements in the collection, return the default value
+        if (!list.Any()) return default;
+
+        return list.ElementAt(Random.Shared.Next(list.Count()));
     }
 }
