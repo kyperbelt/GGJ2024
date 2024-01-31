@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://c78i2c6vv3yjh"]
+[gd_scene load_steps=73 format=3 uid="uid://c78i2c6vv3yjh"]
 
 [ext_resource type="Script" path="res://Src/Battle/Battle.cs" id="1_rmdn6"]
 [ext_resource type="Resource" uid="uid://cky1bojgl0je7" path="res://Src/GameDataResources/Cards/card11_spitsetup.tres" id="2_4hspp"]
@@ -49,10 +49,12 @@
 [ext_resource type="Resource" uid="uid://cpw3t7cn0etmo" path="res://Src/GameDataResources/humour_icons.tres" id="36_5p5bw"]
 [ext_resource type="AudioStream" uid="uid://ck71k50nawf7k" path="res://Assets/Sound/Drowsy_Maggie_loopable.mp3" id="36_moy5c"]
 [ext_resource type="Texture2D" uid="uid://gifb6qtm3ggg" path="res://Assets/Image/UI/CardNature_Blood.png" id="36_yl46l"]
+[ext_resource type="AudioStream" uid="uid://dot1lsduo7se" path="res://Assets/Sound/crowdlaugh02.wav" id="45_7iokd"]
 [ext_resource type="Script" path="res://Src/GameDataScripts/RandomAudioPlayer.cs" id="45_r1bar"]
 [ext_resource type="AudioStream" uid="uid://bafobsdefm2wc" path="res://Assets/Sound/cardFlip.wav" id="45_ynjfo"]
 [ext_resource type="AudioStream" uid="uid://b62hfm26r8tud" path="res://Assets/Sound/crowdboo02.wav" id="46_on04s"]
 [ext_resource type="AudioStream" uid="uid://d1xku3hfqg0mm" path="res://Assets/Sound/crowdGasp1.wav" id="46_pu8d5"]
+[ext_resource type="AudioStream" uid="uid://cm4micx41ar2b" path="res://Assets/Sound/crowdlaugh03.wav" id="46_w5jn5"]
 [ext_resource type="AudioStream" uid="uid://bijdoktvgyear" path="res://Assets/Sound/cardSlap.wav" id="46_y4fvq"]
 [ext_resource type="AudioStream" uid="uid://dmdsry6n57p68" path="res://Assets/Sound/crowdboo03.wav" id="47_b71xf"]
 [ext_resource type="AudioStream" uid="uid://bke1wphdnaa2u" path="res://Assets/Sound/crowdGasp2.wav" id="47_viuac"]
@@ -291,6 +293,7 @@ scale = Vector2(2, 2)
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("36_moy5c")
 volume_db = -9.0
+autoplay = true
 
 [node name="EndTurnButton" parent="." instance=ExtResource("18_xt1j5")]
 offset_left = 1018.0
@@ -333,7 +336,7 @@ volume_db = 2.0
 
 [node name="CrowdLaughSound" type="AudioStreamPlayer" parent="CrowdSounds"]
 script = ExtResource("45_r1bar")
-_audioStreamVariations = Array[AudioStream]([ExtResource("31_6uesq")])
+_audioStreamVariations = Array[AudioStream]([ExtResource("31_6uesq"), ExtResource("45_7iokd"), ExtResource("46_w5jn5")])
 
 [node name="CrowdBooSound" type="AudioStreamPlayer" parent="CrowdSounds"]
 script = ExtResource("45_r1bar")
