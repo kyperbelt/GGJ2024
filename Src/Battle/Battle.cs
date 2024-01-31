@@ -59,10 +59,10 @@ public partial class Battle : Node2D
 	
 	// Sound players
 	[Export]
-	private AudioStreamPlayer _crowdLaughPlayer;
+	private RandomAudioPlayer _crowdLaughPlayer;
 	
 	[Export]
-	private AudioStreamPlayer _crowdBooPlayer;
+	private RandomAudioPlayer _crowdBooPlayer;
 	
 	[Export]
 	private RandomAudioPlayer _crowdHecklerReactionPlayer;
@@ -397,11 +397,11 @@ public partial class Battle : Node2D
 		// Play crowd reaction sound effect
 		if (_crowdDislikedHumour == card.CardNature)
 		{
-			_crowdBooPlayer.Play();
+			_crowdBooPlayer.PlayRandom();
 		}
 		else
 		{
-			_crowdLaughPlayer.Play();
+			_crowdLaughPlayer.PlayRandom();
 		}
 		_cardSlapPlayer.Play();
 
