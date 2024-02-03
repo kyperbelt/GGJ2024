@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://k4rc04lprht0"]
+[gd_scene load_steps=4 format=3 uid="uid://k4rc04lprht0"]
 
 [ext_resource type="Script" path="res://Src/Screen/GameScreen.cs" id="1_s8j42"]
 [ext_resource type="Texture2D" uid="uid://bvrrct1fsbjee" path="res://Assets/Image/Title/Title-BG.png" id="2_4rxmj"]
+[ext_resource type="AudioStream" uid="uid://bnu1hqjjf721b" path="res://Assets/Sound/270403__littlerobotsoundfactory__jingle_lose_00.wav" id="3_fjlmy"]
 
 [node name="LoseScreen" type="Node"]
 script = ExtResource("1_s8j42")
@@ -30,5 +31,9 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "You Lost - Play Again?"
+
+[node name="LoseDitty" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_fjlmy")
+autoplay = true
 
 [connection signal="pressed" from="MarginContainer/Button" to="." method="SetScreen" binds= ["BattleScreen"]]
