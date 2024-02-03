@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dyqry5rpyj40p"]
+[gd_scene load_steps=16 format=3 uid="uid://dyqry5rpyj40p"]
 
 [ext_resource type="Script" path="res://Src/GameDataScripts/Card.cs" id="1_23nc2"]
 [ext_resource type="Script" path="res://Src/MoveWithMouse.cs" id="1_nobg5"]
@@ -6,7 +6,8 @@
 [ext_resource type="Resource" uid="uid://jyw4u34ro2uo" path="res://Src/GameDataResources/Cards/card_firsttest.tres" id="2_6nb62"]
 [ext_resource type="Texture2D" uid="uid://brvx788d2jou6" path="res://Assets/Image/square.png" id="3_vg2nn"]
 [ext_resource type="Script" path="res://Src/GameDataScripts/CardVisual.cs" id="4_mp6xj"]
-[ext_resource type="Texture2D" uid="uid://yvmqqmtj5rn0" path="res://Assets/Image/circle.png" id="5_wlae5"]
+[ext_resource type="Texture2D" uid="uid://lfukus2lxews" path="res://Assets/Image/UI/UI-hilarity.png" id="7_85p2j"]
+[ext_resource type="Texture2D" uid="uid://b770sc6ymy6p5" path="res://Assets/Image/UI/UI-mana-trim.png" id="8_6qddr"]
 [ext_resource type="AudioStream" uid="uid://bogcj3e1u5krt" path="res://Assets/Sound/draw_card.wav" id="8_rahtj"]
 [ext_resource type="Texture2D" uid="uid://gifb6qtm3ggg" path="res://Assets/Image/UI/CardNature_Blood.png" id="8_tv511"]
 [ext_resource type="Script" path="res://Src/GameDataScripts/HumourIcon.cs" id="9_aheku"]
@@ -217,14 +218,13 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HilarityCircle" type="TextureRect" parent="MoveWithMouse/CardVisual/Control/CardBack"]
-self_modulate = Color(0.909804, 0.811765, 0.419608, 1)
 layout_mode = 0
 offset_left = -20.0
 offset_top = -21.0
 offset_right = 20.0
 offset_bottom = 19.0
 mouse_filter = 2
-texture = ExtResource("5_wlae5")
+texture = ExtResource("7_85p2j")
 expand_mode = 1
 
 [node name="HilarityLabel" type="Label" parent="MoveWithMouse/CardVisual/Control/CardBack/HilarityCircle"]
@@ -241,14 +241,13 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CostCircle" type="TextureRect" parent="MoveWithMouse/CardVisual/Control/CardBack"]
-self_modulate = Color(1, 0.32549, 0.411765, 1)
 layout_mode = 0
 offset_left = -20.0
 offset_top = 20.0
 offset_right = 20.0
 offset_bottom = 60.0
 mouse_filter = 2
-texture = ExtResource("5_wlae5")
+texture = ExtResource("8_6qddr")
 expand_mode = 1
 
 [node name="CostLabel" type="Label" parent="MoveWithMouse/CardVisual/Control/CardBack/CostCircle"]
