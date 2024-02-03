@@ -16,6 +16,10 @@ run/main_scene="res://Src/Launch.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://Assets/Image/icon.svg"
 
+[autoload]
+
+GlobalAudio="*res://Src/GlobalAudio.tscn"
+
 [display]
 
 window/stretch/mode="viewport"

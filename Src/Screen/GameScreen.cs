@@ -24,6 +24,10 @@ public partial class GameScreen : Node
 
 	public void SetScreen(string screenName)
 	{
+		if (screenName == "BattleScreen")
+		{
+			GlobalAudio.Instance.ButtonClick();
+		}
 		var screen = GetGameScreenFromName(screenName);
 		if (screen != null)
 		{

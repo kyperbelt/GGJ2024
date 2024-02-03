@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://c78i2c6vv3yjh"]
+[gd_scene load_steps=73 format=3 uid="uid://c78i2c6vv3yjh"]
 
 [ext_resource type="Script" path="res://Src/Battle/Battle.cs" id="1_rmdn6"]
 [ext_resource type="Resource" uid="uid://cky1bojgl0je7" path="res://Src/GameDataResources/Cards/card11_spitsetup.tres" id="2_4hspp"]
@@ -40,7 +40,6 @@
 [ext_resource type="Texture2D" uid="uid://b2u7b2y2d4q34" path="res://Assets/Image/jester.png" id="21_kixqa"]
 [ext_resource type="Resource" uid="uid://cwvwfdpckagdc" path="res://Src/GameDataResources/Cards/card44_darkoneliner1.tres" id="22_sjq1r"]
 [ext_resource type="AudioStream" uid="uid://bogcj3e1u5krt" path="res://Assets/Sound/draw_card.wav" id="29_k5keg"]
-[ext_resource type="AudioStream" uid="uid://i7ai5fewsv4l" path="res://Assets/Sound/button_press.wav" id="29_xqacw"]
 [ext_resource type="AudioStream" uid="uid://c4hbq7aco2ouj" path="res://Assets/Sound/crowdlaugh01.wav" id="31_6uesq"]
 [ext_resource type="Texture2D" uid="uid://y1tl8sbjntd0" path="res://Assets/Image/UI/UI-Masks_Happy.png" id="31_my0qf"]
 [ext_resource type="AudioStream" uid="uid://b6sgw2kv7vtqr" path="res://Assets/Sound/crowdboo01.wav" id="32_0kaqn"]
@@ -65,7 +64,7 @@
 [ext_resource type="AudioStream" uid="uid://dc18601v4xy5p" path="res://Assets/Sound/crowdOoo4.wav" id="51_nfvn7"]
 [ext_resource type="AudioStream" uid="uid://xv31nl3sj12c" path="res://Assets/Sound/701703__stavsounds__ui-mistake.wav" id="59_7dahr"]
 
-[sub_resource type="Resource" id="Resource_6a588"]
+[sub_resource type="Resource" id="Resource_fw7be"]
 resource_local_to_scene = true
 script = ExtResource("17_xv602")
 CharacterName = "King Heckler"
@@ -116,7 +115,7 @@ _data = {
 "idle": SubResource("Animation_jqod2")
 }
 
-[sub_resource type="Resource" id="Resource_cetmc"]
+[sub_resource type="Resource" id="Resource_nbf3i"]
 resource_local_to_scene = true
 script = ExtResource("17_xv602")
 CharacterName = "Jester"
@@ -208,7 +207,7 @@ editor_only = false
 position = Vector2(705, 231)
 CharacterConfidenceUi = NodePath("HecklerHealthBar")
 CharacterFacingDirection = 0
-CharacterData = SubResource("Resource_6a588")
+CharacterData = SubResource("Resource_fw7be")
 
 [node name="Sprite2D" parent="Heckler2" index="0"]
 material = SubResource("ShaderMaterial_6wlj0")
@@ -254,7 +253,7 @@ PlayerColor = Color(0.239216, 0.313726, 1, 1)
 position = Vector2(550, 491)
 scale = Vector2(1.5, 1.5)
 CharacterConfidenceUi = NodePath("../PlayerHealthBar")
-CharacterData = SubResource("Resource_cetmc")
+CharacterData = SubResource("Resource_nbf3i")
 
 [node name="Sprite2D" parent="Player2" index="0"]
 position = Vector2(-180.667, -46)
@@ -325,14 +324,6 @@ CardPrefab = ExtResource("20_uk465")
 DrawButton = NodePath("../DrawButton")
 DiscardButton = NodePath("../DiscardButton")
 
-[node name="CardMoveSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("29_k5keg")
-volume_db = 2.737
-
-[node name="ButtonSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("29_xqacw")
-volume_db = 2.0
-
 [node name="CrowdSounds" type="Node" parent="."]
 
 [node name="CrowdLaughSound" type="AudioStreamPlayer" parent="CrowdSounds"]
@@ -361,6 +352,10 @@ volume_db = 10.0
 stream = ExtResource("59_7dahr")
 volume_db = 2.0
 
+[node name="CardMoveSound" type="AudioStreamPlayer" parent="CardSounds"]
+stream = ExtResource("29_k5keg")
+volume_db = 2.737
+
 [node name="CrowdHUD" type="Node2D" parent="."]
 
 [node name="Ui-masksHappy" type="Sprite2D" parent="CrowdHUD"]
@@ -384,7 +379,6 @@ script = ExtResource("33_5nnmt")
 _humourIconTexture = ExtResource("36_5p5bw")
 
 [connection signal="pressed" from="EndTurnButton" to="." method="EndPlayerTurn"]
-[connection signal="pressed" from="EndTurnButton" to="ButtonSound" method="play" binds= [0.0]]
 
 [editable path="Heckler2"]
 [editable path="Player2"]

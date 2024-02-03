@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://mac7e1emtw2w"]
+
+[ext_resource type="AudioStream" uid="uid://cedw0q4tqg8v8" path="res://Assets/Sound/117413__joedeshon__wooden_ball_against_wooden_window_shade.wav" id="1_i1qf7"]
+[ext_resource type="Script" path="res://Src/GlobalAudio.cs" id="1_q1ax7"]
+
+[node name="GlobalAudio" type="Node" node_paths=PackedStringArray("_buttonClick")]
+script = ExtResource("1_q1ax7")
+_buttonClick = NodePath("ButtonClick")
+
+[node name="ButtonClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_i1qf7")

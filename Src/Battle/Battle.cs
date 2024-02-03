@@ -430,6 +430,7 @@ public partial class Battle : Node2D
 		if (_turnType != TurnType.Player) return;
 		// End turn, discard any remaining cards from hand
 		GD.Print($"\ud83d\ude80 End Player Turn");
+		GlobalAudio.Instance.ButtonClick();
 		for(int i = _hand.Count-1; i >= 0; i--)
 		{
 			var card = _hand[i];
