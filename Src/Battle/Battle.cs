@@ -242,7 +242,7 @@ public partial class Battle : Node2D
 		GD.Print($"Heckler does {randomCardProto.Hilarity} damage to player.");
 		if (randomCardProto.Hilarity > 0)
 		{
-			_playerCharacter.CurrentConfidence -= randomCardProto.Hilarity;
+			_playerCharacter.CurrentConfidence -= randomCardProto.Hilarity * 4;
 			_playerJustTookDamage = true;
 			_crowdHecklerReactionPlayer.PlayRandom();
 		}
