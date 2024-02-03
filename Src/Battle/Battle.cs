@@ -72,6 +72,9 @@ public partial class Battle : Node2D
 	
 	[Export]
 	private AudioStreamPlayer _cardSlapPlayer;
+    
+	[Export]
+	private AudioStreamPlayer _errorPlayer;
 	
 	public int MaterialAmount
 	{
@@ -215,6 +218,7 @@ public partial class Battle : Node2D
 	private void ShowCantAffordSpeechBubble()
 	{
 		_playerSpeechBubble.ShowDialogueLine("I can't afford that card.");
+		_errorPlayer.Play();
 	}
 
 	private void StartPlayerTurn()

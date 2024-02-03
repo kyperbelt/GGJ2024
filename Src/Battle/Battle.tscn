@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://c78i2c6vv3yjh"]
+[gd_scene load_steps=74 format=3 uid="uid://c78i2c6vv3yjh"]
 
 [ext_resource type="Script" path="res://Src/Battle/Battle.cs" id="1_rmdn6"]
 [ext_resource type="Resource" uid="uid://cky1bojgl0je7" path="res://Src/GameDataResources/Cards/card11_spitsetup.tres" id="2_4hspp"]
@@ -63,6 +63,7 @@
 [ext_resource type="AudioStream" uid="uid://di5dcxkbvruqn" path="res://Assets/Sound/crowdOoo2.wav" id="49_7sf8f"]
 [ext_resource type="AudioStream" uid="uid://b4ogpne6gn5rj" path="res://Assets/Sound/crowdOoo3.wav" id="50_kvaxw"]
 [ext_resource type="AudioStream" uid="uid://dc18601v4xy5p" path="res://Assets/Sound/crowdOoo4.wav" id="51_nfvn7"]
+[ext_resource type="AudioStream" uid="uid://xv31nl3sj12c" path="res://Assets/Sound/701703__stavsounds__ui-mistake.wav" id="59_7dahr"]
 
 [sub_resource type="Resource" id="Resource_6a588"]
 resource_local_to_scene = true
@@ -163,7 +164,7 @@ _data = {
 "idle": SubResource("Animation_6kcx8")
 }
 
-[node name="Battle" type="Node2D" node_paths=PackedStringArray("_playerCharacter", "_hecklerCharacter", "_playerSpeechBubble", "_hecklerSpeechBubble", "_crowdFavoriteHumourIcon", "_crowdDislikedHumourIcon", "_handArea", "_crowdLaughPlayer", "_crowdBooPlayer", "_crowdHecklerReactionPlayer", "_cardFlipPlayer", "_cardSlapPlayer")]
+[node name="Battle" type="Node2D" node_paths=PackedStringArray("_playerCharacter", "_hecklerCharacter", "_playerSpeechBubble", "_hecklerSpeechBubble", "_crowdFavoriteHumourIcon", "_crowdDislikedHumourIcon", "_handArea", "_crowdLaughPlayer", "_crowdBooPlayer", "_crowdHecklerReactionPlayer", "_cardFlipPlayer", "_cardSlapPlayer", "_errorPlayer")]
 script = ExtResource("1_rmdn6")
 _playerCharacter = NodePath("Player2")
 _hecklerCharacter = NodePath("Heckler2")
@@ -178,6 +179,7 @@ _crowdBooPlayer = NodePath("CrowdSounds/CrowdBooSound")
 _crowdHecklerReactionPlayer = NodePath("CrowdSounds/CrowdHecklerReactionSound")
 _cardFlipPlayer = NodePath("CardSounds/CardFlipSound")
 _cardSlapPlayer = NodePath("CardSounds/CardSlapSound")
+_errorPlayer = NodePath("CardSounds/ErrorSound")
 _deckSize = 10
 
 [node name="Background" type="TextureRect" parent="."]
@@ -293,7 +295,6 @@ scale = Vector2(2, 2)
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("36_moy5c")
 volume_db = -9.0
-autoplay = true
 
 [node name="EndTurnButton" parent="." instance=ExtResource("18_xt1j5")]
 offset_left = 1018.0
@@ -355,6 +356,10 @@ volume_db = 10.0
 [node name="CardSlapSound" type="AudioStreamPlayer" parent="CardSounds"]
 stream = ExtResource("46_y4fvq")
 volume_db = 10.0
+
+[node name="ErrorSound" type="AudioStreamPlayer" parent="CardSounds"]
+stream = ExtResource("59_7dahr")
+volume_db = 2.0
 
 [node name="CrowdHUD" type="Node2D" parent="."]
 

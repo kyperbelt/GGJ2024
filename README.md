@@ -16,6 +16,11 @@ Scenes, Scripts(`*.gd`, `*.cs`) and Resources can go here.
 
 This game uses the following sounds from https://freesound.org:
 
-*   S: [Card Flip](https://freesound.org/people/f4ngy/sounds/240776/) by [f4ngy](https://freesound.org/people/f4ngy/) | License: Attribution 4.0
-*   S: [Crowd Boo.wav](https://freesound.org/people/deleted_user_2104797/sounds/324893/) by [deleted\_user\_2104797](https://freesound.org/people/deleted_user_2104797/) | License: Creative Commons 0
-*   S: [Laughs\_ses2.wav](https://freesound.org/people/freesound/sounds/25296/) by [freesound](https://freesound.org/people/freesound/) | License: Creative Commons 0
+<ul>
+     <li>S: <a href="https://freesound.org/people/StavSounds/sounds/701703/">ui-mistake.wav</a> by <a href="https://freesound.org/people/StavSounds/">StavSounds</a> | License: Creative Commons 0</li>
+     <li>S: <a href="https://freesound.org/people/deleted_user_2104797/sounds/324895/">Crowd gasp.wav</a> by <a href="https://freesound.org/people/deleted_user_2104797/">deleted_user_2104797</a> | License: Creative Commons 0</li>
+     <li>S: <a href="https://freesound.org/people/deleted_user_2104797/sounds/324897/">Crowd Ouch.wav</a> by <a href="https://freesound.org/people/deleted_user_2104797/">deleted_user_2104797</a> | License: Creative Commons 0</li>
+     <li>S: <a href="https://freesound.org/people/deleted_user_2104797/sounds/324893/">Crowd Boo.wav</a> by <a href="https://freesound.org/people/deleted_user_2104797/">deleted_user_2104797</a> | License: Creative Commons 0</li>
+     <li>S: <a href="https://freesound.org/people/freesound/sounds/25296/">Laughs_ses2.wav</a> by <a href="https://freesound.org/people/freesound/">freesound</a> | License: Creative Commons 0</li>
+     <li>S: <a href="https://freesound.org/people/f4ngy/sounds/240776/">Card Flip</a> by <a href="https://freesound.org/people/f4ngy/">f4ngy</a> | License: Attribution
+</ul>
